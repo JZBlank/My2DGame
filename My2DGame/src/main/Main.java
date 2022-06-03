@@ -7,7 +7,7 @@ class Main{
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //stops program when 'x' is clicked on
         window.setResizable(false);
-        window.setTitle("Adventure Game");
+        window.setTitle("A Cat's Life");
         
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
