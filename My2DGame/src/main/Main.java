@@ -18,6 +18,6 @@ class Main{
         window.setVisible(true);
 
         gamePanel.startGameThread();
-        // hi
+        // hi there
     }
 }
