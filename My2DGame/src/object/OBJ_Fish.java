@@ -15,6 +15,7 @@ public class OBJ_Fish extends SuperObject {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		collision = true;
 	}
 
 }
