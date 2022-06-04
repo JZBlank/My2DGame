@@ -17,6 +17,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     int fishCount = 0;
+    public boolean meow_now = false;
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -58,6 +59,12 @@ public class Player extends Entity {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+    
+    public void talk() {
+    	if(keyH.meow == true) {
+    		meow_now = true;
+    	}
     }
     public void update(){
     	

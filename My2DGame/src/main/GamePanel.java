@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     	
     	aSetter.setObject();
     	
-    	playMusic(0); // play background music
+    	//playMusic(0); // play background music
     }
     
     public void startGameThread() {
@@ -85,7 +85,9 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if(delta >= 1){
+            	
                 update(); // 1 UPDATE: update information such as character positions
+                play_meow(); // if player presses m, play a meow
                 repaint(); // 2 DRAW: draw the screen with the updated information
                 delta--;
                 drawCount++;
@@ -103,6 +105,15 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
         player.update();
 
+    }
+    
+    public void play_meow() {
+    	player.talk();
+    	if(player.meow_now == true) {
+    		System.out.println("m pressed");
+    		playSE(0);
+    	}
+    	player.meow_now = false;
     }
 
     public void paintComponent(Graphics g){ // Graphics allows for drawing (paintbrush/pen)
@@ -130,9 +141,11 @@ public class GamePanel extends JPanel implements Runnable {
     	sound.play();
     	sound.loop();
     }
+    
     public void stopMusic() {
     	sound.stop();
     }
+    
     public void playSE(int i) {
     	sound.setFile(i);;
     	sound.play();
