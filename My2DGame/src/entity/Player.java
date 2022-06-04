@@ -16,8 +16,13 @@ public class Player extends Entity {
     
     public final int screenX;
     public final int screenY;
-    int fishCount = 0;
+    public int fishCount = 0;
     public boolean meow_now = false;
+    int standCounter = 0;
+    
+    //when player has not moved after certain amount of time, character sits down (standby mode)
+    public boolean standBy = false;
+    int standByCounter = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -49,12 +54,22 @@ public class Player extends Entity {
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up2.png"));
+            
             down1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down2.png"));
+            
             left1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left_standby.png"));
+            left4 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left_sit.png"));
+            left5 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left_sit2.png"));
+            
             right1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_right.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_right2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/player/cat_right_standby.png"));
+            right4 = ImageIO.read(getClass().getResourceAsStream("/player/cat_right_sit.png"));
+            right5 = ImageIO.read(getClass().getResourceAsStream("/player/cat_right_sit2.png"));
+            
 
         } catch (IOException e){
             e.printStackTrace();
@@ -70,6 +85,8 @@ public class Player extends Entity {
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
+    		
+    		standBy = false;
     		
     		if(keyH.upPressed == true){
                 direction = "up";
@@ -120,11 +137,35 @@ public class Player extends Entity {
             	else if(spriteNum == 2) {
             		spriteNum = 1;
             	}
+            	else if(spriteNum == 3) {
+            		spriteNum = 1;
+            	}
             	spriteCounter = 0;
             }
     		
     	}
+    	else {
+    		standCounter++;
+    		standByCounter++;
+    		idle();
+    		if(standBy == true) {
+    			spriteNum = 3;
+    		}
+    		
+    
+    	}
     	
+    }
+    
+    public void idle() {
+    	if(standByCounter == 60) {
+    		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
+        			keyH.rightPressed == false) {
+    			standBy = true;
+    			System.out.println(standBy + direction);
+    		}
+    		standByCounter = 0;
+    	}
     }
     
     public void pickUpObject(int i) {
@@ -134,6 +175,7 @@ public class Player extends Entity {
     		case "Fish":
     			fishCount++;
     			gp.obj[i] = null;
+    			gp.ui.showMessage("You got a fish!");
     			System.out.println("Fish:" + fishCount);
     			break;
     		}
@@ -172,6 +214,9 @@ public class Player extends Entity {
         	if(spriteNum == 2) {
         		image = left2;
         	}
+        	if(spriteNum == 3) {
+        		image = left3;
+        	}
              break;
         case "right":
         	if(spriteNum == 1) {
@@ -179,6 +224,9 @@ public class Player extends Entity {
         	}
         	if(spriteNum == 2) {
         		image = right2;
+        	}
+        	if(spriteNum == 3) {
+        		image = right3;
         	}
              break;
         }

@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public UI ui = new UI(this);
     Thread gameThread;
     
     // ENTITY AND OBJECT
@@ -122,7 +123,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;  // Graphics2D class extends the Graphics class to provide more sophisticated control
         
         // TILE
-        tileM.draw(g2); // draw tile first or covers player
+        tileM.draw(g2); // draw tile first or else it covers player
         
         // OBJECT
         for(int i = 0; i < obj.length; i++) {
@@ -132,6 +133,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         // PLAYER
         player.draw(g2);
+        
+        // UI
+        ui.draw(g2);;
 
         g2.dispose(); // dispose of this graphics context and release any system resources that it is using
     }

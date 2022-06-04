@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 
 public class SuperObject {
-	BufferedImage fishMove1, fishMove2;
+	public BufferedImage image1, image2, image3;
 	public String name;
 	public boolean collision = false;
 	public int worldX, worldY;
@@ -25,7 +25,7 @@ public class SuperObject {
 		   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 			
-			g2.drawImage(fishMove1, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
 	}
 }
