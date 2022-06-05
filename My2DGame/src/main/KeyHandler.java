@@ -6,9 +6,13 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     public boolean meow, upPressed, downPressed, leftPressed, rightPressed;
+    
+    // DEBUG
+    boolean checkDrawTime = false;
 
     @Override
     public void keyPressed(KeyEvent e) {
+    
         int code = e.getKeyCode(); // returns the integer keyCode associated with the key in this event
         
         if(code == KeyEvent.VK_M) {
@@ -30,6 +34,15 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_D){
             rightPressed = true;
             
+        }
+        // DEBUG
+        if(code == KeyEvent.VK_T) {
+        	if(checkDrawTime == false) {
+        		checkDrawTime = true;
+        	}
+        	else if(checkDrawTime == true) {
+        		checkDrawTime = false;
+        	}
         }
     }
 

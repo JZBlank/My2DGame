@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class TileManager {
 	GamePanel gp;
@@ -26,41 +28,29 @@ public class TileManager {
 	}
 	
 	public void getTileImage() {
+
+			setup(0, "grass", false);
+			setup(1, "metal_horizontal", true);
+			setup(2, "water", true);
+			setup(3, "wood_horizontal", false);
+			setup(4, "green_tree", true);
+			setup(5, "dirt", false);
+			setup(6, "sand", false);
+			setup(7, "metal_vertical", true);
+			setup(8, "wood_vertical", true);
+			
+
+	}
+	
+	public void setup(int index, String imagePath, boolean collision) {
+		UtilityTool uTool = new UtilityTool();
 		try {
-			tile[0] = new Tile();
-			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
+			tile[index] = new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imagePath + ".png"));
+			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+			tile[index].collision = collision;
 			
-			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/metal_horizontal.png"));
-			tile[1].collision = true;
-			
-			tile[2] = new Tile();
-			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water.png"));
-			tile[2].collision = true;
-			
-			tile[3] = new Tile();
-			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wood_horizontal.png"));
-			
-			tile[4] = new Tile();
-			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/green_tree.png"));
-			tile[4].collision = true;
-			
-			tile[5] = new Tile();
-			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/dirt.png"));
-			
-			tile[6] = new Tile();
-			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
-			
-			tile[7] = new Tile();
-			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/metal_vertical.png"));
-			tile[7].collision = true;
-			
-			tile[8] = new Tile();
-			tile[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wood_vertical.png"));
-			tile[8].collision = true;
-			
-			
-		} catch(IOException e) {
+		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
