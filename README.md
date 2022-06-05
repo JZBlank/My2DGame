@@ -5,7 +5,7 @@ Game Status: _**WORK IN PROGRESS**_
 Cat Wars is a 2D java game made from scratch. You get to play as a cat and go on an adventure. 
 This is a project that I decided to do on my free time.
 
-<u> Huge credit to RyiSnow's Java Game Development Youtube Series. <br/>
+<ins> Huge credit to RyiSnow's Java Game Development Youtube Series. <br/></ins>
 
 His videos and explanations helped me tremendously when building this game .<br/>
 
