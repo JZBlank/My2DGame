@@ -9,7 +9,7 @@ Huge THANK YOU and credit to [RyiSnow's Java Game Development Youtube Series](ht
 His videos and explanations helped me tremendously when building this game .<br/>
 
 
-This is my first ever java game and while it is still a work-in-progress, there are so many ideas I want to implement.<br/>
+This is my first ever Java game and while it is still a work-in-progress, there are so many ideas I want to implement.<br/>
 
 ##### How to Play:
 W - move character up <br/>
