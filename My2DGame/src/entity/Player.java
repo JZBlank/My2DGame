@@ -12,7 +12,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Player extends Entity {
-    GamePanel gp;
     KeyHandler keyH;
     
     public final int screenX;
@@ -29,7 +28,9 @@ public class Player extends Entity {
     
 
     public Player(GamePanel gp, KeyHandler keyH){
-        this.gp = gp;
+    	
+    	super(gp);
+    	
         this.keyH = keyH;
         
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -56,45 +57,31 @@ public class Player extends Entity {
 
     public void getPlayerImage(){
         
-        up1 = setup("cat_up");
-        up2 = setup("cat_up2");
-        up3 = setup("cat_up_standby");
-        up4 = setup("cat_up_sit");
-        up5 = setup("cat_up_sit2");
+        up1 = setup("/player/cat_up");
+        up2 = setup("/player/cat_up2");
+        up3 = setup("/player/cat_up_standby");
+        up4 = setup("/player/cat_up_sit");
+        up5 = setup("/player/cat_up_sit2");
         
-        down1 = setup("cat_down");
-        down2 = setup("cat_down2");
-        down3 = setup("cat_down_standby");
-        down4 = setup("cat_down_down");
-        down5 = setup("cat_down_sit");
-        down6 = setup("cat_down_sit2");
+        down1 = setup("/player/cat_down");
+        down2 = setup("/player/cat_down2");
+        down3 = setup("/player/cat_down_standby");
+        down4 = setup("/player/cat_down_down");
+        down5 = setup("/player/cat_down_sit");
+        down6 = setup("/player/cat_down_sit2");
         
-        left1 = setup("cat_left");
-        left2 = setup("cat_left2");
-        left3 = setup("cat_left_standby");
-        left4 = setup("cat_left_sit");
-        left5 = setup("cat_left_sit2");
+        left1 = setup("/player/cat_left");
+        left2 = setup("/player/cat_left2");
+        left3 = setup("/player/cat_left_standby");
+        left4 = setup("/player/cat_left_sit");
+        left5 = setup("/player/cat_left_sit2");
         
-        right1 = setup("cat_right");
-        right2 = setup("cat_right2");
-        right3 = setup("cat_right_standby");
-        right4 = setup("cat_right_sit");
-        right5 = setup("cat_right_sit2");
+        right1 = setup("/player/cat_right");
+        right2 = setup("/player/cat_right2");
+        right3 = setup("/player/cat_right_standby");
+        right4 = setup("/player/cat_right_sit");
+        right5 = setup("/player/cat_right_sit2");
          
-    }
-    
-    public BufferedImage setup(String imageName) {
-    	UtilityTool uTool = new UtilityTool();
-    	BufferedImage image = null;
-    	
-    	try {
-    		image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-    		image = uTool.scaleImage(image,  gp.tileSize,  gp.tileSize);
-    		
-    	}catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	return image;
     }
     
     public void talk() {
@@ -128,10 +115,14 @@ public class Player extends Entity {
     		collisionOn = false;
     		gp.cChecker.checkTile(this);
     		
-    		//CHECK OBJECT COLLISION
+    		// CHECK OBJECT COLLISION
     		int objIndex = gp.cChecker.checkObject(this, true);
     		pickUpObject(objIndex);
     	
+    		// CHECK NPC COLLISION
+    		int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+    		interactNPC(npcIndex);
+    		
     		
     		// IF COLLISION IS FALSE, PLAYER CAN MOVE
     		if(collisionOn == false) {
@@ -219,6 +210,12 @@ public class Player extends Entity {
     		}
     	}
     }
+    
+    public void interactNPC(int i) {
+    	if(i != 999) {
+    		System.out.println("you are hitting an npc");
+    	}
+    }
 
     public void draw(Graphics2D g2) {
 
@@ -282,12 +279,32 @@ public class Player extends Entity {
         	}
              break;
         }
+        
+        int x = screenX;
+        int y = screenY;
+        
+        if(screenX > worldX) {
+        	x = worldX;
+        }
+        
+        if(screenY > worldY) {
+        	y = worldY;
+        }
+        int rightOffset = gp.screenWidth - screenX;
+		if(rightOffset > gp.worldWidth - worldX) {
+			x = gp.screenWidth - (gp.worldWidth - worldX);
+		}
+		int bottomOffset = gp.screenHeight - screenY;
+		if(bottomOffset > gp.worldHeight - worldY) {
+			y = gp.screenHeight - (gp.worldHeight - worldY);
+		}
+        
         if(image == down4) {
-        	g2.drawImage(image, screenX, screenY, null);
-        	g2.drawImage(down5, screenX, screenY, null);
+        	g2.drawImage(image, x, y, null);
+        	g2.drawImage(down5, x, y, null);
         }
         else {
-        	g2.drawImage(image, screenX, screenY, null);
+        	g2.drawImage(image, x, y, null);
         }
         
     }
