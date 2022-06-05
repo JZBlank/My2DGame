@@ -22,7 +22,10 @@ public class Player extends Entity {
     
     //when player has not moved after certain amount of time, character sits down (standby mode)
     public boolean standBy = false;
-    int standByCounter = 0;
+    public boolean sit = false;
+    int idleCounter = 0;
+    
+    
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -54,9 +57,16 @@ public class Player extends Entity {
         try{
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up_standby.png"));
+            up4 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up_sit.png"));
+            up5 = ImageIO.read(getClass().getResourceAsStream("/player/cat_up_sit2.png"));
             
             down1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down2.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down_standby.png"));
+            down4 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down_down.png"));
+            down5 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down_sit.png"));
+            down6 = ImageIO.read(getClass().getResourceAsStream("/player/cat_down_sit2.png"));
             
             left1 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/cat_left2.png"));
@@ -86,7 +96,9 @@ public class Player extends Entity {
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
     		
+    		idleCounter = 0;
     		standBy = false;
+    		sit = false;
     		
     		if(keyH.upPressed == true){
                 direction = "up";
@@ -140,17 +152,24 @@ public class Player extends Entity {
             	else if(spriteNum == 3) {
             		spriteNum = 1;
             	}
+            	else if(spriteNum == 4) {
+            		spriteNum = 1;
+            	}
             	spriteCounter = 0;
             }
     		
     	}
     	else {
     		standCounter++;
-    		standByCounter++;
+    		idleCounter++;
     		idle();
     		if(standBy == true) {
     			spriteNum = 3;
     		}
+    		else if(sit == true) {
+    			spriteNum = 4;
+    		}
+    		
     		
     
     	}
@@ -158,13 +177,21 @@ public class Player extends Entity {
     }
     
     public void idle() {
-    	if(standByCounter == 60) {
+    	if(idleCounter == 60) {
     		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
         			keyH.rightPressed == false) {
     			standBy = true;
-    			System.out.println(standBy + direction);
+    			sit = false;
+    			System.out.println("standBy?: " + standBy + " " + direction);
     		}
-    		standByCounter = 0;
+    	}
+    	else if(idleCounter == 180) {
+    		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
+        			keyH.rightPressed == false) {
+    			sit = true;
+    			standBy = false;
+    			System.out.println("sit?: " + sit + " " + direction);
+    		}
     	}
     }
     
@@ -198,6 +225,12 @@ public class Player extends Entity {
         	if(spriteNum == 2) {
         		image = up2;
         	}
+        	if(spriteNum == 3) {
+        		image = up3;
+        	}
+        	if(spriteNum == 4) {
+        		image = up4;
+        	}
             break;
         case "down":
         	if(spriteNum == 1) {
@@ -205,6 +238,12 @@ public class Player extends Entity {
         	}
         	if(spriteNum == 2) {
         		image = down2;
+        	}
+        	if(spriteNum == 3) {
+        		image = down3;
+        	}
+        	if(spriteNum == 4) {
+        		image = down4;
         	}
             break;
         case "left":
@@ -217,6 +256,9 @@ public class Player extends Entity {
         	if(spriteNum == 3) {
         		image = left3;
         	}
+        	if(spriteNum == 4) {
+        		image = left4;
+        	}
              break;
         case "right":
         	if(spriteNum == 1) {
@@ -227,6 +269,9 @@ public class Player extends Entity {
         	}
         	if(spriteNum == 3) {
         		image = right3;
+        	}
+        	if(spriteNum == 4) {
+        		image = right4;
         	}
              break;
         }
