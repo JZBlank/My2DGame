@@ -54,7 +54,6 @@ public class NPC_npc extends Entity {
 		actionLockCounter++;
 		
 		if(actionLockCounter == 180) { // every 3 seconds, a random move is chosen, can also choose standby mode
-			System.out.println("actionLockCounter is = 180");
 			Random random = new Random();
 			int i = random.nextInt(100)+1; // picks a number from 1 to 100
 			int j = random.nextInt(10)+ 1; // picks a number from 1 to 10 /
@@ -89,8 +88,7 @@ public class NPC_npc extends Entity {
 		}
 		gp.ui.currentDialogue = dialogues[dialogueIndex];
 		dialogueIndex++;
-		
-		System.out.println("PLAYER: " + gp.player.direction + " NPC BEFORE: " + direction);
+			
 		switch(gp.player.direction) {
 		
 		case "up":
@@ -105,9 +103,6 @@ public class NPC_npc extends Entity {
 		case "right":
 			direction = "left";
 			break;
-		}
-		
-		System.out.println("PLAYER: " + gp.player.direction + " NPC AFTER: " + direction);
-		
+		}	
 	}
 }

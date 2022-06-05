@@ -23,7 +23,6 @@ public class Player extends Entity {
     //when player has not moved after certain amount of time, character sits down (standby mode)
     public boolean standBy = false;
     public boolean sit = false;
-    int idleCounter = 0;
     
     
 
@@ -171,28 +170,22 @@ public class Player extends Entity {
     		else if(sit == true) {
     			spriteNum = 4;
     		}
-    		
-    		
-    
     	}
-    	
     }
     
     public void idle() {
-    	if(idleCounter == 60) {
+    	if(idleCounter == 20) {
     		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
         			keyH.rightPressed == false) {
     			standBy = true;
     			sit = false;
-    			System.out.println("standBy?: " + standBy + " " + direction);
     		}
     	}
-    	else if(idleCounter == 180) {
+    	else if(idleCounter == 120) {
     		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
         			keyH.rightPressed == false) {
     			sit = true;
     			standBy = false;
-    			System.out.println("sit?: " + sit + " " + direction);
     		}
     	}
     }

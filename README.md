@@ -29,7 +29,7 @@ P - pause <br/>
 
 ##### TO-DO:
 - [ ] Create Game Theme Song + add Music to Game 
-- [ ] Make Fishon ground move
+- [ ] Make Fish on ground move
 - [ ] Create Inventory
 - [ ] Make items smaller on screen
 - [ ] Figure out Objective for Game (idea right now is open world, freedom to do whatever you want)

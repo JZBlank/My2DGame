@@ -93,7 +93,6 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if(delta >= 1){
-            	
                 update(); // 1 UPDATE: update information such as character positions
                 play_meow(); // if player presses m, play a meow
                 repaint(); // 2 DRAW: draw the screen with the updated information
@@ -119,9 +118,13 @@ public class GamePanel extends JPanel implements Runnable {
     		// nothing
     	}
     	else if(gameState == dialogueState) {
-    		// nothing 
+    		player.sitSoon();
+    		for(int i = 0; i < npc.length; i++) {
+        		if(npc[i] != null) {
+        			npc[i].sitSoon();
+        		}
+    		}
     	}
-
     }
     
     public void play_meow() {

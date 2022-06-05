@@ -39,6 +39,12 @@ public class Entity {
     
     public void setAction() {}
     public void speak() {}
+    public void sitSoon() { // after dialogueStatus is initiated, cats become idle, aka sit down after some time
+    	idleCounter++;
+    	if(idleCounter > 10) {
+    		spriteNum = 4;
+    	}
+    }
     public void update() {
     	setAction();
     	
