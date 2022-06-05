@@ -10,12 +10,12 @@ Huge credit to RyiSnow's Java Game Development Youtube Series. His videos and ex
 This is my first ever java game and while it is still a work-in-progress, there are so many ideas I want to implement.
 
 ##### How to Play:
-W - move character up__
-A - move character to the left__
-S - move character down__
-D - move character to the right__
-M - meow__
-P - pause__
+W - move character up <br/>
+A - move character to the left <br/>
+S - move character down <br/>
+D - move character to the right <br/>
+M - meow <br/>
+P - pause <br/>
 
 ##### IMAGES: 
 - Coming Soon
