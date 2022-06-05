@@ -9,10 +9,10 @@ public class NPC_npc extends Entity {
 	public NPC_npc(GamePanel gp) {
 		super(gp);
 		
-		direction = "down";
+		direction = "left";
 		speed = 1;
-		
 		getImage();
+		setDialogue();
 		
 	}
 	public void getImage(){
@@ -43,13 +43,28 @@ public class NPC_npc extends Entity {
         right5 = setup("/npc/cat_right_sit2");
 	}
 	
+	public void setDialogue() {
+		dialogues[0] = "Oh, hello there! I haven't seen you around here.";
+		dialogues[1] = "What's your name?";
+		
+	}
+	
 	public void setAction() {
 		
 		actionLockCounter++;
 		
-		if(actionLockCounter == 120) {
+		if(actionLockCounter == 180) { // every 3 seconds, a random move is chosen, can also choose standby mode
+			System.out.println("actionLockCounter is = 180");
 			Random random = new Random();
 			int i = random.nextInt(100)+1; // picks a number from 1 to 100
+			int j = random.nextInt(10)+ 1; // picks a number from 1 to 10 /
+			
+			if(j > 5) {
+				standBy = false;
+			}
+			else {
+				standBy = true;
+			}
 			
 			if(i <= 25) {
 				direction = "up";
@@ -63,7 +78,36 @@ public class NPC_npc extends Entity {
 			if(i > 75 && i <= 100) {
 				direction = "right";
 			}
+			
 			actionLockCounter = 0;
 		}
+	}
+	
+	public void speak() {
+		if(dialogues[dialogueIndex] == null) {
+			dialogueIndex = 0;
+		}
+		gp.ui.currentDialogue = dialogues[dialogueIndex];
+		dialogueIndex++;
+		
+		System.out.println("PLAYER: " + gp.player.direction + " NPC BEFORE: " + direction);
+		switch(gp.player.direction) {
+		
+		case "up":
+			direction = "down";
+			break;
+		case "down":
+			direction = "up";
+			break;
+		case "left":
+			direction = "right";
+			break;
+		case "right":
+			direction = "left";
+			break;
+		}
+		
+		System.out.println("PLAYER: " + gp.player.direction + " NPC AFTER: " + direction);
+		
 	}
 }

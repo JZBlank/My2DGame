@@ -213,7 +213,8 @@ public class Player extends Entity {
     
     public void interactNPC(int i) {
     	if(i != 999) {
-    		System.out.println("you are hitting an npc");
+    		gp.gameState = gp.dialogueState;
+    		gp.npc[i].speak();
     	}
     }
 
@@ -300,7 +301,6 @@ public class Player extends Entity {
 		}
         
         if(image == down4) {
-        	g2.drawImage(image, x, y, null);
         	g2.drawImage(down5, x, y, null);
         }
         else {

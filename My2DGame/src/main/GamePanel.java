@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // SYSTEM
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
     
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -49,6 +49,11 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
 
+    // GAME STATES
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int dialogueState = 3;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -62,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     	
     	aSetter.setObject();
     	aSetter.setNPC();
-    	
+    	gameState = playState;
     	//playMusic(0); // play background music
     }
     
@@ -79,15 +84,12 @@ public class GamePanel extends JPanel implements Runnable {
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
-        long timer = 0;
-        int drawCount = 0;
 
 
         while(gameThread != null){
 
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
             lastTime = currentTime;
 
             if(delta >= 1){
@@ -96,13 +98,6 @@ public class GamePanel extends JPanel implements Runnable {
                 play_meow(); // if player presses m, play a meow
                 repaint(); // 2 DRAW: draw the screen with the updated information
                 delta--;
-                drawCount++;
-            }
-            
-            if(timer >= 1000000000){
-                System.out.println("FPS:" + drawCount);
-                drawCount = 0;
-                timer = 0;
             }
         }
         
@@ -110,13 +105,21 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(){
         // PLAYER
-    	player.update();
-        
-    	// NPC
-    	for(int i = 0; i < npc.length; i++) {
-    		if(npc[i] != null) {
-    			npc[i].update();
-    		}
+    	if(gameState == playState) {
+    		player.update();
+            
+        	// NPC
+        	for(int i = 0; i < npc.length; i++) {
+        		if(npc[i] != null) {
+        			npc[i].update();
+        		}
+        	}
+    	}
+    	else if(gameState == pauseState) {
+    		// nothing
+    	}
+    	else if(gameState == dialogueState) {
+    		// nothing 
     	}
 
     }
@@ -134,12 +137,6 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;  // Graphics2D class extends the Graphics class to provide more sophisticated control
-        
-        // DEBUG
-        long drawStart = 0;
-        if(keyH.checkDrawTime == true) {
-            drawStart = System.nanoTime();
-        }
         
         // TILE
         tileM.draw(g2); // draw tile first or else it covers player
@@ -163,14 +160,6 @@ public class GamePanel extends JPanel implements Runnable {
         
         // UI
         ui.draw(g2);
-        
-        if(keyH.checkDrawTime == true) {
-            long drawEnd = System.nanoTime();
-            long passed = drawEnd - drawStart;
-            g2.setColor(Color.white);
-            g2.drawString("Draw Time: " + passed, 10, 400);
-            System.out.println("Draw Time:" +passed);
-        }
         
 
         g2.dispose(); // dispose of this graphics context and release any system resources that it is using

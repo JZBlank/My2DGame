@@ -21,19 +21,24 @@ public class Entity {
     public BufferedImage right1, right2, right3, right4, right5; 
     
     public String direction;
-    public int spriteCounter = 0;
-    public int spriteNum = 3;
+    public int spriteCounter = 0; // number of frames for sprite
+    public int idleCounter = 0; // when to not move
+    public int spriteNum = 3; // what image of sprite to use
     
     public Rectangle solidArea = new Rectangle(0,0, 48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    public boolean standBy = false;
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
     
     public Entity(GamePanel gp) {
     	this.gp = gp;
     }
     
     public void setAction() {}
+    public void speak() {}
     public void update() {
     	setAction();
     	
@@ -43,7 +48,7 @@ public class Entity {
     	gp.cChecker.checkPlayer(this);
     	
     	// IF COLLISION IS FALSE, PLAYER CAN MOVE
-		if(collisionOn == false) {
+		if(collisionOn == false && standBy != true) {
 			switch(direction) {
 			case "up":  
 				worldY -= speed; 
@@ -62,21 +67,28 @@ public class Entity {
 		}
         
         spriteCounter++;
-        if(spriteCounter > 10) {
-        	if(spriteNum == 1) {
-        		spriteNum = 2;
+        if(spriteCounter > 10) { // after every 1/60
+        	if(standBy == true) {
+        		spriteNum = 3;
         	}
-        	else if(spriteNum == 2) {
-        		spriteNum = 1;
-        	}
-        	else if(spriteNum == 3) {
-        		spriteNum = 1;
-        	}
-        	else if(spriteNum == 4) {
-        		spriteNum = 1;
+        	else {
+        		if(spriteNum == 1 ) {
+            		spriteNum = 2;
+            	}
+            	else if(spriteNum == 2) {
+            		spriteNum = 1;
+            	}
+            	else if(spriteNum == 3) {
+            		spriteNum = 1;
+            	}
+            	else if(spriteNum == 4) {
+            		spriteNum = 1;
+            	}
         	}
         	spriteCounter = 0;
         }
+        
+        
     	
     	
     }
@@ -111,62 +123,83 @@ public class Entity {
 			
 			switch(direction){
 	        case "up":
-	        	if(spriteNum == 1) {
-	        		image = up1;
-	        	}
-	        	if(spriteNum == 2) {
-	        		image = up2;
-	        	}
-	        	if(spriteNum == 3) {
-	        		image = up3;
-	        	}
-	        	if(spriteNum == 4) {
+	        	if(standBy == true) {
 	        		image = up4;
+	        	}
+	        	else {
+	        		if(spriteNum == 1) {
+	        			image = up1;
+	        		}
+	        		if(spriteNum == 2) {
+		        		image = up2;
+		        	}
+		        	if(spriteNum == 3) {
+		        		image = up3;
+		        	}
+		        	if(spriteNum == 4) {
+		        		image = up4;
+		        	}
 	        	}
 	            break;
 	        case "down":
-	        	if(spriteNum == 1) {
-	        		image = down1;
+	        	if(standBy == true) {
+	        		image = down5;
 	        	}
-	        	if(spriteNum == 2) {
-	        		image = down2;
-	        	}
-	        	if(spriteNum == 3) {
-	        		image = down3;
-	        	}
-	        	if(spriteNum == 4) {
-	        		image = down4;
+	        	else {
+	        		if(spriteNum == 1) {
+		        		image = down1;
+		        	}
+		        	if(spriteNum == 2) {
+		        		image = down2;
+		        	}
+		        	if(spriteNum == 3) {
+		        		image = down3;
+		        	}
+		        	if(spriteNum == 4) {
+		        		image = down4;
+		        	}
 	        	}
 	            break;
 	        case "left":
-	        	if(spriteNum == 1) {
-	        		image = left1;
-	        	}
-	        	if(spriteNum == 2) {
-	        		image = left2;
-	        	}
-	        	if(spriteNum == 3) {
-	        		image = left3;
-	        	}
-	        	if(spriteNum == 4) {
+	        	if(standBy == true) {
 	        		image = left4;
+	        	}
+	        	else {
+	        		if(spriteNum == 1) {
+		        		image = left1;
+		        	}
+		        	if(spriteNum == 2) {
+		        		image = left2;
+		        	}
+		        	if(spriteNum == 3) {
+		        		image = left3;
+		        	}
+		        	if(spriteNum == 4) {
+		        		image = left4;
+		        	}
 	        	}
 	             break;
 	        case "right":
-	        	if(spriteNum == 1) {
-	        		image = right1;
-	        	}
-	        	if(spriteNum == 2) {
-	        		image = right2;
-	        	}
-	        	if(spriteNum == 3) {
-	        		image = right3;
-	        	}
-	        	if(spriteNum == 4) {
+	        	if(standBy == true) {
 	        		image = right4;
+	        	}
+	        	else {
+	        		if(spriteNum == 1) {
+		        		image = right1;
+		        	}
+		        	if(spriteNum == 2) {
+		        		image = right2;
+		        	}
+		        	if(spriteNum == 3) {
+		        		image = right3;
+		        	}
+		        	if(spriteNum == 4) {
+		        		image = right4;
+		        	}
 	        	}
 	             break;
 	        }
+			
 			
 			if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
 		       worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
