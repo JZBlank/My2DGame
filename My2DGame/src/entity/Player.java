@@ -275,6 +275,13 @@ public class Player extends Entity {
         	}
              break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        if(image == down4) {
+        	g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        	g2.drawImage(down5, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        }
+        else {
+        	g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        }
+        
     }
 }
