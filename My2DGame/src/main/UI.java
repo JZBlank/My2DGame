@@ -24,7 +24,7 @@ public class UI {
 		this.gp = gp;
 		
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
-		OBJ_Fish fish = new OBJ_Fish();
+		OBJ_Fish fish = new OBJ_Fish(gp);
 		fishImage = fish.image1;
 	}
 	

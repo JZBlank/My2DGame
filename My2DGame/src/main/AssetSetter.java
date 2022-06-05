@@ -9,7 +9,7 @@ public class AssetSetter {
 	}
 	
 	public void setObject() {
-		gp.obj[0] = new OBJ_Fish();
+		gp.obj[0] = new OBJ_Fish(gp);
 		gp.obj[0].worldX = 12 * gp.tileSize;
 		gp.obj[0].worldY = 32 * gp.tileSize;
 	}

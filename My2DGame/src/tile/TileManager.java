@@ -42,11 +42,11 @@ public class TileManager {
 
 	}
 	
-	public void setup(int index, String imagePath, boolean collision) {
+	public void setup(int index, String imageName, boolean collision) { 
 		UtilityTool uTool = new UtilityTool();
 		try {
 			tile[index] = new Tile();
-			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imagePath + ".png"));
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
 			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
 			tile[index].collision = collision;
 			
@@ -103,7 +103,7 @@ public class TileManager {
 			   worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(tile[tileNum].image, screenX, screenY, null);
 			}
 			
 			worldCol++;
