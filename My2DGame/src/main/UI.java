@@ -68,7 +68,7 @@ public class UI {
 			
 			if(messageOn == true) { // display that fish is picked up
 				
-				g2.setFont(g2.getFont().deriveFont(50F));
+				g2.setFont(g2.getFont().deriveFont(20F));
 				g2.drawString(message, gp.tileSize/2, gp.tileSize *5);
 				
 				messageCounter++;
