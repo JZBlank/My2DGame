@@ -93,9 +93,8 @@ public class Player extends Entity {
     }
     public void update(){
     	// CHECK IF NEXT TO A NPC
-    	gp.cChecker.nextToNPC(this, gp.npc);
-    	//System.out.println(nextTo);
-    	//chatNPC(nextTo);
+    	int nextTo = gp.cChecker.nextToNPC(this, gp.npc);
+    	chatNPC(nextTo);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
@@ -127,8 +126,7 @@ public class Player extends Entity {
     	
     		// CHECK NPC COLLISION
     		int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-    		interactNPC(npcIndex);
-    		
+    		interactNPC(npcIndex);    		
     		
     		// IF COLLISION IS FALSE, PLAYER CAN MOVE
     		if(collisionOn == false) {
@@ -220,13 +218,18 @@ public class Player extends Entity {
     	gp.keyH.ePressed = false;
     }
     
-    public void chatNPC(boolean nextToNPC) {
-    	if(nextToNPC == true) {
+    public void chatNPC(int nextToNPC) {
+    	if(nextToNPC != 999) {
     		ableToChat = true;
+    		if(gp.keyH.ePressed == true) {
+    			gp.gameState = gp.dialogueState;
+        		gp.npc[nextToNPC].speak();
+    		}
     	}
-    	else if(nextToNPC == false) {
-    		ableToChat = true;
+    	else if(nextToNPC == 999) {
+    		ableToChat = false;
     	}
+    	gp.keyH.ePressed = false;
     }
 
     public void draw(Graphics2D g2) {

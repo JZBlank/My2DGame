@@ -6,6 +6,8 @@ public class CollisionChecker {
 	
 	GamePanel gp;
 	
+	public int chatCounter = 0;
+	
 	public CollisionChecker(GamePanel gp) {
 		this.gp = gp;
 		
@@ -228,16 +230,18 @@ public class CollisionChecker {
 		gp.player.solidArea.y = gp.player.solidAreaDefaultY;
 	}
 	
-	public void nextToNPC(Entity entity, Entity[] target) {   
+	public int nextToNPC(Entity entity, Entity[] target) {   
+		int j = 999;
 		for(int i = 0; i < target.length; i++) {
 			if(target[i] != null) {
-				if(entity.worldX >= target[i].worldX - 48 && entity.worldX <= target[i].worldX + 48 &&
-						entity.worldY <= target[i].worldY + 48 && entity.worldY >= target[i].worldY - 48  ){
-					System.out.println("range to chat!");
-				}	
+				if(entity.worldX >= target[i].worldX - 45 && entity.worldX <= target[i].worldX + 45 &&
+						entity.worldY <= target[i].worldY + 45 && entity.worldY >= target[i].worldY - 60){
+					chatCounter++;
+					return i;
+				}
 			}
 		}
-
+		return j;
 	}
 				
 }
