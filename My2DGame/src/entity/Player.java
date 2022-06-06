@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 public class Player extends Entity {
     KeyHandler keyH;
+    Entity[] npc;
     
     public final int screenX;
     public final int screenY;
@@ -24,6 +25,7 @@ public class Player extends Entity {
     public boolean standBy = false;
     public boolean sit = false;
     
+    public boolean ableToChat = false;
     
 
     public Player(GamePanel gp, KeyHandler keyH){
@@ -89,6 +91,10 @@ public class Player extends Entity {
     	}
     }
     public void update(){
+    	// CHECK IF NEXT TO A NPC
+    	//boolean nextTo = gp.cChecker.nextToNPC(this, gp.npc);
+    	//System.out.println(nextTo);
+    	//chatNPC(nextTo);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
@@ -198,7 +204,6 @@ public class Player extends Entity {
     			fishCount++;
     			gp.obj[i] = null;
     			gp.ui.showMessage("You got a fish!");
-    			System.out.println("Fish:" + fishCount);
     			break;
     		}
     	}
@@ -206,8 +211,20 @@ public class Player extends Entity {
     
     public void interactNPC(int i) {
     	if(i != 999) {
-    		gp.gameState = gp.dialogueState;
-    		gp.npc[i].speak();
+    		if(gp.keyH.ePressed == true) {
+    			gp.gameState = gp.dialogueState;
+        		gp.npc[i].speak();
+    		}
+    	}
+    	gp.keyH.ePressed = false;
+    }
+    
+    public void chatNPC(boolean nextToNPC) {
+    	if(nextToNPC == true) {
+    		ableToChat = true;
+    	}
+    	else if(nextToNPC == false) {
+    		ableToChat = true;
     	}
     }
 
