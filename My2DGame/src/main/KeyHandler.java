@@ -69,6 +69,9 @@ public class KeyHandler implements KeyListener{
         			changeDialogue = true;
         		}
         	}
+        	else if(code == KeyEvent.VK_ENTER) {
+        		gp.gameState = gp.playState;
+        	}
         }
   }
  

@@ -48,6 +48,9 @@ public class NPC_npc extends Entity {
 		dialogues[0][1] = "What's your name?";
 		
 	}
+	public void updateDialogue() {
+		super.updateDialogue();
+	}
 	
 	public void setAction() {
 		

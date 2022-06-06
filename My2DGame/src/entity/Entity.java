@@ -44,6 +44,7 @@ public class Entity {
     }
     
     public void setAction() {}
+    public void updateDialogue() {}
     public void speak() {
     	
     	// DIALOGUE
@@ -68,7 +69,6 @@ public class Entity {
 		}	
     }
     public void sayDialogue() {
-    	System.out.println("hi");
     	if(dialogueIndex < 5 && dialogues[dialogueSet][dialogueIndex + 1] != null) {
     		gp.ui.moreDialogue = true;
     	}
@@ -82,12 +82,6 @@ public class Entity {
     	}
     	dialogueIndex++;
     	
-    }
-    public void updateDialogue() {
-    	
-    	if(gp.gameState == gp.dialogueState && keyH.changeDialogue == true) {
-    		System.out.println("Change NPC dialogue!, e is pressed");
-    	}
     }
     public void updateSit() { // after dialogueStatus is initiated, cats become idle, aka sit down after some time
     	idleCounter++;
