@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
+import entity.Entity;
 import object.OBJ_Fish;
 
 public class UI {
@@ -27,6 +28,7 @@ public class UI {
 	int messageCounter = 0;
 	public boolean gameFinished = false;
 	public String currentDialogue = "";
+	public boolean moreDialogue = false;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -90,6 +92,7 @@ public class UI {
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
 			drawDialogueScreen();
+			drawDialogue();
 		}
 	
 	}
@@ -118,6 +121,11 @@ public class UI {
 		int height = gp.tileSize * 4;
 		
 		drawSubWindow(x, y, width, height);
+	}
+	
+	public void drawDialogue() {
+		int x = gp.tileSize * 2;
+		int y = gp.tileSize/2;
 		
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 		x += gp.tileSize;
@@ -126,6 +134,14 @@ public class UI {
 		for(String line : currentDialogue.split("\n")) {
 			g2.drawString(line, x, y);
 			y += 40;
+		}
+		
+		x += gp.screenWidth - (gp.tileSize * 6);;
+		y += gp.tileSize - 10;
+		
+		
+		if(moreDialogue == true) {
+			g2.drawString(">", x, y);
 		}
 	}
 	

@@ -24,9 +24,8 @@ public class Player extends Entity {
     //when player has not moved after certain amount of time, character sits down (standby mode)
     public boolean standBy = false;
     public boolean sit = false;
-    
     public boolean ableToChat = false;
-   
+    public int whoConvo = -1;
     
 
     public Player(GamePanel gp, KeyHandler keyH){
@@ -88,18 +87,30 @@ public class Player extends Entity {
     
     public void talk() {
     	if(keyH.meow == true) {
-    		meow_now = true;
+    		gp.playSE(0);
     	}
+    	meow_now = false;
     }
     
-    public void sitSoon() {
-    	super.sitSoon();
+    public void updateSit() {
+    	super.updateSit();
+    }
+    
+    public void updateDialogue() {
+    	if(gp.gameState == gp.dialogueState && keyH.changeDialogue == true) {
+    		gp.npc[whoConvo].sayDialogue();
+    	}
+    	keyH.changeDialogue = false;
     }
     
     public void update(){
+    	
+    	// CHECK IF M IS PRESSED
+    	talk();
+    	
     	// CHECK IF NEXT TO A NPC
-    	int nextTo = gp.cChecker.nextToNPC(this, gp.npc);
-    	chatNPC(nextTo);
+    	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
+    	chatNPC(whoConvo);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
@@ -130,8 +141,9 @@ public class Player extends Entity {
     		pickUpObject(objIndex);
     	
     		// CHECK NPC COLLISION
-    		int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-    		interactNPC(npcIndex);    		
+    		whoConvo = gp.cChecker.checkEntity(this, gp.npc);
+    		interactNPC(whoConvo);
+    		
     		
     		// IF COLLISION IS FALSE, PLAYER CAN MOVE
     		if(collisionOn == false) {
@@ -184,7 +196,7 @@ public class Player extends Entity {
     }
     
     public void idle() {
-    	if(idleCounter == 20) {
+    	if(idleCounter == 10) {
     		if(keyH.upPressed == false && keyH.downPressed == false && keyH.leftPressed == false &&
         			keyH.rightPressed == false) {
     			standBy = true;
@@ -228,7 +240,7 @@ public class Player extends Entity {
     		ableToChat = true;
     		if(gp.keyH.ePressed == true) {
     			gp.gameState = gp.dialogueState;
-        		gp.npc[nextToNPC].speak();
+    			gp.npc[nextToNPC].speak();
     		}
     	}
     	else if(nextToNPC == 999) {

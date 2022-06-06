@@ -44,8 +44,8 @@ public class NPC_npc extends Entity {
 	}
 	
 	public void setDialogue() {
-		dialogues[0] = "Oh, hello there! I haven't seen you \n around here.";
-		dialogues[1] = "What's your name?";
+		dialogues[0][0] = "Oh, hello there! I haven't seen you \n around here.";
+		dialogues[0][1] = "What's your name?";
 		
 	}
 	

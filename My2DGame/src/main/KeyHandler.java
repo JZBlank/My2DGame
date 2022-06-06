@@ -3,10 +3,14 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import entity.Entity;
+
 public class KeyHandler implements KeyListener{
 
 	GamePanel gp;
     public boolean meow, upPressed, downPressed, leftPressed, rightPressed, ePressed;
+    public boolean changeDialogue;
+    
     
     public KeyHandler(GamePanel gp) {
     	this.gp = gp;
@@ -58,7 +62,12 @@ public class KeyHandler implements KeyListener{
         // DIALOGUE STATE
         else if(gp.gameState == gp.dialogueState) {
         	if(code == KeyEvent.VK_E) {
-        		gp.gameState = gp.playState;
+        		if(gp.ui.moreDialogue != true) {
+        			gp.gameState = gp.playState;
+        		}
+        		else {
+        			changeDialogue = true;
+        		}
         	}
         }
   }
@@ -71,6 +80,10 @@ public class KeyHandler implements KeyListener{
         
         if(code == KeyEvent.VK_M) {
         	meow = false;
+        }
+        
+        if(code == KeyEvent.VK_E){
+            changeDialogue = false;
         }
 
         if(code == KeyEvent.VK_W){
@@ -87,9 +100,8 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_D){
             rightPressed = false;
-            
         }
-        
+    
     }
 
     @Override

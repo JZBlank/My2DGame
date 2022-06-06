@@ -93,8 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if(delta >= 1){
-                update(); // 1 UPDATE: update information such as character positions
-                play_meow(); // if player presses m, play a meow
+                update(); // 1 UPDATE: update information depending on game state
                 repaint(); // 2 DRAW: draw the screen with the updated information
                 delta--;
             }
@@ -118,22 +117,15 @@ public class GamePanel extends JPanel implements Runnable {
     		// nothing
     	}
     	else if(gameState == dialogueState) {
-    		player.sitSoon();
+    		player.updateSit();
+    		player.updateDialogue();
     		for(int i = 0; i < npc.length; i++) {
         		if(npc[i] != null) {
-        			npc[i].sitSoon();
+        			npc[i].updateSit();
+        			
         		}
     		}
     	}
-    }
-    
-    public void play_meow() {
-    	player.talk();
-    	if(player.meow_now == true) {
-    		System.out.println("m pressed");
-    		playSE(0);
-    	}
-    	player.meow_now = false;
     }
 
     public void paintComponent(Graphics g){ // Graphics allows for drawing (paintbrush/pen)

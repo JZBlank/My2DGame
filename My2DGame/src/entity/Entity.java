@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.KeyHandler;
 import main.UtilityTool;
 
 public class Entity {
@@ -14,6 +15,7 @@ public class Entity {
     public int speed;
     
     GamePanel gp;
+    KeyHandler keyH;
     // describes image with accessible buffer image data (use this to store image files)
     public BufferedImage up1, up2, up3, up4, up5;
     public BufferedImage down1, down2, down3, down4, down5, down6;
@@ -30,8 +32,12 @@ public class Entity {
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     public boolean standBy = false;
-    String dialogues[] = new String[20];
-    int dialogueIndex = 0;
+    
+    // DIALOGUE
+    String dialogues[][] = new String[5][20];
+    int dialogueSet = 0;
+    int dialogueIndex = 0; 
+    
     
     public Entity(GamePanel gp) {
     	this.gp = gp;
@@ -39,12 +45,12 @@ public class Entity {
     
     public void setAction() {}
     public void speak() {
-		if(dialogues[dialogueIndex] == null) {
-			dialogueIndex = 0;
-		}
-		gp.ui.currentDialogue = dialogues[dialogueIndex];
-		dialogueIndex++;
-			
+    	
+    	// DIALOGUE
+    	dialogueIndex = 0; // start over
+    	sayDialogue();
+    	
+    	// TURN NPC TOWARDS CHARACTER 
 		switch(gp.player.direction) {
 		
 		case "up":
@@ -61,12 +67,35 @@ public class Entity {
 			break;
 		}	
     }
-    public void sitSoon() { // after dialogueStatus is initiated, cats become idle, aka sit down after some time
+    public void sayDialogue() {
+    	System.out.println("hi");
+    	if(dialogueIndex < 5 && dialogues[dialogueSet][dialogueIndex + 1] != null) {
+    		gp.ui.moreDialogue = true;
+    	}
+    	else if(dialogueIndex < 5 && dialogues[dialogueSet][dialogueIndex + 1] == null) {
+    		gp.ui.moreDialogue = false;
+    	}
+    	
+    	// IF MESSAGE NOT NULL
+    	if(dialogues[dialogueSet][dialogueIndex] != null) {
+    		gp.ui.currentDialogue = dialogues[dialogueSet][dialogueIndex];
+    	}
+    	dialogueIndex++;
+    	
+    }
+    public void updateDialogue() {
+    	
+    	if(gp.gameState == gp.dialogueState && keyH.changeDialogue == true) {
+    		System.out.println("Change NPC dialogue!, e is pressed");
+    	}
+    }
+    public void updateSit() { // after dialogueStatus is initiated, cats become idle, aka sit down after some time
     	idleCounter++;
     	if(idleCounter > 10) {
     		spriteNum = 4;
     	}
     }
+    
     public void update() {
     	setAction();
     	
@@ -115,10 +144,6 @@ public class Entity {
         	}
         	spriteCounter = 0;
         }
-        
-        
-    	
-    	
     }
     public void draw(Graphics2D g2) {
     	
