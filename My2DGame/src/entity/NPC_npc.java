@@ -44,7 +44,7 @@ public class NPC_npc extends Entity {
 	}
 	
 	public void setDialogue() {
-		dialogues[0] = "Oh, hello there! I haven't seen you around here.";
+		dialogues[0] = "Oh, hello there! I haven't seen you \n around here.";
 		dialogues[1] = "What's your name?";
 		
 	}
@@ -81,28 +81,7 @@ public class NPC_npc extends Entity {
 			actionLockCounter = 0;
 		}
 	}
-	
 	public void speak() {
-		if(dialogues[dialogueIndex] == null) {
-			dialogueIndex = 0;
-		}
-		gp.ui.currentDialogue = dialogues[dialogueIndex];
-		dialogueIndex++;
-			
-		switch(gp.player.direction) {
-		
-		case "up":
-			direction = "down";
-			break;
-		case "down":
-			direction = "up";
-			break;
-		case "left":
-			direction = "right";
-			break;
-		case "right":
-			direction = "left";
-			break;
-		}	
+		super.speak();
 	}
 }

@@ -91,6 +91,11 @@ public class Player extends Entity {
     		meow_now = true;
     	}
     }
+    
+    public void sitSoon() {
+    	super.sitSoon();
+    }
+    
     public void update(){
     	// CHECK IF NEXT TO A NPC
     	int nextTo = gp.cChecker.nextToNPC(this, gp.npc);

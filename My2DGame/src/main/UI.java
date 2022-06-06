@@ -3,8 +3,12 @@ package main;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 
 import object.OBJ_Fish;
@@ -12,6 +16,10 @@ import object.OBJ_Fish;
 public class UI {
 	GamePanel gp;
 	Graphics2D g2;
+	Font purisaB; // font for chat boxes
+	// add another font for picking up items!!
+	//
+	
 	Font arial_40;
 	BufferedImage fishImage;
 	public boolean messageOn = false;
@@ -23,7 +31,15 @@ public class UI {
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		
-		arial_40 = new Font("Arial", Font.PLAIN, 40);
+		InputStream is = getClass().getResourceAsStream("/font/Purisa Bold.ttf");
+		try {
+			purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		OBJ_Fish fish = new OBJ_Fish(gp);
 		fishImage = fish.image1;
 	}
@@ -42,8 +58,8 @@ public class UI {
 		
 		
 		this.g2 = g2;
-			
-		g2.setFont(arial_40);
+		g2.setFont(purisaB);
+	    g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 50));
 		g2.setColor(Color.white);
 		
 		
@@ -52,7 +68,7 @@ public class UI {
 			
 			if(messageOn == true) { // display that fish is picked up
 				
-				g2.setFont(g2.getFont().deriveFont(30F));
+				g2.setFont(g2.getFont().deriveFont(50F));
 				g2.drawString(message, gp.tileSize/2, gp.tileSize *5);
 				
 				messageCounter++;
@@ -103,10 +119,14 @@ public class UI {
 		
 		drawSubWindow(x, y, width, height);
 		
-		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,32F));
+		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 		x += gp.tileSize;
 		y += gp.tileSize;
-		g2.drawString(currentDialogue, x, y);
+		
+		for(String line : currentDialogue.split("\n")) {
+			g2.drawString(line, x, y);
+			y += 40;
+		}
 	}
 	
 	public void drawSubWindow(int x, int y, int width, int height) {
