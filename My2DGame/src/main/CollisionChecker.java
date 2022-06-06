@@ -228,22 +228,16 @@ public class CollisionChecker {
 		gp.player.solidArea.y = gp.player.solidAreaDefaultY;
 	}
 	
-	public boolean nextToNPC(Entity entity, Entity[] target) {
-		 for(int i = 0; i < target.length; i++) {
+	public void nextToNPC(Entity entity, Entity[] target) {   
+		for(int i = 0; i < target.length; i++) {
 			if(target[i] != null) {
-				// Get entity's solid area position
-				entity.solidArea.x = entity.worldX + entity.solidArea.x;
-				entity.solidArea.y = entity.worldY + entity.solidArea.y;
-				
-				// Get the object's solid area position
-				target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
-				target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
-				
-				//System.out.println("Entity x: "+ entity.solidArea.x + " y: " + entity.solidArea.y + " " + 
-					//	"Player x: " + gp.player.solidArea.x + " y:  " + gp.player.solidArea.y);
-			 }
-		 }
-		return false;
+				if(entity.worldX >= target[i].worldX - 48 && entity.worldX <= target[i].worldX + 48 &&
+						entity.worldY <= target[i].worldY + 48 && entity.worldY >= target[i].worldY - 48  ){
+					System.out.println("range to chat!");
+				}	
+			}
+		}
+
 	}
 				
 }

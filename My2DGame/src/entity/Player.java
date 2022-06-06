@@ -26,6 +26,7 @@ public class Player extends Entity {
     public boolean sit = false;
     
     public boolean ableToChat = false;
+   
     
 
     public Player(GamePanel gp, KeyHandler keyH){
@@ -92,7 +93,7 @@ public class Player extends Entity {
     }
     public void update(){
     	// CHECK IF NEXT TO A NPC
-    	//boolean nextTo = gp.cChecker.nextToNPC(this, gp.npc);
+    	gp.cChecker.nextToNPC(this, gp.npc);
     	//System.out.println(nextTo);
     	//chatNPC(nextTo);
     	
