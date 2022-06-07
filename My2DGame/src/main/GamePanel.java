@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATES
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
@@ -67,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     	
     	aSetter.setObject();
     	aSetter.setNPC();
-    	gameState = playState;
+    	gameState = titleState;
     	//playMusic(0); // play background music
     }
     
@@ -131,32 +132,39 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;  // Graphics2D class extends the Graphics class to provide more sophisticated control
-        
-        // TILE
-        tileM.draw(g2); // draw tile first or else it covers player
-        
-        
-        // OBJECT
-        for(int i = 0; i < obj.length; i++) {
-        	if(obj[i] != null) {
-        		obj[i].draw(g2, this);
-        	}
+
+        // TILE SCREEN
+        if(gameState == titleState) {
+        	ui.draw(g2);
         }
-        
-        //NPC
-        for(int i = 0; i < npc.length; i++) {
-        	if(npc[i] != null) {
-        		npc[i].draw(g2);
-        	}
+        // OTHERS
+        else {
+        	// TILE
+            tileM.draw(g2); // draw tile first or else it covers player
+            
+            
+            // OBJECT
+            for(int i = 0; i < obj.length; i++) {
+            	if(obj[i] != null) {
+            		obj[i].draw(g2, this);
+            	}
+            }
+            
+            //NPC
+            for(int i = 0; i < npc.length; i++) {
+            	if(npc[i] != null) {
+            		npc[i].draw(g2);
+            	}
+            }
+            // PLAYER
+            player.draw(g2);
+            
+            // UI
+            ui.draw(g2);
         }
-        // PLAYER
-        player.draw(g2);
-        
-        // UI
-        ui.draw(g2);
         
 
-        g2.dispose(); // dispose of this graphics context and release any system resources that it is using
+        //g2.dispose(); // dispose of this graphics context and release any system resources that it is using
     }
     
     public void playMusic(int i) {
