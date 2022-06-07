@@ -57,6 +57,7 @@ public class KeyHandler implements KeyListener{
         	}
         	else if(gp.ui.titleScreenState == 1) {
         		//add text field for player to enter a name
+        		
         		if(code == KeyEvent.VK_ENTER) {
         			gp.ui.titleScreenState = 2;
         		}

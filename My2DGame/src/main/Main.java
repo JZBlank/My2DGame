@@ -5,8 +5,8 @@ import javax.swing.JTextField;
 
 class Main{
     public static void main(String[] args){
-        JFrame window = new JFrame();
-        JTextField jtf = new JTextField(30);
+    	JFrame window = new JFrame();
+    	JTextField jtf = new JTextField(30);
         
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //stops program when 'x' is clicked on
         window.setResizable(false);
@@ -19,14 +19,10 @@ class Main{
 
         window.setLocationRelativeTo(null);
        
-        gamePanel.add(jtf);
-        
         window.setVisible(true);
-
+        
         gamePanel.setupGame();
         gamePanel.startGameThread();
-        
-
         
        }
 }

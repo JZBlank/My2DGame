@@ -34,6 +34,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = tileSize * maxWorldRow;
     
     
+    // ENTER NAME SCREEN VARIABLES
+    boolean askName = true;
+    GamePanel main;
+    
+    
+    // JTEXTFIELD + LABEL
+    
+    textField jtf = new textField();
     
     // FPS
     int FPS = 60;
@@ -70,7 +78,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame() {
-    	
     	aSetter.setObject();
     	aSetter.setNPC();
     	gameState = titleState;
@@ -81,7 +88,6 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
-    
 
     @Override
     public void run() {
@@ -108,10 +114,24 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-        // PLAYER
     	
     	if(gameState == titleState) {
-    		// leave empty for now
+    		if(ui.titleScreenState == 1) { 
+    			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))
+        	    	this.add(jtf);
+        	    	jtf.setHorizontalAlignment(JTextField.CENTER);
+        	    	// ADD KEY LISTENER TO THIS JTEXTFIELD
+        	    	jtf.addActionListener();
+        	    	
+        	    	// SET UP TEXTFIELD 
+        	    	int length = screenWidth/3;
+        			int x = screenWidth/2 - length/2;
+        		
+        	    	jtf.setBounds(x, screenHeight/9, screenWidth/3, screenHeight/16);
+        	    	jtf.setVisible(true);
+    			}
+    			askName = false;
+    		}
     	}
     	
     	if(gameState == playState) {
