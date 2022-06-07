@@ -10,6 +10,7 @@ public class KeyHandler implements KeyListener{
 	GamePanel gp;
     public boolean meow, upPressed, downPressed, leftPressed, rightPressed, ePressed;
     public boolean changeDialogue;
+    public boolean typeName;
     
     
     public KeyHandler(GamePanel gp) {
@@ -55,6 +56,12 @@ public class KeyHandler implements KeyListener{
     	        }
         	}
         	else if(gp.ui.titleScreenState == 1) {
+        		//add text field for player to enter a name
+        		if(code == KeyEvent.VK_ENTER) {
+        			gp.ui.titleScreenState = 2;
+        		}
+        	}
+        	else if(gp.ui.titleScreenState == 2) {
         		if(code == KeyEvent.VK_W){
     	    		gp.ui.commandNum--;
     	    		if(gp.ui.commandNum < 0) {

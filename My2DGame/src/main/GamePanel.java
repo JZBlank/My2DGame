@@ -5,14 +5,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable {	
+	
     // Screen settings 
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3;
@@ -77,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
+    
 
     @Override
     public void run() {
@@ -88,8 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
         long currentTime;
 
 
-        while(gameThread != null){
-
+        while(gameThread != null) {
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
             lastTime = currentTime;
@@ -105,6 +109,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(){
         // PLAYER
+    	
+    	if(gameState == titleState) {
+    		// leave empty for now
+    	}
+    	
     	if(gameState == playState) {
     		player.update();
             

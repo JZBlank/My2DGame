@@ -15,6 +15,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     Entity[] npc;
     
+    public String name = "";
     public final int screenX;
     public final int screenY;
     public int fishCount = 0;
@@ -55,6 +56,9 @@ public class Player extends Entity {
         speed = 4;
         direction = "down";
         
+        
+        // PLAYER NAME
+        name = "Timmy";
         // PLAYER STATUS
         maxHealth = 9;
         currentHealth = maxHealth;

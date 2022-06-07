@@ -6,10 +6,15 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.TextField;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import entity.Entity;
 import object.OBJ_Fish;
@@ -19,6 +24,9 @@ import object.SuperObject;
 public class UI {
 	GamePanel gp;
 	Graphics2D g2;
+//	JTextField jT = new JTextField(30);
+//	JLabel jL = new JLabel();
+	
 	Font purisaB; // font for chat boxes
 	// add another font for picking up items!!
 	
@@ -34,8 +42,9 @@ public class UI {
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6;
-	//BufferedImage healthImage7, healthImage8, healthImage9, healthImage10, healthImage11;
 	
+	
+	public boolean enterName = false;
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -67,11 +76,6 @@ public class UI {
 		healthImage4 = heart.image4;
 		healthImage5 = heart.image5;
 		healthImage6 = heart.image6;
-//		healthImage7 = heart.image7;
-//		healthImage8 = heart.image8;
-//		healthImage9 = heart.image9;
-//		healthImage10 = heart.image10;
-//		healthImage11 = heart.image11;
 		
 	}
 	
@@ -186,6 +190,7 @@ public class UI {
 	public void drawTitleScreen() {
 		
 		if(titleScreenState == 0) {
+			
 			// TITLE NAME
 			g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
 			String text = "Cat Wars";
@@ -240,7 +245,20 @@ public class UI {
 				g2.drawString(">", x - gp.tileSize, y);
 			}
 		}
+		
 		else if(titleScreenState == 1) {
+			// SET NAME  (figure out how to save later on)
+			g2.setColor(Color.white);
+			g2.setFont(g2.getFont().deriveFont(20F));
+			
+			String text = "Enter a name for your cat:";
+			int x = getXforCenteredText(text);
+			int y = gp.tileSize;
+			g2.drawString(text,  x,  y);	
+			
+		}
+		
+		else if(titleScreenState == 2) {
 			// CLASS SELECTION SCREEN
 			g2.setColor(Color.white);
 			g2.setFont(g2.getFont().deriveFont(20F));
