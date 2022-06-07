@@ -8,7 +8,8 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class SuperObject {
-	public BufferedImage image1, image2, image3;
+	public BufferedImage image1, image2, image3, image4, image5;
+	public BufferedImage image6, image7, image8, image9, image10, image11;
 	public String name;
 	public boolean collision = false;
 	public int worldX, worldY;

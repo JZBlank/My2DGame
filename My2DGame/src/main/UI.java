@@ -13,21 +13,29 @@ import java.text.DecimalFormat;
 
 import entity.Entity;
 import object.OBJ_Fish;
+import object.OBJ_healthBar;
+import object.SuperObject;
 
 public class UI {
 	GamePanel gp;
 	Graphics2D g2;
 	Font purisaB; // font for chat boxes
 	// add another font for picking up items!!
-	//
 	
 	
 	Font arial_40;
 	
 	public int commandNum = 0;
-	public int titleScreenState = 0; // 
+	public int titleScreenState = 0; 
 	
+	
+	// FISH IMAGE
 	BufferedImage fishImage;
+	
+	// HEALTH IMAGES
+	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5;
+	BufferedImage healthImage6, healthImage7, healthImage8, healthImage9, healthImage10, healthImage11;
+	
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -47,8 +55,24 @@ public class UI {
 			e.printStackTrace();
 		}
 		
+		// FISH
 		OBJ_Fish fish = new OBJ_Fish(gp);
 		fishImage = fish.image1;
+		
+		// HEART
+		SuperObject heart = new OBJ_healthBar(gp);
+		healthImage = heart.image1;
+		healthImage2 = heart.image2;
+		healthImage3 = heart.image3;
+		healthImage4 = heart.image4;
+		healthImage5 = heart.image5;
+		healthImage6 = heart.image6;
+		healthImage7 = heart.image7;
+		healthImage8 = heart.image8;
+		healthImage9 = heart.image9;
+		healthImage10 = heart.image10;
+		healthImage11 = heart.image11;
+		
 	}
 	
 	public void showMessage(String text) {
@@ -63,7 +87,7 @@ public class UI {
 		
 		this.g2 = g2;
 		g2.setFont(purisaB);
-	    g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 50));
+	    g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
 		g2.setColor(Color.white);
 		
 		// TITLE STATE
@@ -76,9 +100,12 @@ public class UI {
 		if(gp.gameState == gp.playState) {
 			
 			// DISPLAY ITEMS AT UPPER LEFT HAND CORNER
-			g2.drawImage(fishImage, gp.tileSize/6, gp.tileSize/6, gp.tileSize + 10, gp.tileSize + 10, null);
-			g2.drawString("x " + gp.player.fishCount, 70, 55);
+			//g2.drawImage(heartImage, gp.tileSize/2, gp.tileSize/2 - 15, gp.tileSize, gp.tileSize, null);
+			
+			g2.drawImage(fishImage, gp.tileSize/2, gp.tileSize/2 + 15, gp.tileSize, gp.tileSize, null);
+			g2.drawString("x " + gp.player.fishCount, 75, 75 );
 		
+			drawPlayerLife();
 			
 			if(messageOn == true) { // display that fish is picked up
 				
@@ -97,16 +124,33 @@ public class UI {
 		
 		// PAUSE STATE
 		if(gp.gameState == gp.pauseState) {
+			drawPlayerLife();
 			drawPauseScreen();
 		}
 		
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
+			drawPlayerLife();
 			drawDialogueScreen();
 			drawDialogue();
 		}
 	
+	}
+	
+	public void drawPlayerLife() {
+		int x = gp.tileSize/2;
+		int y = gp.tileSize/2;
+		
+		//DRAW MAX HEALTH
+		
+		g2.drawImage(healthImage, x, y, gp.tileSize/2, gp.tileSize/2, null);
+		x += 10;
+		g2.drawImage(healthImage2, x, y, gp.tileSize/2, gp.tileSize/2, null);
+		x += 10;
+		g2.drawImage(healthImage3, x, y, gp.tileSize/2, gp.tileSize/2, null);
+		x += 10;
+		
 	}
 	
 	public void drawTitleScreen() {
@@ -139,7 +183,7 @@ public class UI {
 			y += gp.tileSize * 4;
 			g2.drawString(text,  x, y);
 			if(commandNum == 0) {
-				g2.drawString(">", x-gp.tileSize, y);
+				g2.drawString(">", x - gp.tileSize, y);
 			}
 			
 			text = "MULTIPLAYER";
@@ -192,14 +236,7 @@ public class UI {
 			if(commandNum == 1) {
 				g2.drawString(">",  x - gp.tileSize, y);
 			}
-			
-			
-		}
-		
-		
-		
-		
-		
+		}	
 	}
 	
 	public void drawPauseScreen() {
