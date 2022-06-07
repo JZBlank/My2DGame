@@ -58,7 +58,7 @@ public class Player extends Entity {
         
         
         // PLAYER NAME
-        name = "Timmy";
+        name = "";
         // PLAYER STATUS
         maxHealth = 9;
         currentHealth = maxHealth;
@@ -113,7 +113,7 @@ public class Player extends Entity {
     }
     
     public void update(){
-    	
+    
     	// CHECK IF M IS PRESSED
     	talk();
     	

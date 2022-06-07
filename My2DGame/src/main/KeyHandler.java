@@ -9,8 +9,8 @@ public class KeyHandler implements KeyListener{
 
 	GamePanel gp;
     public boolean meow, upPressed, downPressed, leftPressed, rightPressed, ePressed;
+    public boolean enterPressed;
     public boolean changeDialogue;
-    public boolean typeName;
     
     
     public KeyHandler(GamePanel gp) {
@@ -25,6 +25,7 @@ public class KeyHandler implements KeyListener{
         // TITLE STATE
         if(gp.gameState == gp.titleState) {
         	if(gp.ui.titleScreenState == 0) {
+        		gp.askName = true;
         		if(code == KeyEvent.VK_W){
     	    		gp.ui.commandNum--;
     	    		if(gp.ui.commandNum < 0) {
@@ -42,7 +43,6 @@ public class KeyHandler implements KeyListener{
     	        if(code == KeyEvent.VK_ENTER) {
     	        	if(gp.ui.commandNum == 0) {
     	        		gp.ui.titleScreenState = 1;
-    	        		//gp.gameState = gp.playState;
     	        	}
     	        	if(gp.ui.commandNum == 1) {
     	        		// add later
@@ -57,9 +57,10 @@ public class KeyHandler implements KeyListener{
         	}
         	else if(gp.ui.titleScreenState == 1) {
         		//add text field for player to enter a name
-        		
         		if(code == KeyEvent.VK_ENTER) {
-        			gp.ui.titleScreenState = 2;
+        			if(gp.jtf.getText() != "" && gp.player.name != "") {
+        				gp.ui.titleScreenState = 2;
+        			}		
         		}
         	}
         	else if(gp.ui.titleScreenState == 2) {

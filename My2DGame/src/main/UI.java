@@ -43,8 +43,12 @@ public class UI {
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6;
 	
+	// NAME
+	public boolean nameBlank = true;
 	
 	public boolean enterName = false;
+	
+	// MESSAGES / DIALOGUE
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -255,6 +259,14 @@ public class UI {
 			int x = getXforCenteredText(text);
 			int y = gp.tileSize;
 			g2.drawString(text,  x,  y);	
+			
+			if(gp.jtf.getText() == "" && gp.listenerCalled == true) {
+				g2.setColor(Color.red);
+				text = "Please enter a name";
+				x = getXforCenteredText(text);
+				y = gp.tileSize - 30;
+				g2.drawString(text,  x,  y);	
+			}
 			
 		}
 		

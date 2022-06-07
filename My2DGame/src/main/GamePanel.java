@@ -4,7 +4,10 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,12 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
     
     // ENTER NAME SCREEN VARIABLES
     boolean askName = true;
-    GamePanel main;
+    boolean setName = true;
+    boolean listenerCalled = false;
     
     
     // JTEXTFIELD + LABEL
     
-    textField jtf = new textField();
+    public JTextField jtf = new JTextField();
     
     // FPS
     int FPS = 60;
@@ -50,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound sound = new Sound();
+    
     
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -118,20 +123,60 @@ public class GamePanel extends JPanel implements Runnable {
     	if(gameState == titleState) {
     		if(ui.titleScreenState == 1) { 
     			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))
-        	    	this.add(jtf);
-        	    	jtf.setHorizontalAlignment(JTextField.CENTER);
-        	    	// ADD KEY LISTENER TO THIS JTEXTFIELD
-        	    	jtf.addActionListener();
         	    	
         	    	// SET UP TEXTFIELD 
+    				this.add(jtf);
         	    	int length = screenWidth/3;
         			int x = screenWidth/2 - length/2;
-        		
+        	    	
         	    	jtf.setBounds(x, screenHeight/9, screenWidth/3, screenHeight/16);
+        	    
+        	    	//RESET 
+        	    	//listenerCalled = false;
+        	    	
+        	    	// ADD ACTION LISTENER
+        	    	Action action = new AbstractAction()
+        	    	{
+        	    	    @Override
+        	    	    public void actionPerformed(ActionEvent e)
+        	    	    {
+        	    	    	String text = jtf.getText();
+               	    	    	
+        	    	    	if(text == "") {
+        	    	    		ui.nameBlank = true;
+        	    	    	}
+        	    	    	if(text != "" && ui.nameBlank == true) {
+        	    	    		ui.nameBlank = false;
+            	    	        player.name =  jtf.getText();
+            	    	        ui.titleScreenState = 2;
+        	    	    	}
+        	    	    	System.out.println(text);
+  
+        	    	    }
+        	    	};
+        	    	
+        	    	jtf.addActionListener(action);
+        	    	listenerCalled = true;
+        	    	
+        	    	/////////
+
+        	    	JTextField textField = new JTextField(10);
+        	    	textField.addActionListener( action );
+        	    	
+        	    	jtf.setHorizontalAlignment(JTextField.CENTER);
         	    	jtf.setVisible(true);
     			}
     			askName = false;
+    			
+    			
+    			
+    			
     		}
+    		
+    		else if(ui.titleScreenState == 2) {
+    			jtf.setVisible(false);
+    		}
+    		
     	}
     	
     	if(gameState == playState) {
