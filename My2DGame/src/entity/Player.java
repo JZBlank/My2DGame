@@ -57,7 +57,7 @@ public class Player extends Entity {
         
         // PLAYER STATUS
         maxHealth = 9;
-        health = maxHealth;
+        currentHealth = maxHealth;
         
     }
 

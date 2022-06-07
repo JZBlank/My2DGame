@@ -33,8 +33,8 @@ public class UI {
 	BufferedImage fishImage;
 	
 	// HEALTH IMAGES
-	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5;
-	BufferedImage healthImage6, healthImage7, healthImage8, healthImage9, healthImage10, healthImage11;
+	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6;
+	//BufferedImage healthImage7, healthImage8, healthImage9, healthImage10, healthImage11;
 	
 	public boolean messageOn = false;
 	public String message = "";
@@ -67,11 +67,11 @@ public class UI {
 		healthImage4 = heart.image4;
 		healthImage5 = heart.image5;
 		healthImage6 = heart.image6;
-		healthImage7 = heart.image7;
-		healthImage8 = heart.image8;
-		healthImage9 = heart.image9;
-		healthImage10 = heart.image10;
-		healthImage11 = heart.image11;
+//		healthImage7 = heart.image7;
+//		healthImage8 = heart.image8;
+//		healthImage9 = heart.image9;
+//		healthImage10 = heart.image10;
+//		healthImage11 = heart.image11;
 		
 	}
 	
@@ -139,18 +139,48 @@ public class UI {
 	}
 	
 	public void drawPlayerLife() {
+		
 		int x = gp.tileSize/2;
 		int y = gp.tileSize/2;
+		int i = 0;
 		
-		//DRAW MAX HEALTH
-		
+		// DRAW MAX HEALTH
 		g2.drawImage(healthImage, x, y, gp.tileSize/2, gp.tileSize/2, null);
-		x += 10;
-		g2.drawImage(healthImage2, x, y, gp.tileSize/2, gp.tileSize/2, null);
-		x += 10;
-		g2.drawImage(healthImage3, x, y, gp.tileSize/2, gp.tileSize/2, null);
-		x += 10;
+		i++;
+		x += 24;
 		
+		while(i < gp.player.maxHealth) {
+			if(i+1 == gp.player.maxHealth) {
+				g2.drawImage(healthImage3, x, y, gp.tileSize/2, gp.tileSize/2, null);
+			}
+			else{
+				g2.drawImage(healthImage2, x, y, gp.tileSize/2, gp.tileSize/2, null);
+			}
+			x += 24;
+			i++;
+		}
+		
+		x = gp.tileSize/2;
+		y = gp.tileSize/2;
+		i = 0;
+		
+		// DRAW CURRENT HEALTH
+		if(gp.player.currentHealth != 0) {
+			g2.drawImage(healthImage4, x, y, gp.tileSize/2, gp.tileSize/2, null);
+			i++;
+			x += 24;
+			
+			while(i < gp.player.currentHealth) {
+				if(i+1 == gp.player.maxHealth) {
+					g2.drawImage(healthImage6, x, y, gp.tileSize/2, gp.tileSize/2, null);
+				}
+				else{
+					g2.drawImage(healthImage5, x, y, gp.tileSize/2, gp.tileSize/2, null);
+				}
+				x += 24;
+				i++;
+			}
+		}
 	}
 	
 	public void drawTitleScreen() {

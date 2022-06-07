@@ -41,7 +41,7 @@ public class Entity {
     
     // CHARACTER  STATUS
     public int maxHealth;
-    public int health;
+    public int currentHealth;
     
     public Entity(GamePanel gp) {
     	this.gp = gp;
