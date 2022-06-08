@@ -174,6 +174,7 @@ public class UI {
 		// DRAW DESIGN OF HEALTHBAR
 		int points[][] = {{gp.tileSize/2 - 5, gp.tileSize},{gp.tileSize * 5,gp.tileSize},
 				{gp.tileSize * 5 + 15, 80},{gp.tileSize/2 - 5, 80}};
+		
 		GeneralPath design = new GeneralPath();
 		design.moveTo(points[0][0],points[0][0]);
 		
@@ -181,9 +182,7 @@ public class UI {
 			design.lineTo(points[j][0], points[j][1]);
 		}
 		
-		
-		
-		
+
 		design.closePath();
 		g2.fill(design);
 		
@@ -195,7 +194,7 @@ public class UI {
 		g2.setColor(Color.white);
 		
 		//DRAW PLAYER PIC
-		g2.drawImage(playerImage, gp.tileSize/2, gp.tileSize - 20, gp.tileSize - 10, gp.tileSize - 20, null);
+		g2.drawImage(playerImage, gp.tileSize/2 - 10, gp.tileSize - 20, gp.tileSize, gp.tileSize - 20, null);
 		
 		// DRAW PLAYER NAME
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));

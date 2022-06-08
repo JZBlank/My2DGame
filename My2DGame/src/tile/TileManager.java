@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -20,7 +21,7 @@ public class TileManager {
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[10];
+		tile = new Tile[20];
 		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		
 		getTileImage();
@@ -29,15 +30,18 @@ public class TileManager {
 	
 	public void getTileImage() {
 
-			setup(0, "grass", false);
+			setup(0, "grass_empty", false);
 			setup(1, "metal_horizontal", true);
 			setup(2, "water", true);
 			setup(3, "wood_horizontal", false);
 			setup(4, "green_tree", true);
-			setup(5, "dirt", false);
+			setup(5, "dirt_empty", false);
 			setup(6, "sand", false);
 			setup(7, "metal_vertical", true);
 			setup(8, "wood_vertical", true);
+			setup(9, "grass_full", false);
+			setup(10, "dirt_horizontal1", false);
+			setup(11, "dirt_horizontal2", false);
 			
 
 	}
@@ -62,14 +66,18 @@ public class TileManager {
 			
 			int col = 0;
 			int row = 0;
+		
 			
 			while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
 				String line = br.readLine();
 				
 				while(col < gp.maxWorldCol) {
+					
 					String numbers[] = line.split(" ");
 					int num = Integer.parseInt(numbers[col]);
 					
+					num = randomizeGrass(num);
+	
 					mapTileNum[col][row] = num;
 					col++;
 				}
@@ -83,6 +91,22 @@ public class TileManager {
 		} catch(Exception e){
 			
 		}
+	}
+	
+	public int randomizeGrass(int num) {
+		// RANDOMIZE GRASS TEXTURE
+		if(num == 0) {
+			// CHOOSE RANDOM NUMBER FOR GRASS 
+			Random random = new Random();
+			int i = random.nextInt(100)+1;
+			if(i >= 10) {
+				num = 0;
+			}
+			else {
+				num = 9;
+			}
+		}
+		return num;
 	}
 	
 	public void draw(Graphics2D g2) {
