@@ -77,7 +77,7 @@ public class Player extends Entity {
         down1 = setup("/player/cat_down");
         down2 = setup("/player/cat_down2");
         down3 = setup("/player/cat_down_standby");
-        down4 = setup("/player/cat_down_down");
+        //down4 = setup("/player/cat_down_down");
         down5 = setup("/player/cat_down_sit");
         down6 = setup("/player/cat_down_sit2");
         

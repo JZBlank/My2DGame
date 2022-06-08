@@ -209,7 +209,7 @@ public class Entity {
 		        		image = down3;
 		        	}
 		        	if(spriteNum == 4) {
-		        		image = down4;
+		        		image = down5;
 		        	}
 	        	}
 	            break;

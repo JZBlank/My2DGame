@@ -7,6 +7,7 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.TextField;
+import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -169,7 +170,22 @@ public class UI {
 		// transparent color
 		Color c = new Color(0,0,0,160); //fourth parameter is transparency of window
 		g2.setColor(c);
-		g2.fillRect(gp.tileSize/2, 50, 230, gp.tileSize/2);
+
+		// DRAW DESIGN OF HEALTHBAR
+		int points[][] = {{gp.tileSize/2 - 5, gp.tileSize},{gp.tileSize * 5,gp.tileSize},
+				{gp.tileSize * 5 + 15, 80},{gp.tileSize/2 - 5, 80}};
+		GeneralPath design = new GeneralPath();
+		design.moveTo(points[0][0],points[0][0]);
+		
+		for(int j = 0; j < points.length; j++) {
+			design.lineTo(points[j][0], points[j][1]);
+		}
+		
+		
+		
+		
+		design.closePath();
+		g2.fill(design);
 		
 		
 		// DESIGN 

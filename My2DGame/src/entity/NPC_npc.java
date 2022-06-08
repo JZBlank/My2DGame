@@ -26,7 +26,7 @@ public class NPC_npc extends Entity {
         down1 = setup("/npc/cat_down");
         down2 = setup("/npc/cat_down2");
         down3 = setup("/npc/cat_down_standby");
-        down4 = setup("/npc/cat_down_down");
+        //down4 = setup("/npc/cat_down_down");
         down5 = setup("/npc/cat_down_sit");
         down6 = setup("/npc/cat_down_sit2");
         

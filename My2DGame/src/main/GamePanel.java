@@ -85,7 +85,14 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
     	aSetter.setObject();
     	aSetter.setNPC();
-    	gameState = titleState;
+    	
+    	// STARTING SCREEN 
+    	//gameState = titleState; 
+    	
+    	gameState = playState;
+    	player.name = "Timmy";
+    	
+    	// ADD GAME MUSIC
     	//playMusic(0); // play background music
     }
     
@@ -121,10 +128,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
     	
     	if(gameState == titleState) {
-    		// delete later
-    		
-    		
-    		//
     		
     		if(ui.titleScreenState == 1) { 
     			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))
