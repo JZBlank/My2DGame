@@ -20,7 +20,7 @@ M - meow <br/>
 P - pause <br/>
 
 ##### GAME IMAGES:
-**WILL BE UPDATED**
+**WILL BE UPDATED** <br/>
 <img src="https://user-images.githubusercontent.com/56086743/172707753-16d492e1-2bc3-4f4a-82ae-80d354d022f1.png" width=500 />
 
 ##### COMPLETED OBJECTIVES:
