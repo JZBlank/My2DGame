@@ -19,8 +19,9 @@ D - move character to the right <br/>
 M - meow <br/>
 P - pause <br/>
 
-##### IMAGES: 
-- Coming Soon
+##### GAME IMAGES:
+**WILL BE UPDATED**
+<img src="https://user-images.githubusercontent.com/56086743/172707753-16d492e1-2bc3-4f4a-82ae-80d354d022f1.png" width=500 />
 
 ##### COMPLETED OBJECTIVES:
 - [X] Player is able to move around in a full map 
