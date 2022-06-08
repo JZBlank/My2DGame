@@ -2,6 +2,7 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -32,6 +33,7 @@ public class Entity {
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     public boolean standBy = false;
+    
     
     // DIALOGUE
     String dialogues[][] = new String[5][20];

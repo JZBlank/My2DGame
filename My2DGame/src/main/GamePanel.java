@@ -121,6 +121,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
     	
     	if(gameState == titleState) {
+    		// delete later
+    		
+    		
+    		//
+    		
     		if(ui.titleScreenState == 1) { 
     			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))
         	    	
@@ -131,8 +136,6 @@ public class GamePanel extends JPanel implements Runnable {
         	    	
         	    	jtf.setBounds(x, screenHeight/9, screenWidth/3, screenHeight/16);
         	    
-        	    	//RESET 
-        	    	//listenerCalled = false;
         	    	
         	    	// ADD ACTION LISTENER
         	    	Action action = new AbstractAction()
@@ -178,6 +181,7 @@ public class GamePanel extends JPanel implements Runnable {
     	}
     	
     	if(gameState == playState) {
+    	
     		player.update();
             
         	// NPC

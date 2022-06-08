@@ -3,13 +3,9 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
-
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -64,6 +60,11 @@ public class Player extends Entity {
         currentHealth = maxHealth;
         
     }
+    
+    public BufferedImage cropImage() {
+    	down5 = setup("/player/cat_down_sit");
+    	return down5.getSubimage(0, 0, 48, 48/2);
+    }
 
     public void getPlayerImage(){
         
@@ -93,6 +94,7 @@ public class Player extends Entity {
         right5 = setup("/player/cat_right_sit2");
          
     }
+    
     
     public void talk() {
     	if(keyH.meow == true) {
@@ -258,20 +260,23 @@ public class Player extends Entity {
     	gp.keyH.ePressed = false;
     }
 
+    
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = null;
+        BufferedImage image = null;       
         
         switch(direction){
         case "up":
         	if(spriteNum == 1) {
         		image = up1;
+        		
         	}
         	if(spriteNum == 2) {
         		image = up2;
         	}
         	if(spriteNum == 3) {
         		image = up3;
+        		
         	}
         	if(spriteNum == 4) {
         		image = up4;

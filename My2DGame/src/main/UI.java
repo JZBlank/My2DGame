@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import entity.Entity;
+import entity.Player;
 import object.OBJ_Fish;
 import object.OBJ_healthBar;
 import object.SuperObject;
@@ -37,11 +38,16 @@ public class UI {
 	public int titleScreenState = 0; 
 	
 	
+	// PLAYER IMAGE
+	BufferedImage playerImage;
+	boolean cropped = false;
+	
 	// FISH IMAGE
 	BufferedImage fishImage;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6;
+
 	
 	// NAME
 	public boolean nameBlank = true;
@@ -107,13 +113,9 @@ public class UI {
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
 			
-			// DISPLAY ITEMS AT UPPER LEFT HAND CORNER
-			//g2.drawImage(heartImage, gp.tileSize/2, gp.tileSize/2 - 15, gp.tileSize, gp.tileSize, null);
-			
-			g2.drawImage(fishImage, gp.tileSize/2, gp.tileSize/2 + 15, gp.tileSize, gp.tileSize, null);
-			g2.drawString("x " + gp.player.fishCount, 75, 75 );
-		
+			drawPlayerImage();
 			drawPlayerLife();
+			drawObjectImages();
 			
 			if(messageOn == true) { // display that fish is picked up
 				
@@ -132,6 +134,7 @@ public class UI {
 		
 		// PAUSE STATE
 		if(gp.gameState == gp.pauseState) {
+			drawPlayerImage();
 			drawPlayerLife();
 			drawPauseScreen();
 		}
@@ -139,6 +142,8 @@ public class UI {
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
+			drawPlayerImage();
+			drawObjectImages();
 			drawPlayerLife();
 			drawDialogueScreen();
 			drawDialogue();
@@ -146,10 +151,48 @@ public class UI {
 	
 	}
 	
+	public void drawObjectImages() {
+		g2.drawImage(fishImage, gp.tileSize/2, gp.tileSize/2 + 40, gp.tileSize, gp.tileSize, null);
+		g2.drawString("x " + gp.player.fishCount, gp.tileSize/2 + 50, gp.tileSize + 55);
+		
+		
+	}
+	
+	public void drawPlayerImage() {
+		
+		if(cropped == false) {
+			// PLAYER
+			playerImage = gp.player.cropImage();
+		}
+		cropped = true;
+		
+		// transparent color
+		Color c = new Color(0,0,0,160); //fourth parameter is transparency of window
+		g2.setColor(c);
+		g2.fillRect(gp.tileSize/2, 50, 230, gp.tileSize/2);
+		
+		
+		// DESIGN 
+//		g2.setColor(Color.black);
+//		g2.fillRect(gp.tileSize/2, 50, 260, gp.tileSize/4);
+		
+		g2.setColor(Color.white);
+		
+		//DRAW PLAYER PIC
+		g2.drawImage(playerImage, gp.tileSize/2, gp.tileSize - 20, gp.tileSize - 10, gp.tileSize - 20, null);
+		
+		// DRAW PLAYER NAME
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
+		g2.drawString(gp.player.name, gp.tileSize/2 + 40, gp.tileSize + 8);
+		
+		
+	}
+
+	
 	public void drawPlayerLife() {
 		
 		int x = gp.tileSize/2;
-		int y = gp.tileSize/2;
+		int y = gp.tileSize/2 + 30;
 		int i = 0;
 		
 		// DRAW MAX HEALTH
@@ -169,7 +212,7 @@ public class UI {
 		}
 		
 		x = gp.tileSize/2;
-		y = gp.tileSize/2;
+		y = gp.tileSize/2 + 30;
 		i = 0;
 		
 		// DRAW CURRENT HEALTH
