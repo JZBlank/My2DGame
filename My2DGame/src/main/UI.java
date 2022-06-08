@@ -434,14 +434,13 @@ public class UI {
 	
 	public void drawSubWindow() {
 		
-		
 		// DRAW TEXT BOX
 		int x = 0;
 		int y = gp.tileSize * 9;
 		int width = gp.screenWidth;
 		int height = gp.tileSize * 3;
 
-		Color c = new Color(0,0,0,250); //fourth parameter is transparency of window
+		Color c = new Color(0,0,0,150); //fourth parameter is transparency of window
 		g2.setColor(c);
 		g2.fillRoundRect(x, y , width, height, 35,35);
 		
