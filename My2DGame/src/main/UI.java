@@ -260,7 +260,7 @@ public class UI {
 			int y = gp.tileSize;
 			g2.drawString(text,  x,  y);	
 			
-			if(gp.jtf.getText() == "" && gp.listenerCalled == true) {
+			if(gp.jtf.getText().isEmpty()) {
 				g2.setColor(Color.red);
 				text = "Please enter a name";
 				x = getXforCenteredText(text);

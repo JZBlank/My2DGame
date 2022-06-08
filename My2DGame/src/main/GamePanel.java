@@ -140,17 +140,15 @@ public class GamePanel extends JPanel implements Runnable {
         	    	    @Override
         	    	    public void actionPerformed(ActionEvent e)
         	    	    {
-        	    	    	String text = jtf.getText();
                	    	    	
-        	    	    	if(text == "") {
+        	    	    	if(jtf.getText().isEmpty()) {
         	    	    		ui.nameBlank = true;
         	    	    	}
-        	    	    	if(text != "" && ui.nameBlank == true) {
+        	    	    	else if(!jtf.getText().isEmpty()) {
         	    	    		ui.nameBlank = false;
             	    	        player.name =  jtf.getText();
             	    	        ui.titleScreenState = 2;
         	    	    	}
-        	    	    	System.out.println(text);
   
         	    	    }
         	    	};
