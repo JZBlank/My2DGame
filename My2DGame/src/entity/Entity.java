@@ -17,6 +17,10 @@ public class Entity {
     
     GamePanel gp;
     KeyHandler keyH;
+    
+    public String name = "";
+    
+    
     // describes image with accessible buffer image data (use this to store image files)
     public BufferedImage up1, up2, up3, up4, up5;
     public BufferedImage down1, down2, down3, down4, down5, down6;
@@ -48,7 +52,11 @@ public class Entity {
     public Entity(GamePanel gp) {
     	this.gp = gp;
     }
+    public BufferedImage cropImage(BufferedImage down52) {
+		return null;
+	}
     
+
     public void setAction() {}
     public void updateDialogue() {}
     public void speak() {
@@ -286,5 +294,6 @@ public class Entity {
     	}
     	return image;
     }
+
     
 }

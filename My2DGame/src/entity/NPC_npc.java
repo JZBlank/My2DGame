@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import main.GamePanel;
@@ -9,6 +10,7 @@ public class NPC_npc extends Entity {
 	public NPC_npc(GamePanel gp) {
 		super(gp);
 		
+		name = "Bob";
 		direction = "left";
 		speed = 1;
 		getImage();
@@ -43,8 +45,12 @@ public class NPC_npc extends Entity {
         right5 = setup("/npc/cat_right_sit2");
 	}
 	
+    public BufferedImage cropImage(BufferedImage image) {
+    	return image.getSubimage(0, 0, 48, 48/2);
+    }
+	
 	public void setDialogue() {
-		dialogues[0][0] = "Oh, hello there! I haven't seen you \n around here.";
+		dialogues[0][0] = "Oh, hello there! I haven't seen you around \n here.";
 		dialogues[0][1] = "If you need me to show you around, \n let me know!";
 		dialogues[0][2] = "I should go get some food...";
 		

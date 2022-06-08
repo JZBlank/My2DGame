@@ -11,7 +11,6 @@ public class Player extends Entity {
     KeyHandler keyH;
     Entity[] npc;
     
-    public String name = "";
     public final int screenX;
     public final int screenY;
     public int fishCount = 0;
@@ -61,9 +60,9 @@ public class Player extends Entity {
         
     }
     
-    public BufferedImage cropImage() {
-    	down5 = setup("/player/cat_down_sit");
-    	return down5.getSubimage(0, 0, 48, 48/2);
+    public BufferedImage cropImage(BufferedImage image) {
+    	//down5 = setup("/player/cat_down_sit");
+    	return image.getSubimage(0, 0, 48, 48/2);
     }
 
     public void getPlayerImage(){
@@ -252,6 +251,7 @@ public class Player extends Entity {
     		if(gp.keyH.ePressed == true) {
     			gp.gameState = gp.dialogueState;
     			gp.npc[nextToNPC].speak();
+    			gp.playSE(0);
     		}
     	}
     	else if(nextToNPC == 999) {

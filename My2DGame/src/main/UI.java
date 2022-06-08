@@ -38,10 +38,16 @@ public class UI {
 	public int commandNum = 0;
 	public int titleScreenState = 0; 
 	
-	
+	// CHARACTER IMAGES:
 	// PLAYER IMAGE
 	BufferedImage playerImage;
 	boolean cropped = false;
+	
+	// NPC IMAGE
+	BufferedImage npcImage;
+	int targetNPC = -1;
+	
+	// OBJECT IMAGES:
 	
 	// FISH IMAGE
 	BufferedImage fishImage;
@@ -49,7 +55,7 @@ public class UI {
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6;
 
-	
+
 	// NAME
 	public boolean nameBlank = true;
 	
@@ -143,6 +149,10 @@ public class UI {
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
+			
+			// TARGET NPC FOUND
+			targetNPC = gp.player.whoConvo;
+			
 			drawPlayerImage();
 			drawObjectImages();
 			drawPlayerLife();
@@ -163,7 +173,7 @@ public class UI {
 		
 		if(cropped == false) {
 			// PLAYER
-			playerImage = gp.player.cropImage();
+			playerImage = gp.player.cropImage(gp.player.down5);
 		}
 		cropped = true;
 		
@@ -373,23 +383,40 @@ public class UI {
 		int x = gp.screenWidth/2 - length/2;
 		return x;
 	}
-	public void drawDialogueScreen() {
-		// WINDOW
-		int x = gp.tileSize * 2;
-		int y = gp.tileSize/2;
-		int width = gp.screenWidth - (gp.tileSize * 4);
-		int height = gp.tileSize * 4;
+	
+	
+	public void drawDialogueScreen() {	
+		// CREATE WINDOW
+		int x = gp.tileSize/2;
+		int y = gp.tileSize * 8 - 20;
+		int width = gp.tileSize + 70;
+		int height = gp.tileSize - 20 + 40;
 		
-		drawSubWindow(x, y, width, height);
+
+		// NPC IMAGE
+		npcImage = gp.npc[targetNPC].cropImage(gp.npc[targetNPC].down5);
+		g2.drawImage(npcImage, x, y,  width, height, null);
+		
+		
+		drawSubWindow();
+		
 	}
 	
 	public void drawDialogue() {
-		int x = gp.tileSize * 2;
-		int y = gp.tileSize/2;
+		
+		int x = 30;
+		int y = gp.tileSize * 8 + 10;
 		
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
-		x += gp.tileSize;
+		
+		// DRAW NAME OF NPC
+		//g2.drawString(gp.npc[targetNPC].name, x, y);
+		
+		x = gp.tileSize/2 * 2;
+		y = gp.tileSize * 9;
+		
 		y += gp.tileSize;
+		
 		
 		for(String line : currentDialogue.split("\n")) {
 			g2.drawString(line, x, y);
@@ -405,14 +432,22 @@ public class UI {
 		}
 	}
 	
-	public void drawSubWindow(int x, int y, int width, int height) {
-		Color c = new Color(0,0,0,160); //fourth parameter is transparency of window
+	public void drawSubWindow() {
+		
+		
+		// DRAW TEXT BOX
+		int x = 0;
+		int y = gp.tileSize * 9;
+		int width = gp.screenWidth;
+		int height = gp.tileSize * 3;
+
+		Color c = new Color(0,0,0,250); //fourth parameter is transparency of window
 		g2.setColor(c);
-		g2.fillRoundRect(x, y , width, height, 35, 35);
+		g2.fillRoundRect(x, y , width, height, 35,35);
 		
 		c = new Color(255,255,255);
 		g2.setColor(c);
 		g2.setStroke(new BasicStroke(5));
-		g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+		g2.drawRoundRect(x+2, y+2, width-10, height-10, 35, 35);
 	}
 }
