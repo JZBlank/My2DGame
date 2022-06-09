@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import object.SuperObject;
 
 public class CollisionChecker {
 	
@@ -231,6 +232,20 @@ public class CollisionChecker {
 	}
 	
 	public int nextToNPC(Entity entity, Entity[] target) {   
+		int j = 999;
+		for(int i = 0; i < target.length; i++) {
+			if(target[i] != null) {
+				if(entity.worldX >= target[i].worldX - 45 && entity.worldX <= target[i].worldX + 45 &&
+						entity.worldY <= target[i].worldY + 45 && entity.worldY >= target[i].worldY - 60){
+					chatCounter++;
+					return i;
+				}
+			}
+		}
+		return j;
+	}
+	
+	public int nextToOBJ(Entity entity, SuperObject[] target) {   
 		int j = 999;
 		for(int i = 0; i < target.length; i++) {
 			if(target[i] != null) {

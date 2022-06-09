@@ -21,16 +21,16 @@ public class SuperObject {
 	public int actionidleCounter;
 	public int move = -1;
 	
+	public boolean chooseEat = false;
+	public boolean choosepickUp = false;
+	
 	public void setAction() {};
-	
-	
 	public void update() {
 		setAction();
 
 	}
 	
-	
-	
+	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
 		
 		BufferedImage image = null;

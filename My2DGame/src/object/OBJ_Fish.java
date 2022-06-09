@@ -22,9 +22,12 @@ public class OBJ_Fish extends SuperObject {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		collision = true;
+		collision = false;
 	}
 
+	
+	public void interact(GamePanel gp) {
+	}
 	
 	public void setAction() {
 		actionLockCounter++;

@@ -3,6 +3,8 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.SuperObject;
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -22,6 +24,9 @@ public class Player extends Entity {
     public boolean sit = false;
     public boolean ableToChat = false;
     public int whoConvo = -1;
+    public int objInteract = -1;
+    
+    public boolean canInteract = false;
     
 
     public Player(GamePanel gp, KeyHandler keyH){
@@ -114,13 +119,30 @@ public class Player extends Entity {
     }
     
     public void update(){
-    
+    	
+    	
+    	System.out.println(canInteract);
+    	
     	// CHECK IF M IS PRESSED
     	talk();
     	
-    	// CHECK IF NEXT TO A NPC
+    	
+    	// CHECK IF NEXT TO A NPC + IF ABLE TO INTERACT
     	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
     	chatNPC(whoConvo);
+    	abletoInteract(whoConvo, null, gp.npc);
+    	
+    	// CHECK IF NEXT TO AN OBJECT + IF ABLE TO INTERACT
+    	objInteract = gp.cChecker.nextToOBJ(this, gp.obj);
+    	interactOBJ(objInteract);
+    	abletoInteract(objInteract, gp.obj, null);
+    	
+    	canShowOptions(whoConvo, objInteract, gp.obj, gp.npc);
+    	
+//    	// CHECK IF NEXT TO A NPC + IF ABLE TO INTERACT
+//    	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
+//    	chatNPC(whoConvo);
+//    	abletoInteract(whoConvo, null, gp.npc);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
@@ -153,6 +175,7 @@ public class Player extends Entity {
     		// CHECK NPC COLLISION
     		whoConvo = gp.cChecker.checkEntity(this, gp.npc);
     		interactNPC(whoConvo);
+    		
     		
     		
     		// IF COLLISION IS FALSE, PLAYER CAN MOVE
@@ -228,9 +251,39 @@ public class Player extends Entity {
     		switch(objectName) {
     		case "Fish":
     			fishCount++;
-    			gp.obj[i] = null;
     			gp.ui.showMessage("You got a fish!");
     			break;
+    		}
+    	}
+    }
+    
+    public void canShowOptions(int i, int j, SuperObject[] obj, Entity[] npc) {
+    	if(abletoInteract(i, obj, npc) == true || abletoInteract(j, obj, npc) == true) {
+    		canInteract = true;
+    	}
+    	else {
+    		canInteract = false;
+    	}
+    }
+    
+    public boolean abletoInteract(int i, SuperObject[] obj, Entity[] npc) {
+    	if(i != 999) {
+    		if(obj != null) { // if can interact with object
+    			return true;
+
+    		}
+    		if(npc != null) { // if can interact with npc
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public void interactOBJ(int i) {
+    	if(i != 999) {
+    		if(gp.keyH.ePressed == true) {
+    			gp.gameState = gp.interactOBJState; // show a screen with options 
+        		//gp.obj[i].interact();
     		}
     	}
     }

@@ -124,18 +124,21 @@ public class UI {
 			drawPlayerLife();
 			drawObjectImages();
 			
-			if(messageOn == true) { // display that fish is picked up
-				
-				g2.setFont(g2.getFont().deriveFont(20F));
-				g2.drawString(message, gp.tileSize/2, gp.tileSize *5);
-				
-				messageCounter++;
-				
-				if(messageCounter > 120) {
-					messageCounter = 0;
-					messageOn = false;
-				}
-			}
+//			if(gp.player.canInteract == true) {
+//				
+//			}
+//			if(messageOn == true) { // display that fish is picked up
+//				
+//				g2.setFont(g2.getFont().deriveFont(20F));
+//				g2.drawString(message, gp.tileSize/2, gp.tileSize *5);
+//				
+//				messageCounter++;
+//				
+//				if(messageCounter > 120) {
+//					messageCounter = 0;
+//					messageOn = false;
+//				}
+//			}
 			
 		}
 		
@@ -159,14 +162,25 @@ public class UI {
 			drawDialogueScreen();
 			drawDialogue();
 		}
+		
+		if(gp.gameState == gp.interactOBJState){
+			drawPlayerImage();
+			drawPlayerLife();
+			drawObjectImages();
+			drawOptions();
+		}
 	
+	}
+	
+	public void drawOptions() {
+		g2.drawString("Pick up", gp.tileSize/2 + 50, gp.tileSize + 55);
+		g2.drawString("Eat Fish",gp.tileSize/2 + 50, gp.tileSize + 55);
+		g2.drawString("Meow at it", gp.tileSize/2 + 50, gp.tileSize + 55);
 	}
 	
 	public void drawObjectImages() {
 		g2.drawImage(fishImage, gp.tileSize/2, gp.tileSize/2 + 40, gp.tileSize, gp.tileSize, null);
 		g2.drawString("x " + gp.player.fishCount, gp.tileSize/2 + 50, gp.tileSize + 55);
-		
-		
 	}
 	
 	public void drawPlayerImage() {
