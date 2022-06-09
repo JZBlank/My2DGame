@@ -2,7 +2,6 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -96,7 +95,6 @@ public class Entity {
     	if(dialogues[dialogueSet][dialogueIndex] != null) {
     		gp.ui.currentDialogue = dialogues[dialogueSet][dialogueIndex];
     	}
-    	System.out.println("SPEAK CALLED " + dialogueIndex + " a " + gp.ui.currentDialogue + " a  " + gp.ui.moreDialogue);
     	dialogueIndex++;
     	
     }

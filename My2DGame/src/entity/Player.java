@@ -124,6 +124,7 @@ public class Player extends Entity {
     	// CHECK IF M IS PRESSED
     	talk();
     	
+    	// INTERACTIONS WITH OTHER WORLD OBJECTS/NPCS
     	interact();
     	showOptions();
     	
@@ -260,7 +261,7 @@ public class Player extends Entity {
     	}
     	else if(canInteract == true && whoInteract == 2) {
     		if(gp.keyH.ePressed == true) {
-    			System.out.println("INTERACT WITH OBJECT");
+    			gp.gameState = gp.interactOBJState;
     		}
     	}
     	

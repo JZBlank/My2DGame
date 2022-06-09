@@ -30,7 +30,7 @@ public class UI {
 //	JLabel jL = new JLabel();
 	
 	Font purisaB; // font for chat boxes
-	// add another font for picking up items!!
+	Font Montserrat;
 	
 	
 	Font arial_40;
@@ -72,8 +72,11 @@ public class UI {
 		this.gp = gp;
 		
 		InputStream is = getClass().getResourceAsStream("/font/Purisa Bold.ttf");
+		InputStream is2 = getClass().getResourceAsStream("/font/Montserrat-VariableFont_wght.ttf");
 		try {
 			purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
+			Montserrat = Font.createFont(Font.TRUETYPE_FONT, is2);
+			
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -159,29 +162,61 @@ public class UI {
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
-//			drawPlayerImage();
-//			drawPlayerLife();
+			drawPlayerImage();
+			drawPlayerLife();
 			drawObjectImages();
+			drawOptionBox();
 			drawOptions();
 		}
 	
 	}
+	public void drawOptionBox() {
+		// DRAW TEXT BOX
+				int x = gp.tileSize * 6 + 130;
+				int y = gp.tileSize * 4 + 20;
+				int width = gp.tileSize * 2 + 30;
+				int height = gp.tileSize * 2 + 10;
+
+				Color c = new Color(0,0,0,150); //fourth parameter is transparency of window
+				g2.setColor(c);
+				g2.fillRoundRect(x, y , width, height, 35,35);
+	}
 	
 	public void drawOptions() {
-		int x = gp.tileSize;
-		int y = gp.tileSize;
-		g2.drawString("Pick up", gp.tileSize/2 + 50, gp.tileSize + 55);
+		int x = gp.tileSize * 6 + 150;
+		int y = gp.tileSize * 5;
+		
+		
+		g2.setFont(new Font("Montserrat", Font.TRUETYPE_FONT, 15));
+		g2.setColor(Color.white);
+		
+		g2.drawString("Do nothing", x, y);
 		if(commandNum == 0) {
-			g2.drawString(">",  x - gp.tileSize, y);
+			g2.drawString(">",  x - 10, y);
 		}
-		g2.drawString("Eat Fish",gp.tileSize/2 + 50, gp.tileSize + 55);
+		
+		y += 20;
+		
+		g2.drawString("Eat ", x, y);
 		if(commandNum == 1) {
-			g2.drawString(">",  x - gp.tileSize, y);
+			g2.drawString(">",  x - 10, y);
 		}
-		g2.drawString("Meow at it", gp.tileSize/2 + 50, gp.tileSize + 55);
+		
+		y += 20;
+			
+		g2.drawString("Pick up", x, y);
 		if(commandNum == 2) {
-			g2.drawString(">",  x - gp.tileSize, y);
+			g2.drawString(">", x - 10, y);
 		}
+		
+		y += 20;
+		
+		g2.drawString("Talk", x, y);	
+		if(commandNum == 3) {
+			g2.drawString(">", x - 10, y);
+		}
+		
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
 	}
 	
 	public void drawObjectImages() {

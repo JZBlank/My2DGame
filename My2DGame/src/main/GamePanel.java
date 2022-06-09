@@ -170,10 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
         	    	jtf.setVisible(true);
     			}
     			askName = false;
-    			
-    			
-    			
-    			
+    					
     		}
     		
     		else if(ui.titleScreenState == 2) {
@@ -213,6 +210,8 @@ public class GamePanel extends JPanel implements Runnable {
     		}
     	}
     	else if(gameState == interactOBJState) {
+    		player.update();
+    		
     		for(int i = 0; i < obj.length; i++) {
         		if(obj[i] != null) {
         			obj[i].update();
@@ -220,7 +219,7 @@ public class GamePanel extends JPanel implements Runnable {
         	}
     		for(int i = 0; i < npc.length; i++) {
         		if(npc[i] != null) {
-        			npc[i].updateSit();
+        			npc[i].update();
         		}
     		}
     	}
