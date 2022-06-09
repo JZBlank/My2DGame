@@ -154,7 +154,7 @@ public class UI {
 		if(gp.gameState == gp.dialogueState) {
 			
 			// TARGET NPC FOUND
-			targetNPC = gp.player.whoConvo;
+			//targetNPC = gp.player.whoInteract;
 			
 			drawPlayerImage();
 			drawObjectImages();
@@ -164,8 +164,8 @@ public class UI {
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
-			drawPlayerImage();
-			drawPlayerLife();
+//			drawPlayerImage();
+//			drawPlayerLife();
 			drawObjectImages();
 			drawOptions();
 		}
@@ -173,9 +173,20 @@ public class UI {
 	}
 	
 	public void drawOptions() {
+		int x = gp.tileSize;
+		int y = gp.tileSize;
 		g2.drawString("Pick up", gp.tileSize/2 + 50, gp.tileSize + 55);
+		if(commandNum == 0) {
+			g2.drawString(">",  x - gp.tileSize, y);
+		}
 		g2.drawString("Eat Fish",gp.tileSize/2 + 50, gp.tileSize + 55);
+		if(commandNum == 1) {
+			g2.drawString(">",  x - gp.tileSize, y);
+		}
 		g2.drawString("Meow at it", gp.tileSize/2 + 50, gp.tileSize + 55);
+		if(commandNum == 2) {
+			g2.drawString(">",  x - gp.tileSize, y);
+		}
 	}
 	
 	public void drawObjectImages() {

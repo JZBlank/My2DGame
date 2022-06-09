@@ -231,32 +231,49 @@ public class CollisionChecker {
 		gp.player.solidArea.y = gp.player.solidAreaDefaultY;
 	}
 	
-	public int nextToNPC(Entity entity, Entity[] target) {   
-		int j = 999;
-		for(int i = 0; i < target.length; i++) {
-			if(target[i] != null) {
-				if(entity.worldX >= target[i].worldX - 45 && entity.worldX <= target[i].worldX + 45 &&
-						entity.worldY <= target[i].worldY + 45 && entity.worldY >= target[i].worldY - 60){
+	public int nextToSomething(Entity entity, Entity[] npc, SuperObject[] obj ) {   
+		int npcTarget = 999;
+		int objTarget = 999;
+		int result = 999;
+		
+		// IF PLAYER IS NEXT TO NPC AND NOT OBJ = 1
+		// IF PLAYER IS NEXT TO OBJECT AND NOT NPC = 2	
+		// IF PLAYER IS NOT NEXT TO NPC NOR OBJECT  = 999
+		
+		for(int i = 0; i < npc.length; i++) {
+			if(npc[i] != null) {
+				if(entity.worldX >= npc[i].worldX - 45 && entity.worldX <= npc[i].worldX + 45 &&
+					entity.worldY <= npc[i].worldY + 45 && entity.worldY >= npc[i].worldY - 60){
 					chatCounter++;
-					return i;
+					npcTarget = i;
 				}
 			}
 		}
-		return j;
-	}
-	
-	public int nextToOBJ(Entity entity, SuperObject[] target) {   
-		int j = 999;
-		for(int i = 0; i < target.length; i++) {
-			if(target[i] != null) {
-				if(entity.worldX >= target[i].worldX - 45 && entity.worldX <= target[i].worldX + 45 &&
-						entity.worldY <= target[i].worldY + 45 && entity.worldY >= target[i].worldY - 60){
-					chatCounter++;
-					return i;
+		
+		for(int i = 0; i < obj.length; i++) {
+			if(obj[i] != null) {
+				if(entity.worldX >= obj[i].worldX - 45 && entity.worldX <=  obj[i].worldX + 45 &&
+					entity.worldY <= obj[i].worldY + 45 && entity.worldY >=  obj[i].worldY - 60){
+					objTarget = i;
 				}
 			}
 		}
-		return j;
+		
+		if(npcTarget == 999 && objTarget == 999) {
+			return result;
+		}
+		else if(npcTarget != 999 & objTarget != 999) {
+			result = 999;
+		}
+		else if(npcTarget != 999 && objTarget == 999) {
+			result = 1;
+		}
+		else if(npcTarget == 999 && objTarget != 999) {
+			result = 2;
+		}
+		
+		return result;
 	}
+
 				
 }

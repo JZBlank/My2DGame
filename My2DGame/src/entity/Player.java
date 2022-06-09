@@ -22,13 +22,14 @@ public class Player extends Entity {
     //when player has not moved after certain amount of time, character sits down (standby mode)
     public boolean standBy = false;
     public boolean sit = false;
-    public boolean ableToChat = false;
-    public int whoConvo = -1;
-    public int objInteract = -1;
     
+    // INTERACTIONS W/ NPC OR OBJECTS
     public boolean canInteract = false;
+    public int whoInteract = -1;
+    public boolean ableToChat = false;
     
-
+    
+    
     public Player(GamePanel gp, KeyHandler keyH){
     	
     	super(gp);
@@ -113,29 +114,19 @@ public class Player extends Entity {
     
     public void updateDialogue() {
     	if(gp.gameState == gp.dialogueState && keyH.changeDialogue == true) {
-    		gp.npc[whoConvo].sayDialogue();
+    		gp.npc[whoInteract].sayDialogue();
     	}
     	keyH.changeDialogue = false;
     }
     
     public void update(){
     	
-    	
-    	System.out.println(canInteract);
-    	
     	// CHECK IF M IS PRESSED
     	talk();
     	
     	
-    	// CHECK IF NEXT TO A NPC + IF ABLE TO INTERACT
-    	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
-    	chatNPC(whoConvo);
+    	interact();
     	
-    	// CHECK IF NEXT TO AN OBJECT + IF ABLE TO INTERACT
-    	objInteract = gp.cChecker.nextToOBJ(this, gp.obj);
-    	interactOBJ(objInteract);
-    	
-    	canShowOptions(whoConvo, objInteract, gp.obj, gp.npc);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
@@ -166,8 +157,8 @@ public class Player extends Entity {
     		pickUpObject(objIndex);
     	
     		// CHECK NPC COLLISION
-    		whoConvo = gp.cChecker.checkEntity(this, gp.npc);
-    		interactNPC(whoConvo);
+//    		whoInteract = gp.cChecker.checkEntity(this, gp.npc);
+//    		interactNPC(whoInteract);
     		
     		
     		
@@ -250,50 +241,37 @@ public class Player extends Entity {
     	}
     }
     
-    public void canShowOptions(int i, int j, SuperObject[] obj, Entity[] npc) {
-    	if(abletoInteract(i, obj, npc) == true || abletoInteract(j, obj, npc) == true) {
+    public void interact() {
+    	int checker = gp.cChecker.nextToSomething(this, gp.npc, gp.obj);
+    	if(checker == 1 || checker ==  2) {
     		canInteract = true;
+    		whoInteract = checker;
+    	}
+    	if(checker == 999) {
+    		canInteract = false;
+    		whoInteract = -1;
+    	}
+    }
+    
+    public void interactOBJ(int nextToOBJ) {
+    	//System.out.println("test");
+    	if(nextToOBJ != 999) {
+    		if(gp.keyH.ePressed == true) {
+    			gp.gameState = gp.dialogueState;
+    			gp.playSE(0);
+    		}
     	}
     	else {
     		canInteract = false;
     	}
-    }
-    
-    public boolean abletoInteract(int i, SuperObject[] obj, Entity[] npc) {
-    	if(i != 999) {
-    		if(obj != null) { // if can interact with object
-    			return true;
-
-    		}
-    		if(npc != null) { // if can interact with npc
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-    
-    public void interactOBJ(int i) {
-    	if(i != 999) {
-    		if(gp.keyH.ePressed == true) {
-    			gp.gameState = gp.interactOBJState; // show a screen with options 
-        		//gp.obj[i].interact();
-    		}
-    	}
-    }
-    
-    public void interactNPC(int i) {
-    	if(i != 999) {
-    		if(gp.keyH.ePressed == true) {
-    			gp.gameState = gp.dialogueState;
-        		gp.npc[i].speak();
-    		}
-    	}
     	gp.keyH.ePressed = false;
     }
     
-    public void chatNPC(int nextToNPC) {
+    public void interactNPC(int nextToNPC) {
     	if(nextToNPC != 999) {
-    		ableToChat = true;
+    		whoInteract = nextToNPC;
+    		//whatInteract = 
+    		//ableToChat = true;
     		if(gp.keyH.ePressed == true) {
     			gp.gameState = gp.dialogueState;
     			gp.npc[nextToNPC].speak();

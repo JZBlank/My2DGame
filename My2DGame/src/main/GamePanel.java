@@ -127,9 +127,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-    	
     	if(gameState == titleState) {
-    		
     		if(ui.titleScreenState == 1) { 
     			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))
         	    	
@@ -215,7 +213,6 @@ public class GamePanel extends JPanel implements Runnable {
     		}
     	}
     	else if(gameState == interactOBJState) {
-    		
     		for(int i = 0; i < obj.length; i++) {
         		if(obj[i] != null) {
         			obj[i].update();

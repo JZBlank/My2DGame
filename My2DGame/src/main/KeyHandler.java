@@ -145,6 +145,7 @@ public class KeyHandler implements KeyListener{
         
         // INTERACT WITH OBJECT STATE
         else if(gp.gameState == gp.interactOBJState) {
+        	
         	if(code == KeyEvent.VK_W){
 	    		gp.ui.commandNum--;
 	    		if(gp.ui.commandNum < 0) {
