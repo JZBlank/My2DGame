@@ -133,12 +133,14 @@ public class KeyHandler implements KeyListener{
         	if(code == KeyEvent.VK_E) {
         		if(gp.ui.moreDialogue != true) {
         			gp.gameState = gp.playState;
+        			gp.player.dialogueIndex = 0;
         		}
-        		else {
+        		else if(gp.ui.moreDialogue == true) {
         			changeDialogue = true;
         		}
         	}
         	else if(code == KeyEvent.VK_ENTER) {
+        		changeDialogue = false;
         		gp.gameState = gp.playState;
         	}
         }

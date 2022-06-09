@@ -114,7 +114,7 @@ public class Player extends Entity {
     
     public void updateDialogue() {
     	if(gp.gameState == gp.dialogueState && keyH.changeDialogue == true) {
-    		gp.npc[whoInteract].sayDialogue();
+    		gp.npc[gp.player.targetIndex].sayDialogue();
     	}
     	keyH.changeDialogue = false;
     }

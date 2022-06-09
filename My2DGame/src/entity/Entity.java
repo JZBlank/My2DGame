@@ -42,7 +42,7 @@ public class Entity {
     // DIALOGUE
     String dialogues[][] = new String[5][20];
     int dialogueSet = 0;
-    int dialogueIndex = 0; 
+    public int dialogueIndex = 0; 
     
     
     // CHARACTER  STATUS
@@ -58,7 +58,9 @@ public class Entity {
     
 
     public void setAction() {}
-    public void updateDialogue() {}
+    public void updateDialogue() {
+    	
+    }
     public void speak() {
     	
     	// DIALOGUE
@@ -94,6 +96,7 @@ public class Entity {
     	if(dialogues[dialogueSet][dialogueIndex] != null) {
     		gp.ui.currentDialogue = dialogues[dialogueSet][dialogueIndex];
     	}
+    	System.out.println("SPEAK CALLED " + dialogueIndex + " a " + gp.ui.currentDialogue + " a  " + gp.ui.moreDialogue);
     	dialogueIndex++;
     	
     }
