@@ -45,7 +45,6 @@ public class UI {
 	
 	// NPC IMAGE
 	BufferedImage npcImage;
-	int targetNPC = -1;
 	
 	// OBJECT IMAGES:
 	
@@ -152,10 +151,6 @@ public class UI {
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
-			
-			// TARGET NPC FOUND
-			//targetNPC = gp.player.whoInteract;
-			
 			drawPlayerImage();
 			drawObjectImages();
 			drawPlayerLife();
@@ -419,7 +414,7 @@ public class UI {
 		
 
 		// NPC IMAGE
-		npcImage = gp.npc[targetNPC].cropImage(gp.npc[targetNPC].down5);
+		npcImage = gp.npc[gp.player.targetIndex].cropImage(gp.npc[gp.player.targetIndex].down5);
 		g2.drawImage(npcImage, x, y,  width, height, null);
 		
 		
@@ -435,7 +430,7 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 		
 		// DRAW NAME OF NPC
-		//g2.drawString(gp.npc[targetNPC].name, x, y);
+		g2.drawString(gp.npc[gp.player.targetIndex].name, x, y);
 		
 		x = gp.tileSize/2 * 2;
 		y = gp.tileSize * 9;
@@ -448,9 +443,8 @@ public class UI {
 			y += 40;
 		}
 		
-		x += gp.screenWidth - (gp.tileSize * 6);;
-		y += gp.tileSize - 10;
-		
+		x += gp.screenWidth - (gp.tileSize * 3);
+		y -= 10;
 		
 		if(moreDialogue == true) {
 			g2.drawString(">", x, y);

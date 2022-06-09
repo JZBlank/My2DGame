@@ -25,8 +25,8 @@ public class Player extends Entity {
     
     // INTERACTIONS W/ NPC OR OBJECTS
     public boolean canInteract = false;
-    public int whoInteract = -1;
-    public boolean ableToChat = false;
+    public int whoInteract = -1; // CHECK IF NPC OR OBJECT
+    public int targetIndex = -1; 
     
     
     
@@ -124,8 +124,8 @@ public class Player extends Entity {
     	// CHECK IF M IS PRESSED
     	talk();
     	
-    	
     	interact();
+    	showOptions();
     	
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
@@ -153,14 +153,10 @@ public class Player extends Entity {
     		gp.cChecker.checkTile(this);
     		
     		// CHECK OBJECT COLLISION
-    		int objIndex = gp.cChecker.checkObject(this, true);
-    		pickUpObject(objIndex);
+    		gp.cChecker.checkObject(this, true);
     	
     		// CHECK NPC COLLISION
-//    		whoInteract = gp.cChecker.checkEntity(this, gp.npc);
-//    		interactNPC(whoInteract);
-    		
-    		
+    		gp.cChecker.checkEntity(this, gp.npc);
     		
     		// IF COLLISION IS FALSE, PLAYER CAN MOVE
     		if(collisionOn == false) {
@@ -229,9 +225,9 @@ public class Player extends Entity {
     	}
     }
     
-    public void pickUpObject(int i) {
-    	if(i != 999) {
-    		String objectName = gp.obj[i].name;
+    public void pickUpObject() {
+    	if(canInteract == true) {
+    		String objectName = gp.obj[targetIndex].name;
     		switch(objectName) {
     		case "Fish":
     			fishCount++;
@@ -253,21 +249,25 @@ public class Player extends Entity {
     	}
     }
     
-    public void interactOBJ(int nextToOBJ) {
-    	//System.out.println("test");
-    	if(nextToOBJ != 999) {
+    public void showOptions() {
+    	
+    	if(canInteract == true && whoInteract == 1) {
     		if(gp.keyH.ePressed == true) {
     			gp.gameState = gp.dialogueState;
+    			gp.npc[targetIndex].speak();
     			gp.playSE(0);
     		}
     	}
-    	else {
-    		canInteract = false;
+    	else if(canInteract == true && whoInteract == 2) {
+    		if(gp.keyH.ePressed == true) {
+    			System.out.println("INTERACT WITH OBJECT");
+    		}
     	}
-    	gp.keyH.ePressed = false;
+    	
+    	gp.keyH.enterPressed = false;
     }
     
-    public void interactNPC(int nextToNPC) {
+    public void checkNPC(int nextToNPC) {
     	if(nextToNPC != 999) {
     		whoInteract = nextToNPC;
     		//whatInteract = 
@@ -275,11 +275,11 @@ public class Player extends Entity {
     		if(gp.keyH.ePressed == true) {
     			gp.gameState = gp.dialogueState;
     			gp.npc[nextToNPC].speak();
-    			gp.playSE(0);
+    			//gp.playSE(0);
     		}
     	}
     	else if(nextToNPC == 999) {
-    		ableToChat = false;
+    		//ableToChat = false;
     	}
     	gp.keyH.ePressed = false;
     }

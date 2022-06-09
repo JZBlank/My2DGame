@@ -182,7 +182,8 @@ public class KeyHandler implements KeyListener{
         }
         
         if(code == KeyEvent.VK_E){
-            changeDialogue = false;
+        	ePressed = false;
+            //changeDialogue = false;
         }
 
         if(code == KeyEvent.VK_W){

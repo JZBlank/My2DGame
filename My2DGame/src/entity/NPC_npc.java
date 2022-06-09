@@ -10,9 +10,9 @@ public class NPC_npc extends Entity {
 	public NPC_npc(GamePanel gp) {
 		super(gp);
 		
-		name = "Bob";
 		direction = "left";
 		speed = 1;
+		collisionOn = true;
 		getImage();
 		setDialogue();
 		
