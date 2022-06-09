@@ -130,19 +130,12 @@ public class Player extends Entity {
     	// CHECK IF NEXT TO A NPC + IF ABLE TO INTERACT
     	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
     	chatNPC(whoConvo);
-    	abletoInteract(whoConvo, null, gp.npc);
     	
     	// CHECK IF NEXT TO AN OBJECT + IF ABLE TO INTERACT
     	objInteract = gp.cChecker.nextToOBJ(this, gp.obj);
     	interactOBJ(objInteract);
-    	abletoInteract(objInteract, gp.obj, null);
     	
     	canShowOptions(whoConvo, objInteract, gp.obj, gp.npc);
-    	
-//    	// CHECK IF NEXT TO A NPC + IF ABLE TO INTERACT
-//    	whoConvo = gp.cChecker.nextToNPC(this, gp.npc);
-//    	chatNPC(whoConvo);
-//    	abletoInteract(whoConvo, null, gp.npc);
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
     			keyH.rightPressed == true) {
