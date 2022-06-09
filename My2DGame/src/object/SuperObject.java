@@ -17,9 +17,24 @@ public class SuperObject {
 	public int solidAreaDefaultX = 0;
 	public int solidAreaDefaultY = 0;
 	UtilityTool uTool = new UtilityTool();
+	public int actionLockCounter;
+	public int actionidleCounter;
+	public int move = -1;
+	
+	public void setAction() {};
+	
+	
+	public void update() {
+		setAction();
+
+	}
+	
 	
 	
 	public void draw(Graphics2D g2, GamePanel gp) {
+		
+		BufferedImage image = null;
+		
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 		
@@ -45,7 +60,17 @@ public class SuperObject {
 		   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 		   
-			g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			if(move == 1) {
+				g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			}
+			else if(move == 2) {
+				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			}
+			else if(move == 3) {
+				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			}
 		}
 		// If player is around the edge, draw everything
 		else if(gp.player.worldX < gp.player.screenX ||
@@ -56,5 +81,6 @@ public class SuperObject {
 			g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null); 
 		}
 	}
+	
 		
 }

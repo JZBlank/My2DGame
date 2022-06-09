@@ -1,6 +1,7 @@
 package object;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -22,6 +23,27 @@ public class OBJ_Fish extends SuperObject {
 			e.printStackTrace();
 		}
 		collision = true;
+	}
+
+	
+	public void setAction() {
+		actionLockCounter++;
+		Random random = new Random();
+		int i = random.nextInt(100)+1;
+		
+		if(actionLockCounter == 20) { 
+			if(i >= 33) {
+				move = -1;
+			}
+			if(i <= 66) {
+				move = 2;
+			}
+			else if(i <= 100) {
+				move = 3;
+			}
+			
+			actionLockCounter = 0;
+		}
 	}
 
 }
