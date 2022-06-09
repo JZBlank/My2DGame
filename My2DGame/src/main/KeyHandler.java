@@ -148,7 +148,22 @@ public class KeyHandler implements KeyListener{
         // INTERACT WITH OBJECT STATE
         else if(gp.gameState == gp.interactOBJState) {
         	if(code == KeyEvent.VK_E){
-        		gp.gameState = gp.playState;
+        		if(gp.ui.commandNum == 0) {
+        			gp.gameState = gp.playState;
+        		}
+        		else if(gp.ui.commandNum == 1) {
+        			gp.player.eat = true;
+        			gp.player.addHealth = true;
+        			gp.gameState = gp.playState;
+        		}
+        		else if(gp.ui.commandNum == 2) {
+        			gp.player.pickUp = true;
+        			gp.gameState = gp.playState;
+        		}
+        		else if(gp.ui.commandNum == 3) {
+        			gp.player.talk = true;
+        			gp.gameState = gp.playState;
+        		}
 	        }
         	
         	if(code == KeyEvent.VK_W){
@@ -168,9 +183,6 @@ public class KeyHandler implements KeyListener{
 	        if(code == KeyEvent.VK_ENTER) {
 	        	if(gp.ui.commandNum == 0) {
 	        		gp.gameState = gp.playState;
-	        	}
-	        	else if(gp.ui.commandNum == 1) {
-	        		gp.ui.titleScreenState = 0;
 	        	}
 	        }
         }

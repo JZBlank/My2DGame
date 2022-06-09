@@ -30,6 +30,16 @@ public class Player extends Entity {
     
     
     
+    // CHOOSING INTERACTIONS
+    public boolean eat = false;
+    public boolean drink = false;
+    public boolean pickUp = false;
+    public boolean talk = false;
+    
+    public boolean addHealth = false;
+    
+    
+    
     public Player(GamePanel gp, KeyHandler keyH){
     	
     	super(gp);
@@ -62,7 +72,7 @@ public class Player extends Entity {
         name = "";
         // PLAYER STATUS
         maxHealth = 9;
-        currentHealth = maxHealth;
+        currentHealth = 2;
         
     }
     
@@ -127,6 +137,9 @@ public class Player extends Entity {
     	// INTERACTIONS WITH OTHER WORLD OBJECTS/NPCS
     	interact();
     	showOptions();
+    	chooseOption();
+    	
+    	//System.out.println(eat + " " + pickUp + " " + talk);
     	
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
@@ -238,6 +251,26 @@ public class Player extends Entity {
     	}
     }
     
+    public void chooseOption() {
+    	
+    	if(gp.player.eat == true) {
+    		gp.obj[targetIndex] = null;
+    		if(gp.player.currentHealth != 100 && gp.player.addHealth == true) {
+    			gp.player.currentHealth += 1;
+    			gp.player.addHealth = false;
+    			gp.player.eat = false;
+    		}
+    	}
+    	else if(gp.player.pickUp == true) {
+    		switch(gp.obj[targetIndex].name) {
+    		case "Fish":
+    			fishCount++;
+    			gp.ui.showMessage("Fish acquired.");
+    			break;
+    		}
+    		gp.player.pickUp = false;
+    	}
+    }
     public void interact() {
     	int checker = gp.cChecker.nextToSomething(this, gp.npc, gp.obj);
     	if(checker == 1 || checker ==  2) {

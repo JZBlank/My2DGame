@@ -10,6 +10,7 @@ import main.GamePanel;
 public class OBJ_Fish extends SuperObject {
 	
 	GamePanel gp;
+	String[] options;
 	
 	public OBJ_Fish(GamePanel gp) {
 		name = "Fish";
@@ -46,6 +47,13 @@ public class OBJ_Fish extends SuperObject {
 			
 			actionLockCounter = 0;
 		}
+	}
+	
+	public void interactOptions() {
+		options[0] = "Do nothing";
+		options[1] = "Eat";
+		options[2] = "Pick up";
+		options[3] = "Talk";
 	}
 
 }
