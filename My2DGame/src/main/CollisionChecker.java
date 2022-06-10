@@ -236,6 +236,9 @@ public class CollisionChecker {
 		int objTarget = 999;
 		int result = 999;
 		
+		// RESET targetIndex
+		gp.player.targetIndex = 0;
+		
 		// IF PLAYER IS NEXT TO NPC AND NOT OBJ = 1
 		// IF PLAYER IS NEXT TO OBJECT AND NOT NPC = 2	
 		// IF PLAYER IS NOT NEXT TO NPC NOR OBJECT  = 999

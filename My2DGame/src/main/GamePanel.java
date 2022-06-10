@@ -133,8 +133,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
     	// debug here
     	
-    	
-    	
+    	System.out.println(player.targetIndex + " ");
     	
     	// 
     	

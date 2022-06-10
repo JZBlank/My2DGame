@@ -210,31 +210,33 @@ public class UI {
 	}
 	
 	public void drawOptions() {
+		System.out.println(gp.player.targetIndex);
 		int x = gp.tileSize * 6 + 150;
 		int y = gp.tileSize * 5;
 		
-		String[] a = gp.npc[gp.player.targetIndex].options;
-		String[] b = gp.obj[gp.player.targetIndex].options;
 		
 		g2.setFont(new Font("Montserrat", Font.TRUETYPE_FONT, 15));
 		g2.setColor(Color.white);
-		
-		if(gp.player.whoInteract == 1){ // show options for npc
-			for(int j = 0; j < a.length; j++) {
-				g2.drawString(a[j], x, y);
-				if(commandNum == j) {
-					g2.drawString(">",  x - 10, y);
+		if(gp.player.targetIndex != 999) {
+			if(gp.player.whoInteract == 1){ // show options for npc
+				String[] a = gp.npc[gp.player.targetIndex].options;
+				for(int j = 0; j < a.length; j++) {
+					g2.drawString(a[j], x, y);
+					if(commandNum == j) {
+						g2.drawString(">",  x - 10, y);
+					}
+					y += 20;
 				}
-				y += 20;
 			}
-		}
-		else if (gp.player.whoInteract == 2) { //show options for obj
-			for(int j = 0; j < b.length; j++) {
-				g2.drawString(b[j], x, y);
-				if(commandNum == j) {
-					g2.drawString(">",  x - 10, y);
+			else if (gp.player.whoInteract == 2) { //show options for obj
+				String[] b = gp.obj[gp.player.targetIndex].options;
+				for(int j = 0; j < b.length; j++) {
+					g2.drawString(b[j], x, y);
+					if(commandNum == j) {
+						g2.drawString(">",  x - 10, y);
+					}
+					y += 20;
 				}
-				y += 20;
 			}
 		}
 		
