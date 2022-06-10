@@ -76,7 +76,7 @@ public class Player extends Entity {
         name = "";
         // PLAYER STATUS
         maxHealth = 9;
-        currentHealth = 2;
+        currentHealth = 9;
         
     }
     
@@ -258,7 +258,7 @@ public class Player extends Entity {
     	
     	if(gp.player.eat == true) {
     		gp.obj[targetIndex] = null;
-    		if(gp.player.currentHealth != 100 && gp.player.addHealth == true) {
+    		if(gp.player.currentHealth < 9 && gp.player.addHealth == true) {
     			gp.player.currentHealth += 1;
     			gp.player.addHealth = false;
     			gp.player.eat = false;
@@ -313,24 +313,6 @@ public class Player extends Entity {
     	
     	gp.keyH.enterPressed = false;
     }
-    
-    public void checkNPC(int nextToNPC) {
-    	if(nextToNPC != 999) {
-    		whoInteract = nextToNPC;
-    		//whatInteract = 
-    		//ableToChat = true;
-    		if(gp.keyH.ePressed == true) {
-    			gp.gameState = gp.dialogueState;
-    			gp.npc[nextToNPC].speak();
-    			//gp.playSE(0);
-    		}
-    	}
-    	else if(nextToNPC == 999) {
-    		//ableToChat = false;
-    	}
-    	gp.keyH.ePressed = false;
-    }
-
     
     public void draw(Graphics2D g2) {
 
