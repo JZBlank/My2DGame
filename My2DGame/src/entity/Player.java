@@ -346,20 +346,23 @@ public class Player extends Entity {
     }
     
     public void showOptions() {
-
-    	if(canInteract == true && whoInteract == 1) {
-    		if(gp.keyH.ePressed == true) {
-    			gp.npc[targetIndex].speak();
-    			gp.gameState = gp.interactOBJState;
-    		}
+    	if(canInteract == false) {
+    		gp.gameState = gp.playState;
     	}
-    	else if(canInteract == true && whoInteract == 2) {
-    		if(gp.keyH.ePressed == true) {
-    			gp.gameState = gp.interactOBJState;
-    		}
+    	else {
+    		if(whoInteract == 1) {
+        		if(gp.keyH.ePressed == true) {
+        			gp.npc[targetIndex].speak();
+        			gp.gameState = gp.interactOBJState;
+        		}
+        	}
+        	else if(whoInteract == 2) {
+        		if(gp.keyH.ePressed == true) {
+        			gp.gameState = gp.interactOBJState;
+        		}
+        	}
+    		gp.keyH.enterPressed = false;
     	}
-    	
-    	gp.keyH.enterPressed = false;
     }
     
     public void draw(Graphics2D g2) {
