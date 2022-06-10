@@ -132,7 +132,6 @@ public class UI {
 		
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
-			
 			drawPlayerImage();
 			drawPlayerLife();
 			drawObjectImages();
@@ -157,6 +156,7 @@ public class UI {
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
+			drawNotification();
 			drawPlayerImage();
 			drawPlayerLife();
 			drawObjectImages();
@@ -165,6 +165,38 @@ public class UI {
 		}
 	
 	}
+	private void drawNotification() {
+		if(gp.player.notification == true) {
+			drawPlayerDialogue();
+
+			int x = 30;
+			int y = gp.tileSize * 8 + 10;
+			
+			g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+			
+				
+			x = gp.tileSize/2 * 2;
+			y = gp.tileSize * 9 + gp.tileSize;
+			
+			g2.drawString("I am holding fish..", x, y);
+		}
+	}
+
+
+	private void drawPlayerDialogue() {
+		
+		// CREATE WINDOW
+		int x = gp.tileSize/2;
+		int y = gp.tileSize * 8 - 20;
+		int width = gp.tileSize + 70;
+		int height = gp.tileSize - 20 + 40;
+				 
+		g2.drawImage(playerImage, x, y,  width, height, null);		
+		drawSubWindow();
+
+		
+	}
+
 	public void drawOptionBox() {
 		// DRAW TEXT BOX
 		int x = gp.tileSize * 6 + 130;

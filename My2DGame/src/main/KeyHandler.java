@@ -147,6 +147,7 @@ public class KeyHandler implements KeyListener{
         
         // INTERACT WITH OBJECT STATE
         else if(gp.gameState == gp.interactOBJState) {
+        	gp.player.notification = false;
         	if(code == KeyEvent.VK_E){
         		if(gp.ui.commandNum == 0) {
         			gp.gameState = gp.playState;
@@ -160,7 +161,12 @@ public class KeyHandler implements KeyListener{
         			}
         			else if(gp.player.whoInteract == 2) {
         				gp.player.pickUp = true;
-            			gp.gameState = gp.playState;
+        				if(gp.player.canPickUp == false) {
+        					gp.player.notification = true;
+        				}
+        				else {
+        					gp.gameState = gp.playState;
+        				}
         			}
         		}
         		else if(gp.ui.commandNum == 3) {

@@ -131,6 +131,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
+    	// debug here
+    	
+    	
+    	
+    	
+    	// 
+    	
     	if(gameState == titleState) {
     		if(ui.titleScreenState == 1) { 
     			if(askName == true) { // HouseKeeping (SHORTEN THIS LATER / CREATE A NEW CLASS (?))

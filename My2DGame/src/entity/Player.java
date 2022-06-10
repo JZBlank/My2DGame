@@ -12,7 +12,7 @@ import java.awt.Rectangle;
 public class Player extends Entity {
     KeyHandler keyH;
     Entity[] npc;
-    SuperObject inventory[] = new SuperObject[1];
+    public SuperObject inventory[] = new SuperObject[1];
     
     public final int screenX;
     public final int screenY;
@@ -34,7 +34,6 @@ public class Player extends Entity {
     public int targetIndex = -1; 
     
     
-    
     // CHOOSING INTERACTIONS
     public boolean eat = false;
     public boolean drink = false;
@@ -44,11 +43,12 @@ public class Player extends Entity {
     public boolean addHealth = false;
     public boolean hasBackPack = false;
     public boolean canPickUp = true;
-    
     public int itemCounter = 0;
     
     public int waterCounter = 0;
     public int healthCounter = 0;
+    
+    public boolean notification = false;
     
     
     public Player(GamePanel gp, KeyHandler keyH){
@@ -311,13 +311,15 @@ public class Player extends Entity {
     				gp.obj[targetIndex] = null;
     				itemCounter++;
     				fishCount++;
+    				gp.player.canPickUp = false;
     				break;
     			}
     			else {
-    				System.out.println("Can only hold one item at a time!");
+    				gp.player.notification = true;
     			}
     		}
     		gp.player.pickUp = false;
+    		//gp.player.notification = false;
     	}
     }
     
