@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.SuperObject;
 
 public class Entity {
     public int worldX, worldY;
@@ -19,6 +20,9 @@ public class Entity {
     
     public String name = "";
     
+    
+    // INVENTORY
+    SuperObject[] inventory;
     
     // describes image with accessible buffer image data (use this to store image files)
     public BufferedImage up1, up2, up3, up4, up5;
@@ -55,7 +59,7 @@ public class Entity {
 		return null;
 	}
     
-
+    
     public void setAction() {}
     public void updateDialogue() {
     	

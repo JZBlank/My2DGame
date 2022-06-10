@@ -12,6 +12,7 @@ import java.awt.Rectangle;
 public class Player extends Entity {
     KeyHandler keyH;
     Entity[] npc;
+    SuperObject inventory[] = new SuperObject[1];
     
     public final int screenX;
     public final int screenY;
@@ -37,7 +38,10 @@ public class Player extends Entity {
     public boolean talk = false;
     
     public boolean addHealth = false;
+    public boolean hasBackPack = false;
+    public boolean canPickUp = true;
     
+    public int itemCounter = 0;
     
     
     public Player(GamePanel gp, KeyHandler keyH){
@@ -130,6 +134,7 @@ public class Player extends Entity {
     }
     
     public void update(){
+    	//System.out.println();
     	
     	// CHECK IF M IS PRESSED
     	talk();
@@ -138,8 +143,6 @@ public class Player extends Entity {
     	interact();
     	showOptions();
     	chooseOption();
-    	
-    	//System.out.println(eat + " " + pickUp + " " + talk);
     	
     	
     	if(keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true ||
@@ -264,13 +267,23 @@ public class Player extends Entity {
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
     		case "Fish":
-    			fishCount++;
-    			gp.ui.showMessage("Fish acquired.");
-    			break;
+    			if(inventory[0] == null) {
+    				inventory[itemCounter] = gp.obj[targetIndex]; //might give problems
+    				gp.obj[targetIndex] = null;
+    				itemCounter++;
+    				fishCount++;
+    				break;
+    			}
+    			else {
+    				System.out.println("Can only hold one item at a time!");
+    			}
     		}
     		gp.player.pickUp = false;
     	}
     }
+    
+    
+    
     public void interact() {
     	int checker = gp.cChecker.nextToSomething(this, gp.npc, gp.obj);
     	if(checker == 1 || checker ==  2) {
