@@ -48,6 +48,7 @@ public class Player extends Entity {
     public int itemCounter = 0;
     
     public int waterCounter = 0;
+    public int healthCounter = 0;
     
     
     public Player(GamePanel gp, KeyHandler keyH){
@@ -85,7 +86,7 @@ public class Player extends Entity {
         currentHealth = maxHealth;
         
         needWater = 0;
-        dehydrationBar = 9 - dehydration;
+        dehydrationBar = 9 - needWater;
         
         alive = true;  
     }
@@ -235,17 +236,29 @@ public class Player extends Entity {
     }
     
     public void water() {
-    	System.out.println(dehydrationBar);
-    	waterCounter++;
-    	if(waterCounter == 180) {
-    		waterCounter = 0;
-    		dehydrationBar -= 1;
+    	if(dehydrationBar != -1) {
+    		waterCounter++;
+        	if(waterCounter == 180) {
+        		waterCounter = 0;
+        		dehydrationBar -= 1;
+        	}
+        	if(dehydrationBar == 0) {
+        		loseHealth = true;
+        		
+        	}
     	}
-    	if(dehydrationBar == 0) {
-    		alive = false;
-    		
+
+    	if(loseHealth == true) {
+    		healthCounter++;
+    		if(healthCounter == 180) {
+    			healthCounter = 0;
+    			currentHealth -=1;
+    		}	
+    		if(currentHealth == 0) {
+    			alive = false;
+    		}
     	}
-    	// gameState == end
+    	
     }
     
     public void idle() {

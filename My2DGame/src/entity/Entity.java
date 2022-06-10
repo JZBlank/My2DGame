@@ -56,6 +56,7 @@ public class Entity {
     public int dehydrationBar = 9 - needWater;
     
     public boolean alive = true;
+    public boolean loseHealth = false;
     
     
     public Entity(GamePanel gp) {
