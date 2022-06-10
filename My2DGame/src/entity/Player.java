@@ -48,6 +48,7 @@ public class Player extends Entity {
     public int waterCounter = 0;
     public int healthCounter = 0;
     
+    public boolean canpressE = false;
     public boolean notification = false;
     
     
@@ -345,11 +346,13 @@ public class Player extends Entity {
     	}
     }
     
-    public void showOptions() {
+    public void showOptions() {	
     	if(canInteract == false) {
+    		canpressE = false;
     		gp.gameState = gp.playState;
     	}
     	else {
+    		canpressE = true;
     		if(whoInteract == 1) {
         		if(gp.keyH.ePressed == true) {
         			gp.npc[targetIndex].speak();

@@ -132,6 +132,7 @@ public class UI {
 		
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
+			drawHint();
 			drawPlayerImage();
 			drawPlayerLife();
 			drawObjectImages();
@@ -165,6 +166,22 @@ public class UI {
 		}
 	
 	}
+	private void drawHint() {
+		if(gp.player.canpressE) {
+			int x = gp.tileSize * 6;
+			int y = gp.tileSize * 5;
+			
+			
+			g2.setFont(new Font("Montserrat", Font.BOLD, 15));
+			g2.setColor(Color.white);
+			
+			g2.drawString("Press e to interact", x, y);
+			
+		}
+		
+		
+	}
+
 	private void drawNotification() {
 		if(gp.player.notification == true) {
 			drawPlayerDialogue();
@@ -210,7 +227,6 @@ public class UI {
 	}
 	
 	public void drawOptions() {
-		System.out.println(gp.player.targetIndex);
 		int x = gp.tileSize * 6 + 150;
 		int y = gp.tileSize * 5;
 		
