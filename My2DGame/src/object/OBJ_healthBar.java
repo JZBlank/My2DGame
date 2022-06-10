@@ -1,10 +1,12 @@
 package object;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class OBJ_healthBar extends SuperObject {
 	
@@ -12,25 +14,32 @@ public class OBJ_healthBar extends SuperObject {
 	
 	public OBJ_healthBar(GamePanel gp) {
 		
-		try {
-			image1 = ImageIO.read(getClass().getResourceAsStream("/healthBar/empty_1.png"));
-			image2 =  ImageIO.read(getClass().getResourceAsStream("/healthBar/empty_2.png"));
-			image3 = ImageIO.read(getClass().getResourceAsStream("/healthBar/empty_3.png"));
-			image4 = ImageIO.read(getClass().getResourceAsStream("/healthBar/full_1.png"));
-			image5 = ImageIO.read(getClass().getResourceAsStream("/healthBar/full_2.png"));
-			image6 = ImageIO.read(getClass().getResourceAsStream("/healthBar/full_3.png"));
-
-			image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
-			image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
-			image3 = uTool.scaleImage(image3,  gp.tileSize,  gp.tileSize);
-			image4 = uTool.scaleImage(image4,  gp.tileSize,  gp.tileSize);
-			image5 = uTool.scaleImage(image5,  gp.tileSize,  gp.tileSize);
-			image6 = uTool.scaleImage(image6,  gp.tileSize,  gp.tileSize);
-			
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		image1 = setup("empty_1");
+		image2 = setup("empty_2");
+		image3 = setup("empty_3");
+		image4 = setup("red_1");
+		image5 = setup("red_2");
+		image6 = setup("red_3");
+		image7 = setup("red_4");
+		image8 = setup("blue_1");
+		image9 = setup("blue_2");
+		image10 =setup("blue_3");
+		image11 = setup("blue_4");
 		
+	}
+	
+	public BufferedImage setup(String imagePath) {
+		UtilityTool uTool = new UtilityTool();
+    	BufferedImage image = null;
+    	
+    	try {
+    		image = ImageIO.read(getClass().getResourceAsStream("/healthBar/" + imagePath + ".png"));
+    		image = uTool.scaleImage(image,  48,  48);
+    		
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    	return image;
 	}
 	
 }

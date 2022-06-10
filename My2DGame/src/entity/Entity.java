@@ -52,6 +52,12 @@ public class Entity {
     public int maxHealth;
     public int currentHealth;
     
+    public int needWater = 0;
+    public int dehydrationBar = 9 - needWater;
+    
+    public boolean alive = true;
+    
+    
     public Entity(GamePanel gp) {
     	this.gp = gp;
     }

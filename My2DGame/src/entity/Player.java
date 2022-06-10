@@ -20,6 +20,10 @@ public class Player extends Entity {
     public boolean meow_now = false;
     int standCounter = 0;
     
+    // DEHYDRATION
+    public int dehydration = 0;
+    public int waterLevel = 9;
+    
     //when player has not moved after certain amount of time, character sits down (standby mode)
     public boolean standBy = false;
     public boolean sit = false;
@@ -42,6 +46,8 @@ public class Player extends Entity {
     public boolean canPickUp = true;
     
     public int itemCounter = 0;
+    
+    public int waterCounter = 0;
     
     
     public Player(GamePanel gp, KeyHandler keyH){
@@ -76,12 +82,15 @@ public class Player extends Entity {
         name = "";
         // PLAYER STATUS
         maxHealth = 9;
-        currentHealth = 9;
+        currentHealth = maxHealth;
         
+        needWater = 0;
+        dehydrationBar = 9 - dehydration;
+        
+        alive = true;  
     }
     
     public BufferedImage cropImage(BufferedImage image) {
-    	//down5 = setup("/player/cat_down_sit");
     	return image.getSubimage(0, 0, 48, 48/2);
     }
 
@@ -134,7 +143,7 @@ public class Player extends Entity {
     }
     
     public void update(){
-    	//System.out.println();
+    	water();
     	
     	// CHECK IF M IS PRESSED
     	talk();
@@ -223,6 +232,20 @@ public class Player extends Entity {
     			spriteNum = 4;
     		}
     	}
+    }
+    
+    public void water() {
+    	System.out.println(dehydrationBar);
+    	waterCounter++;
+    	if(waterCounter == 180) {
+    		waterCounter = 0;
+    		dehydrationBar -= 1;
+    	}
+    	if(dehydrationBar == 0) {
+    		alive = false;
+    		
+    	}
+    	// gameState == end
     }
     
     public void idle() {
