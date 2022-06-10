@@ -154,6 +154,7 @@ public class KeyHandler implements KeyListener{
         		}
         		else if(gp.ui.commandNum == 1) {
         			gp.gameState = gp.dialogueState;
+        			gp.playSE(0);
         		}
         		else if(gp.ui.commandNum == 2) {
         			if(gp.player.whoInteract == 1) {

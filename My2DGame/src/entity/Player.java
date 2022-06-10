@@ -351,17 +351,10 @@ public class Player extends Entity {
     		if(gp.keyH.ePressed == true) {
     			gp.npc[targetIndex].speak();
     			gp.gameState = gp.interactOBJState;
-    			
-    			if(gp.gameState == gp.dialogueState) {
-    				gp.npc[targetIndex].speak();
-    			
-    			}
-    			gp.playSE(0);
     		}
     	}
     	else if(canInteract == true && whoInteract == 2) {
     		if(gp.keyH.ePressed == true) {
-    			//gp.obj[targetIndex].speak();
     			gp.gameState = gp.interactOBJState;
     		}
     	}
