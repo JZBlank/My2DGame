@@ -152,17 +152,22 @@ public class KeyHandler implements KeyListener{
         			gp.gameState = gp.playState;
         		}
         		else if(gp.ui.commandNum == 1) {
+        			gp.gameState = gp.dialogueState;
+        		}
+        		else if(gp.ui.commandNum == 2) {
+        			if(gp.player.whoInteract == 1) {
+        				//give
+        			}
+        			else if(gp.player.whoInteract == 2) {
+        				gp.player.pickUp = true;
+            			gp.gameState = gp.playState;
+        			}
+        		}
+        		else if(gp.ui.commandNum == 3) {
         			gp.player.eat = true;
         			gp.player.addHealth = true;
         			gp.gameState = gp.playState;
-        		}
-        		else if(gp.ui.commandNum == 2) {
-        			gp.player.pickUp = true;
-        			gp.gameState = gp.playState;
-        		}
-        		else if(gp.ui.commandNum == 3) {
-        			gp.player.talk = true;
-        			gp.gameState = gp.playState;
+        			
         		}
 	        }
         	

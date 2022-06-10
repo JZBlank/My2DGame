@@ -21,6 +21,8 @@ public class SuperObject {
 	public int actionidleCounter;
 	public int move = -1;
 	
+	public String[] options = new String[4];
+	
 	public boolean chooseEat = false;
 	public boolean choosepickUp = false;
 	
@@ -29,7 +31,7 @@ public class SuperObject {
 		setAction();
 
 	}
-	
+	public void interactOptions() {};
 	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
 		

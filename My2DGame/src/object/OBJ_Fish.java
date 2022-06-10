@@ -10,10 +10,12 @@ import main.GamePanel;
 public class OBJ_Fish extends SuperObject {
 	
 	GamePanel gp;
-	String[] options;
 	
 	public OBJ_Fish(GamePanel gp) {
+		
 		name = "Fish";
+		interactOptions();
+		
 		try {
 			image1 = ImageIO.read(getClass().getResourceAsStream("/objects/defaultFish.png"));
 			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/fish.png"));
@@ -51,9 +53,9 @@ public class OBJ_Fish extends SuperObject {
 	
 	public void interactOptions() {
 		options[0] = "Do nothing";
-		options[1] = "Eat";
+		options[1] = "Talk";
 		options[2] = "Pick up";
-		options[3] = "Talk";
+		options[3] = "Eat";
 	}
 
 }

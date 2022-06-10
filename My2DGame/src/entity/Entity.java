@@ -23,6 +23,7 @@ public class Entity {
     
     // INVENTORY
     SuperObject[] inventory;
+    public String[] options = new String[3];
     
     // describes image with accessible buffer image data (use this to store image files)
     public BufferedImage up1, up2, up3, up4, up5;
@@ -67,6 +68,7 @@ public class Entity {
 	}
     
     
+    public void interactOptions() {}
     public void setAction() {}
     public void updateDialogue() {
     	

@@ -15,7 +15,7 @@ public class NPC_npc extends Entity {
 		collisionOn = true;
 		getImage();
 		setDialogue();
-		
+		interactOptions();
 	}
 	public void getImage(){
 	        
@@ -55,6 +55,15 @@ public class NPC_npc extends Entity {
 		dialogues[0][2] = "I should go get some food...";
 		
 	}
+	
+	
+	public void interactOptions() {
+		options[0] = "Do nothing";
+		options[1] = "Talk";
+		options[2] = "Give";
+	}
+	
+	
 	public void updateDialogue() {
 		super.updateDialogue();
 	}

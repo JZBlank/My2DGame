@@ -318,6 +318,14 @@ public class Player extends Entity {
     	}
     }
     
+    public void interactOptions() {
+		options[0] = "Do nothing";
+		options[1] = "Eat";
+		options[2] = "Pick up";
+		options[3] = "Talk";
+	}
+    
+    
     
     
     public void interact() {
@@ -333,11 +341,15 @@ public class Player extends Entity {
     }
     
     public void showOptions() {
-    	
+
     	if(canInteract == true && whoInteract == 1) {
     		if(gp.keyH.ePressed == true) {
-    			gp.gameState = gp.dialogueState;
     			gp.npc[targetIndex].speak();
+    			gp.gameState = gp.interactOBJState;
+    			
+    			if(gp.gameState == gp.dialogueState) {
+    				gp.npc[targetIndex].speak();
+    			}
     			gp.playSE(0);
     		}
     	}

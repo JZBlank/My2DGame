@@ -175,34 +175,29 @@ public class UI {
 		int x = gp.tileSize * 6 + 150;
 		int y = gp.tileSize * 5;
 		
+		String[] a = gp.npc[gp.player.targetIndex].options;
+		String[] b = gp.obj[gp.player.targetIndex].options;
 		
 		g2.setFont(new Font("Montserrat", Font.TRUETYPE_FONT, 15));
 		g2.setColor(Color.white);
 		
-		g2.drawString("Do nothing", x, y);
-		if(commandNum == 0) {
-			g2.drawString(">",  x - 10, y);
+		if(gp.player.whoInteract == 1){ // show options for npc
+			for(int j = 0; j < a.length; j++) {
+				g2.drawString(a[j], x, y);
+				if(commandNum == j) {
+					g2.drawString(">",  x - 10, y);
+				}
+				y += 20;
+			}
 		}
-		
-		y += 20;
-		
-		g2.drawString("Eat ", x, y);
-		if(commandNum == 1) {
-			g2.drawString(">",  x - 10, y);
-		}
-		
-		y += 20;
-			
-		g2.drawString("Pick up", x, y);
-		if(commandNum == 2) {
-			g2.drawString(">", x - 10, y);
-		}
-		
-		y += 20;
-		
-		g2.drawString("Talk", x, y);	
-		if(commandNum == 3) {
-			g2.drawString(">", x - 10, y);
+		else if (gp.player.whoInteract == 2) { //show options for obj
+			for(int j = 0; j < b.length; j++) {
+				g2.drawString(b[j], x, y);
+				if(commandNum == j) {
+					g2.drawString(">",  x - 10, y);
+				}
+				y += 20;
+			}
 		}
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
@@ -239,12 +234,6 @@ public class UI {
 
 		design.closePath();
 		g2.fill(design);
-		
-		
-		// DESIGN 
-//		g2.setColor(Color.black);
-//		g2.fillRect(gp.tileSize/2, 50, 260, gp.tileSize/4);
-		
 		g2.setColor(Color.white);
 		
 		//DRAW PLAYER PIC
@@ -477,7 +466,6 @@ public class UI {
 	}
 	
 	public void drawDialogue() {
-		
 		int x = 30;
 		int y = gp.tileSize * 8 + 10;
 		
