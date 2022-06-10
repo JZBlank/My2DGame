@@ -8,6 +8,8 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class SuperObject {
+	
+	GamePanel gp;
 	public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11;
     // public BufferedImage image7, image8, image9, image10, image11;
 	public String name;
@@ -22,6 +24,10 @@ public class SuperObject {
 	public int move = -1;
 	
 	public String[] options = new String[4];
+	
+	// DIALOGUE
+    public String dialogues[] = new String[4];
+    public int dialogueIndex = 0; 
 	
 	public boolean chooseEat = false;
 	public boolean choosepickUp = false;
@@ -83,6 +89,4 @@ public class SuperObject {
 			g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null); 
 		}
 	}
-	
-		
 }

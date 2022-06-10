@@ -9,11 +9,10 @@ import main.GamePanel;
 
 public class OBJ_Fish extends SuperObject {
 	
-	GamePanel gp;
-	
 	public OBJ_Fish(GamePanel gp) {
 		
 		name = "Fish";
+		setDialogue();
 		interactOptions();
 		
 		try {
@@ -57,5 +56,8 @@ public class OBJ_Fish extends SuperObject {
 		options[2] = "Pick up";
 		options[3] = "Eat";
 	}
-
+	
+	public void setDialogue() {
+		dialogues[0] = "...";
+	}
 }

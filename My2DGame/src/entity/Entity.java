@@ -63,6 +63,7 @@ public class Entity {
     public Entity(GamePanel gp) {
     	this.gp = gp;
     }
+    
     public BufferedImage cropImage(BufferedImage down52) {
 		return null;
 	}
@@ -70,9 +71,7 @@ public class Entity {
     
     public void interactOptions() {}
     public void setAction() {}
-    public void updateDialogue() {
-    	
-    }
+    public void updateDialogue() {}
     public void speak() {
     	
     	// DIALOGUE

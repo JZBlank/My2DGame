@@ -144,7 +144,7 @@ public class Player extends Entity {
     }
     
     public void update(){
-    	water();
+    	survival();
     	
     	// CHECK IF M IS PRESSED
     	talk();
@@ -235,28 +235,31 @@ public class Player extends Entity {
     	}
     }
     
-    public void water() {
-    	if(dehydrationBar != -1) {
-    		waterCounter++;
-        	if(waterCounter == 180) {
-        		waterCounter = 0;
-        		dehydrationBar -= 1;
+    public void survival() {
+    	
+    	if(gp.survivalMode == true) {
+    		if(dehydrationBar != -1) {
+        		waterCounter++;
+            	if(waterCounter == 180) {
+            		waterCounter = 0;
+            		dehydrationBar -= 1;
+            	}
+            	if(dehydrationBar == 0) {
+            		loseHealth = true;
+            		
+            	}
         	}
-        	if(dehydrationBar == 0) {
-        		loseHealth = true;
-        		
-        	}
-    	}
 
-    	if(loseHealth == true) {
-    		healthCounter++;
-    		if(healthCounter == 180) {
-    			healthCounter = 0;
-    			currentHealth -=1;
-    		}	
-    		if(currentHealth == 0) {
-    			alive = false;
-    		}
+        	if(loseHealth == true) {
+        		healthCounter++;
+        		if(healthCounter == 180) {
+        			healthCounter = 0;
+        			currentHealth -=1;
+        		}	
+        		if(currentHealth == 0) {
+        			alive = false;
+        		}
+        	}
     	}
     	
     }
@@ -349,12 +352,14 @@ public class Player extends Entity {
     			
     			if(gp.gameState == gp.dialogueState) {
     				gp.npc[targetIndex].speak();
+    			
     			}
     			gp.playSE(0);
     		}
     	}
     	else if(canInteract == true && whoInteract == 2) {
     		if(gp.keyH.ePressed == true) {
+    			//gp.obj[targetIndex].speak();
     			gp.gameState = gp.interactOBJState;
     		}
     	}

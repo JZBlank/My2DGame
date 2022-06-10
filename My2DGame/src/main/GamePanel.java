@@ -37,6 +37,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = tileSize * maxWorldRow;
     
     
+    // GAME SETTINGS
+    public boolean survivalMode = false;
+    
     // ENTER NAME SCREEN VARIABLES
     boolean askName = true;
     boolean setName = true;
@@ -89,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
     	
     	// STARTING SCREEN 
     	//gameState = titleState; 
+    	// set up modes for titleState *** (Casual, survival mode, etc)
     	
     	gameState = playState;
     	player.name = "Timmy";

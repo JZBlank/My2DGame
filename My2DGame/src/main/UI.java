@@ -24,6 +24,11 @@ import object.OBJ_healthBar;
 import object.SuperObject;
 
 public class UI {
+	
+	// testing
+	public String a;
+	
+	//
 	GamePanel gp;
 	Graphics2D g2;
 //	JTextField jT = new JTextField(30);
@@ -43,12 +48,13 @@ public class UI {
 	BufferedImage playerImage;
 	boolean cropped = false;
 	
-	// NPC IMAGE
+	// IMAGES FOR DIALOGUE
 	BufferedImage npcImage;
+	BufferedImage objImage;
 	
 	// OBJECT IMAGES:
 	
-	// FISH IMAGE
+	// INVENTORY IMAGES
 	BufferedImage fishImage;
 	
 	// HEALTH IMAGES
@@ -455,10 +461,16 @@ public class UI {
 		int width = gp.tileSize + 70;
 		int height = gp.tileSize - 20 + 40;
 		
-
-		// NPC IMAGE
-		npcImage = gp.npc[gp.player.targetIndex].cropImage(gp.npc[gp.player.targetIndex].down5);
-		g2.drawImage(npcImage, x, y,  width, height, null);
+		
+		if(gp.player.whoInteract == 1) {
+			npcImage = gp.npc[gp.player.targetIndex].cropImage(gp.npc[gp.player.targetIndex].down5);
+			g2.drawImage(npcImage, x, y,  width, height, null);
+			
+		}
+		else if(gp.player.whoInteract == 2) {
+			objImage = gp.obj[gp.player.targetIndex].image1;
+			g2.drawImage(objImage, x, y,  width, height, null);
+		}
 		
 		
 		drawSubWindow();
@@ -471,26 +483,42 @@ public class UI {
 		
 		g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
 		
-		// DRAW NAME OF NPC
-		g2.drawString(gp.npc[gp.player.targetIndex].name, x, y);
-		
-		x = gp.tileSize/2 * 2;
-		y = gp.tileSize * 9;
-		
-		y += gp.tileSize;
-		
-		
-		for(String line : currentDialogue.split("\n")) {
-			g2.drawString(line, x, y);
-			y += 40;
+		if(gp.player.whoInteract == 1) {
+			// DRAW NAME OF NPC
+			g2.drawString(gp.npc[gp.player.targetIndex].name, x, y);
+			
+			x = gp.tileSize/2 * 2;
+			y = gp.tileSize * 9;
+			
+			y += gp.tileSize;
+			
+			
+			for(String line : currentDialogue.split("\n")) {
+				g2.drawString(line, x, y);
+				y += 40;
+			}
+			
+			x += gp.screenWidth - (gp.tileSize * 3);
+			y -= 10;
+			
+			if(moreDialogue == true) {
+				g2.drawString(">", x, y);
+			}
+		}
+		else {
+			
+			x = gp.tileSize/2 * 2;
+			y = gp.tileSize * 9;
+			
+			y += gp.tileSize;
+			
+			String str = gp.obj[gp.player.targetIndex].dialogues[0];
+			for(String line : str.split("\n")) {
+				g2.drawString(line, x, y);
+				y += 40;
+			}
 		}
 		
-		x += gp.screenWidth - (gp.tileSize * 3);
-		y -= 10;
-		
-		if(moreDialogue == true) {
-			g2.drawString(">", x, y);
-		}
 	}
 	
 	public void drawSubWindow() {
