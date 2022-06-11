@@ -69,15 +69,15 @@ public class SuperObject {
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 		   
 			if(move == 1) {
-				g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
-				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 			else if(move == 2) {
-				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
-				g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 			else if(move == 3) {
-				g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 		}
 		// If player is around the edge, draw everything

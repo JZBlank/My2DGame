@@ -1,10 +1,14 @@
 package main;
 
+import java.awt.Graphics2D;
+
 import entity.NPC_npc;
 import object.OBJ_Fish;
 
 public class AssetSetter {
 	GamePanel gp;
+	Graphics2D g2;
+	
 	public AssetSetter(GamePanel gp){
 		this.gp = gp;
 	}

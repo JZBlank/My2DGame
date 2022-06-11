@@ -14,6 +14,8 @@ public class Player extends Entity {
     Entity[] npc;
     public SuperObject inventory[] = new SuperObject[1];
     
+    public BufferedImage image = null;     
+    
     public final int screenX;
     public final int screenY;
     public int fishCount = 0;
@@ -33,6 +35,7 @@ public class Player extends Entity {
     public int whoInteract = -1; // CHECK IF NPC OR OBJECT
     public int targetIndex = -1; 
     
+    public boolean holdItem = false;
     
     // CHOOSING INTERACTIONS
     public boolean eat = false;
@@ -123,6 +126,7 @@ public class Player extends Entity {
         right4 = setup("/player/cat_right_sit");
         right5 = setup("/player/cat_right_sit2");
          
+       
     }
     
     
@@ -308,7 +312,8 @@ public class Player extends Entity {
     		switch(gp.obj[targetIndex].name) {
     		case "Fish":
     			if(inventory[0] == null) {
-    				inventory[itemCounter] = gp.obj[targetIndex]; //might give problems
+    				inventory[itemCounter] = gp.obj[targetIndex];
+    				holdItem = true;
     				gp.obj[targetIndex] = null;
     				itemCounter++;
     				fishCount++;
@@ -370,7 +375,7 @@ public class Player extends Entity {
     
     public void draw(Graphics2D g2) {
 
-        BufferedImage image = null;       
+        //BufferedImage image = null;       
         
         switch(direction){
         case "up":
@@ -406,6 +411,7 @@ public class Player extends Entity {
         case "left":
         	if(spriteNum == 1) {
         		image = left1;
+        		
         	}
         	if(spriteNum == 2) {
         		image = left2;

@@ -132,6 +132,7 @@ public class UI {
 		
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
+			drawPlayerWithItem();
 			drawHint();
 			drawPlayerImage();
 			drawPlayerLife();
@@ -141,6 +142,7 @@ public class UI {
 		
 		// PAUSE STATE
 		if(gp.gameState == gp.pauseState) {
+			drawPlayerWithItem();
 			drawPlayerImage();
 			drawPlayerLife();
 			drawPauseScreen();
@@ -149,6 +151,7 @@ public class UI {
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
+			drawPlayerWithItem();
 			drawPlayerImage();
 			drawObjectImages();
 			drawPlayerLife();
@@ -157,6 +160,7 @@ public class UI {
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
+			drawPlayerWithItem();
 			drawNotification();
 			drawPlayerImage();
 			drawPlayerLife();
@@ -166,6 +170,21 @@ public class UI {
 		}
 	
 	}
+	private void drawPlayerWithItem() {
+		if(gp.player.holdItem == true) {
+			if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
+				g2.drawImage(fishImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+			if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+				g2.drawImage(fishImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+			if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+				g2.drawImage(fishImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+		}
+		
+	}
+
 	private void drawHint() {
 		if(gp.player.canpressE) {
 			int x = gp.tileSize * 6;
@@ -175,11 +194,8 @@ public class UI {
 			g2.setFont(new Font("Montserrat", Font.BOLD, 15));
 			g2.setColor(Color.white);
 			
-			g2.drawString("Press e to interact", x, y);
-			
+			g2.drawString("Press e to interact", x, y);	
 		}
-		
-		
 	}
 
 	private void drawNotification() {
@@ -208,7 +224,14 @@ public class UI {
 		int width = gp.tileSize + 70;
 		int height = gp.tileSize - 20 + 40;
 				 
-		g2.drawImage(playerImage, x, y,  width, height, null);		
+		g2.drawImage(playerImage, x, y,  width, height, null);	
+		
+		x += 40;
+		y += 20;
+		
+		if(gp.player.holdItem ==  true) {
+			g2.drawImage(gp.player.inventory[gp.player.inventory.length - 1].image1, x, y, gp.tileSize + 10, gp.tileSize + 10, null);
+		}
 		drawSubWindow();
 
 		

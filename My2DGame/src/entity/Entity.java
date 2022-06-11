@@ -31,6 +31,8 @@ public class Entity {
     public BufferedImage left1, left2, left3, left4, left5;
     public BufferedImage right1, right2, right3, right4, right5; 
     
+    public BufferedImage new_left1, new_left2;
+    
     public String direction;
     public int spriteCounter = 0; // number of frames for sprite
     public int idleCounter = 0; // when to not move
