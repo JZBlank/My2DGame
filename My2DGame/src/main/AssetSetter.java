@@ -17,10 +17,12 @@ public class AssetSetter {
 		gp.obj[0] = new OBJ_Fish(gp);
 		gp.obj[0].worldX = 23 * gp.tileSize;
 		gp.obj[0].worldY = 23 * gp.tileSize;
+		gp.obj[0].id = 0;
 		
 		gp.obj[1] = new OBJ_Fish(gp);
 		gp.obj[1].worldX = 12 * gp.tileSize;
 		gp.obj[1].worldY = 32 * gp.tileSize;
+		gp.obj[1].id = 1;
 	}
 	public void setNPC() {
 		gp.npc[0] = new NPC_npc(gp);

@@ -49,6 +49,8 @@ public class Player extends Entity {
     public boolean addHealth = false;
     public boolean hasBackPack = false;
     public boolean canPickUp = true;
+    public int holdingWhat = -1;
+    
     public int itemCounter = 0;
     
     public int waterCounter = 0;
@@ -247,25 +249,32 @@ public class Player extends Entity {
     }
     
     private void putdownItem() {
-		if(holdItem == true && putItemDown == true) {
-			if(keyH.ePressed == true) {
-				holdItem = false;
-				putItemDown = false;
-				
-				fishCount--;
-				gp.player.inventory[gp.player.inventory.length - 1] = null;
-				gp.player.canPickUp = true;
-				
-				
-				// CHANGE LOCATION DEPENDING ON WHICH WAY FACING LATER**
-				
-				gp.player.inventory[gp.player.inventory.length - 1].worldX = gp.player.worldX;
-				gp.player.inventory[gp.player.inventory.length - 1].worldY = gp.player.worldY + 40;
-			}
-			keyH.ePressed = false;
-	
-			
-		}
+    	
+    	if(holdingWhat != -1) {
+    		SuperObject item = new SuperObject();
+        	item = gp.obj[holdingWhat];
+        	
+    		if(holdItem == true && putItemDown == true) {
+    			if(keyH.ePressed == true) {
+    				holdItem = false;
+    				putItemDown = false;
+    				fishCount--;
+    				
+    				canPickUp = true;
+    				
+    				
+    				// CHANGE LOCATION DEPENDING ON WHICH WAY FACING LATER**
+    				
+    				gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
+    				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 40;
+    				
+    				
+    				gp.player.inventory[gp.player.inventory.length - 1] = null;
+    				itemCounter--;
+    			}
+    			keyH.ePressed = false;
+    		}
+    	}
 	}
     
 	public void survival() {
@@ -329,6 +338,14 @@ public class Player extends Entity {
     			if(inventory[0] == null) {
     				inventory[itemCounter] = gp.obj[targetIndex];
     				holdItem = true;
+    				holdingWhat = gp.obj[targetIndex].id;
+    				
+    				
+    				// 0 as placeholder
+    				gp.obj[targetIndex].worldX = 0;
+    				gp.obj[targetIndex].worldY = 0;
+    				
+
     				itemCounter++;
     				fishCount++;
     				gp.player.canPickUp = false;

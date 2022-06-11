@@ -135,7 +135,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
     	// debug here
     	
-    	//System.out.println(obj[0] + " " +  obj[1]);
     	// 
     	
     	if(gameState == titleState) {

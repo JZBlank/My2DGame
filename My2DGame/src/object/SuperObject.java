@@ -32,13 +32,14 @@ public class SuperObject {
 	public boolean chooseEat = false;
 	public boolean choosepickUp = false;
 	
+	public int id = -1;
+	
+	
 	public void setAction() {};
 	public void update() {
 		setAction();
 
 	}
-	
-	
 	public void interactOptions() {};
 	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
@@ -64,7 +65,7 @@ public class SuperObject {
 			screenY = gp.screenHeight - (gp.worldHeight - worldY);
 		}
 		  ///////////////////
-		  
+		
 		if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
 		   worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 		   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
