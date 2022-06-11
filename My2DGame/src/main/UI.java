@@ -54,7 +54,7 @@ public class UI {
 	
 	// OBJECT IMAGES:
 	
-	// INVENTORY IMAGES
+	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
 	
 	// HEALTH IMAGES
@@ -171,31 +171,45 @@ public class UI {
 	
 	}
 	private void drawPlayerWithItem() {
+		
 		if(gp.player.holdItem == true) {
+			
+			BufferedImage itemImage = null;
+			// Specify what item player is holding
+			if(gp.player.inventory[gp.player.inventory.length - 1].name == "fish") {
+				itemImage = fishImage;
+			}
+			
+			
 			if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
-				g2.drawImage(fishImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(itemImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 			if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
-				g2.drawImage(fishImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(itemImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 			if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
-				g2.drawImage(fishImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(itemImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 		}
 		
 	}
 
 	private void drawHint() {
-		if(gp.player.canpressE) {
-			int x = gp.tileSize * 6;
-			int y = gp.tileSize * 5;
-			
-			
-			g2.setFont(new Font("Montserrat", Font.BOLD, 15));
-			g2.setColor(Color.white);
-			
-			g2.drawString("Press e to interact", x, y);	
+		String s = "";
+		
+		if(gp.player.canInteract == true  && gp.player.holdItem == false) {
+			s = "Press e to interact";
 		}
+		else if (gp.player.canInteract == false && gp.player.holdItem == true) {
+			s = "Press e to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
+		}
+		
+		int x = gp.tileSize * 6;
+		int y = gp.tileSize * 5;
+			
+		g2.setFont(new Font("Montserrat", Font.BOLD, 15));
+		g2.setColor(Color.white);
+		g2.drawString(s, x, y);	
 	}
 
 	private void drawNotification() {

@@ -1,6 +1,7 @@
 package entity;
 import java.awt.image.BufferedImage;
 
+import main.AssetSetter;
 import main.GamePanel;
 import main.KeyHandler;
 import object.SuperObject;
@@ -12,6 +13,7 @@ import java.awt.Rectangle;
 public class Player extends Entity {
     KeyHandler keyH;
     Entity[] npc;
+    AssetSetter aSetter;
     public SuperObject inventory[] = new SuperObject[1];
     
     public BufferedImage image = null;     
@@ -155,6 +157,9 @@ public class Player extends Entity {
     	// CHECK IF M IS PRESSED
     	talk();
     	
+    	// IF PLAYER HOLDING AN ITEM AND WANTS TO PUT IT DOWN
+    	putdownItem();
+    	
     	// INTERACTIONS WITH OTHER WORLD OBJECTS/NPCS
     	interact();
     	showOptions();
@@ -241,7 +246,15 @@ public class Player extends Entity {
     	}
     }
     
-    public void survival() {
+    private void putdownItem() {
+		if(putItemDown == true) {
+			aSetter.relocateObject(gp.player.inventory[gp.player.inventory.length - 1]);
+			gp.player.inventory[gp.player.inventory.length - 1] = null;
+		}
+		putItemDown = false;
+	}
+    
+	public void survival() {
     	
     	if(gp.survivalMode == true) {
     		if(dehydrationBar != -1) {
@@ -287,20 +300,8 @@ public class Player extends Entity {
     	}
     }
     
-    public void pickUpObject() {
-    	if(canInteract == true) {
-    		String objectName = gp.obj[targetIndex].name;
-    		switch(objectName) {
-    		case "Fish":
-    			fishCount++;
-    			gp.ui.showMessage("You got a fish!");
-    			break;
-    		}
-    	}
-    }
-    
     public void chooseOption() {
-    	
+  	
     	if(gp.player.eat == true) {
     		gp.obj[targetIndex] = null;
     		if(gp.player.currentHealth < 9 && gp.player.addHealth == true) {
@@ -311,7 +312,7 @@ public class Player extends Entity {
     	}
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
-    		case "Fish":
+    		case "fish":
     			if(inventory[0] == null) {
     				inventory[itemCounter] = gp.obj[targetIndex];
     				holdItem = true;
@@ -330,13 +331,22 @@ public class Player extends Entity {
     	}
     }
     
-    public void interactOptions() {
-		options[0] = "Do nothing";
-		options[1] = "Eat";
-		options[2] = "Pick up";
-		options[3] = "Talk";
-	}
-    
+    public void updateOptions() {
+    	
+    	if(canInteract == false) {
+    		options[0] = "Put " + gp.player.inventory[gp.player.inventory.length - 1] + " down";
+    		options[1] = null;
+    		options[2] = null;
+    		options[3] = null;
+    	}
+    	else if(canInteract == true && whoInteract == 2) {
+    		options[0] = "Do nothing";
+    		options[1] = "Eat";
+    		options[2] = "Pick up";
+    		options[3] = "Talk";
+    	}
+    }
+
     
     
     
@@ -353,9 +363,15 @@ public class Player extends Entity {
     }
     
     public void showOptions() {	
-    	if(canInteract == false) {
-    		canpressE = false;
+    	//System.out.println(canInteract + " " +  holdItem );
+    	if(canInteract == false && holdItem == false) {
     		gp.gameState = gp.playState;
+    	}
+    	else if(canInteract == false && holdItem == true) {
+    		canpressE = true;
+    		if(gp.keyH.ePressed == true) {
+    			
+    		}
     	}
     	else {
     		canpressE = true;

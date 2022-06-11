@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import entity.NPC_npc;
 import object.OBJ_Fish;
+import object.SuperObject;
 
 public class AssetSetter {
 	GamePanel gp;
@@ -27,9 +28,10 @@ public class AssetSetter {
 		gp.npc[0].collisionOn = true;
 		gp.npc[0].worldX = gp.tileSize * 21;
 		gp.npc[0].worldY = gp.tileSize * 21;
-		
-		gp.npc[1] = new NPC_npc(gp);
-		gp.npc[1].worldX = gp.tileSize * 26;
-		gp.npc[1].worldY = gp.tileSize * 25;
+	}
+	
+	public void relocateObject(SuperObject obj) {
+		obj.worldX = 12 * gp.tileSize;
+		obj.worldY = 32 * gp.tileSize;
 	}
 }

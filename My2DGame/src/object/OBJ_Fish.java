@@ -11,7 +11,7 @@ public class OBJ_Fish extends SuperObject {
 	
 	public OBJ_Fish(GamePanel gp) {
 		
-		name = "Fish";
+		name = "fish";
 		setDialogue();
 		interactOptions();
 		

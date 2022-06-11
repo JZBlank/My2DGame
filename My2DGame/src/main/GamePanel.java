@@ -192,6 +192,7 @@ public class GamePanel extends JPanel implements Runnable {
     	if(gameState == playState) {
     	
     		player.update();
+    		player.updateOptions();
     		
     		for(int i = 0; i < obj.length; i++) {
         		if(obj[i] != null) {
@@ -221,6 +222,7 @@ public class GamePanel extends JPanel implements Runnable {
     	}
     	else if(gameState == interactOBJState) {
     		player.update();
+    		player.updateOptions();
     		
     		for(int i = 0; i < obj.length; i++) {
         		if(obj[i] != null) {
