@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import entity.Entity;
+import entity.NPC_npc;
 import entity.Player;
+import object.OBJ_Fish;
 import object.SuperObject;
 import tile.TileManager;
 
@@ -133,8 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
     	// debug here
     	
-    	//System.out.println(player.targetIndex + " ");
-    	
+    	//System.out.println(obj[0] + " " +  obj[1]);
     	// 
     	
     	if(gameState == titleState) {

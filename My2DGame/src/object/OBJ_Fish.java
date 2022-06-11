@@ -29,7 +29,7 @@ public class OBJ_Fish extends SuperObject {
 
 	
 	public void interact(GamePanel gp) {}
-	
+	public void relocateObj() {}
 	public void setAction() {
 		actionLockCounter++;
 		Random random = new Random();

@@ -132,6 +132,7 @@ public class UI {
 		
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
+			drawRelocatedItems();
 			drawPlayerWithItem();
 			drawHint();
 			drawPlayerImage();
@@ -210,6 +211,14 @@ public class UI {
 		g2.setFont(new Font("Montserrat", Font.BOLD, 15));
 		g2.setColor(Color.white);
 		g2.drawString(s, x, y);	
+	}
+	
+	private void drawRelocatedItems() {
+		if(gp.player.putItemDown == true) {
+//			gp.obj[0].worldX = 12 * gp.tileSize;
+//			gp.obj[0].worldY = 32 * gp.tileSize;
+			//g2.drawImage(fishImage, 0, 40, null);
+		}
 	}
 
 	private void drawNotification() {

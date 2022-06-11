@@ -247,11 +247,25 @@ public class Player extends Entity {
     }
     
     private void putdownItem() {
-		if(putItemDown == true) {
-			aSetter.relocateObject(gp.player.inventory[gp.player.inventory.length - 1]);
-			gp.player.inventory[gp.player.inventory.length - 1] = null;
+		if(holdItem == true && putItemDown == true) {
+			if(keyH.ePressed == true) {
+				holdItem = false;
+				putItemDown = false;
+				
+				fishCount--;
+				gp.player.inventory[gp.player.inventory.length - 1] = null;
+				gp.player.canPickUp = true;
+				
+				
+				// CHANGE LOCATION DEPENDING ON WHICH WAY FACING LATER**
+				
+				gp.player.inventory[gp.player.inventory.length - 1].worldX = gp.player.worldX;
+				gp.player.inventory[gp.player.inventory.length - 1].worldY = gp.player.worldY + 40;
+			}
+			keyH.ePressed = false;
+	
+			
 		}
-		putItemDown = false;
 	}
     
 	public void survival() {
@@ -301,7 +315,6 @@ public class Player extends Entity {
     }
     
     public void chooseOption() {
-  	
     	if(gp.player.eat == true) {
     		gp.obj[targetIndex] = null;
     		if(gp.player.currentHealth < 9 && gp.player.addHealth == true) {
@@ -316,7 +329,6 @@ public class Player extends Entity {
     			if(inventory[0] == null) {
     				inventory[itemCounter] = gp.obj[targetIndex];
     				holdItem = true;
-    				gp.obj[targetIndex] = null;
     				itemCounter++;
     				fishCount++;
     				gp.player.canPickUp = false;
@@ -327,7 +339,7 @@ public class Player extends Entity {
     			}
     		}
     		gp.player.pickUp = false;
-    		//gp.player.notification = false;
+    		gp.player.notification = false; // change later if somethin up
     	}
     }
     
@@ -370,7 +382,7 @@ public class Player extends Entity {
     	else if(canInteract == false && holdItem == true) {
     		canpressE = true;
     		if(gp.keyH.ePressed == true) {
-    			
+    			putItemDown = true;
     		}
     	}
     	else {

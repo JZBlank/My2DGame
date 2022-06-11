@@ -37,6 +37,8 @@ public class SuperObject {
 		setAction();
 
 	}
+	
+	
 	public void interactOptions() {};
 	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
