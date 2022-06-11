@@ -36,6 +36,7 @@ public class Player extends Entity {
     public int targetIndex = -1; 
     
     public boolean holdItem = false;
+    public boolean putItemDown = false; // has not been implemented yet
     
     // CHOOSING INTERACTIONS
     public boolean eat = false;

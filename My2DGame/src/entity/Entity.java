@@ -285,6 +285,7 @@ public class Entity {
 				g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 			}
 			// If player is around the edge, draw everything
+			// if player is holding an item, this will cause an issue!! ***************
 			else if(gp.player.worldX < gp.player.screenX ||
 	                gp.player.worldY < gp.player.screenY ||
 				    rightOffset > gp.worldWidth - gp.player.worldX ||
