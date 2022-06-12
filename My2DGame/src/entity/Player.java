@@ -165,6 +165,7 @@ public class Player extends Entity {
     	// INTERACTIONS WITH OTHER WORLD OBJECTS/NPCS
     	interact();
     	showOptions();
+    	updateOptions(); // delete later
     	chooseOption();
     	
     	
@@ -379,16 +380,8 @@ public class Player extends Entity {
     		options[2] = null;
     		options[3] = null;
     	}
-    	else if(canInteract == true && whoInteract == 2) {
-    		options[0] = "Do nothing";
-    		options[1] = "Eat";
-    		options[2] = "Pick up";
-    		options[3] = "Talk";
-    	}
     }
 
-    
-    
     
     public void interact() {
     	int checker = gp.cChecker.nextToSomething(this, gp.npc, gp.obj);
@@ -403,7 +396,6 @@ public class Player extends Entity {
     }
     
     public void showOptions() {	
-    	//System.out.println(canInteract + " " +  holdItem );
     	if(canInteract == false && holdItem == false) {
     		gp.gameState = gp.playState;
     	}
