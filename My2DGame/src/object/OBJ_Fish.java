@@ -50,7 +50,6 @@ public class OBJ_Fish extends SuperObject {
 	
 	public void setAction() {	
 		
-		System.out.println(direction);
 		int tileX = (gp.obj[id].worldX + 16)/ 48;
 		int tileY = (gp.obj[id].worldY + 16) / 48;
 		
