@@ -250,10 +250,8 @@ public class Player extends Entity {
     
     private void putdownItem() {
     	
+    	// WITHOUT BACKPACK
     	if(holdingWhat != -1) {
-    		SuperObject item = new SuperObject();
-        	item = gp.obj[holdingWhat];
-        	
     		if(holdItem == true && putItemDown == true) {
     			if(keyH.ePressed == true) {
     				holdItem = false;
@@ -263,30 +261,29 @@ public class Player extends Entity {
     				canPickUp = true;
     				
     				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
-    				
-    				
     				if(gp.player.direction == "up") {
-    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
-        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY;
+    					gp.player.inventory[0].worldX = gp.player.worldX;
+        				gp.player.inventory[0].worldY = gp.player.worldY;
     				}
     				else if(gp.player.direction == "down") {
-        				gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
-        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 40;
+        				gp.player.inventory[0].worldX = gp.player.worldX;
+        				gp.player.inventory[0].worldY = gp.player.worldY + 40;
     				}
     				else if(gp.player.direction == "left") {
-    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX - 10;
-        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 30;
+    					gp.player.inventory[0].worldX = gp.player.worldX - 10;
+        				gp.player.inventory[0].worldY = gp.player.worldY + 30;
     				}
     				else if(gp.player.direction == "right") {
-    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX + 25;
-        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 20;
+    					gp.player.inventory[0].worldX = gp.player.worldX + 25;
+        				gp.player.inventory[0].worldY = gp.player.worldY + 20;
     				}
 	
     				
-    				gp.player.inventory[gp.player.inventory.length - 1] = null;
+    				gp.player.inventory[0] = null;
     				itemCounter--;
     			}
     			keyH.ePressed = false;
+    			holdingWhat = -1;
     		}
     	}
 	}
