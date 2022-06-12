@@ -13,6 +13,7 @@ public class OBJ_healthBar extends SuperObject {
 	GamePanel gp;
 	
 	public OBJ_healthBar(GamePanel gp) {
+		super(gp);
 		
 		image1 = setup("empty_1");
 		image2 = setup("empty_2");

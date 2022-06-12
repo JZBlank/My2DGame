@@ -30,29 +30,30 @@ public class TileManager {
 	
 	public void getTileImage() {
 
-			setup(0, "grass_empty", false);
-			setup(1, "metal_horizontal", true);
-			setup(2, "water", true);
-			setup(3, "wood_horizontal", false);
-			setup(4, "green_tree", true);
-			setup(5, "dirt_empty", false);
-			setup(6, "sand", false);
-			setup(7, "metal_vertical", true);
-			setup(8, "wood_vertical", true);
-			setup(9, "grass_full", false);
-			setup(10, "dirt_horizontal1", false);
-			setup(11, "dirt_horizontal2", false);
+			setup(0, "grass_empty", false, true);
+			setup(1, "metal_horizontal", true, true);
+			setup(2, "water", true, false);
+			setup(3, "wood_horizontal", false, true);
+			setup(4, "green_tree", true, true);
+			setup(5, "dirt_empty", false,true);
+			setup(6, "sand", false, true);
+			setup(7, "metal_vertical", true, true);
+			setup(8, "wood_vertical", true, true);
+			setup(9, "grass_full", false, true);
+			setup(10, "dirt_horizontal1", false, true);
+			setup(11, "dirt_horizontal2", false, true);
 			
 
 	}
 	
-	public void setup(int index, String imageName, boolean collision) { 
+	public void setup(int index, String imageName, boolean collision, boolean fishCollision) { 
 		UtilityTool uTool = new UtilityTool();
 		try {
 			tile[index] = new Tile();
 			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
 			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
 			tile[index].collision = collision;
+			tile[index].fishCollision = fishCollision;
 			
 		}catch(IOException e) {
 			e.printStackTrace();

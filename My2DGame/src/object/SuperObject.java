@@ -19,9 +19,23 @@ public class SuperObject {
 	public int solidAreaDefaultX = 0;
 	public int solidAreaDefaultY = 0;
 	UtilityTool uTool = new UtilityTool();
+	
+	// MOVEMENT
 	public int actionLockCounter;
+	public int moveLockCounter;
 	public int actionidleCounter;
+	public boolean standBy = false;
+	public int spriteNum = 2; // what image of sprite to use
+	public int spriteCounter = 0;
+	public boolean collisonOn;
+	public int speed = 0;
+	
+	
+	public String direction;
+	public int worldX1, worldY1;
+	
 	public int move = -1;
+	public boolean canMove;
 	
 	public String[] options = new String[4];
 	
@@ -35,14 +49,40 @@ public class SuperObject {
 	public int id = -1;
 	
 	
+	public SuperObject(GamePanel gp) {
+		this.gp = gp;
+	}
 	public void setAction() {};
 	public void update() {
+		moveUpdate();
 		setAction();
+		
+		gp.cChecker.checkTile(this);
+    	
+		
+		 spriteCounter++;
+	        if(spriteCounter > 10) { // after every 1/60
+	        	if(standBy == true) {
+	        		spriteNum = 1;
+	        	}
+	        	else {
+	        		if(spriteNum == 1 ) {
+	            		spriteNum = 2;
+	            	}
+	            	else if(spriteNum == 2) {
+	            		spriteNum = 1;
+	            	}
+	        	}
+	        	spriteCounter = 0;
+	        }
 
 	}
+	public void moveUpdate() {};
 	public void interactOptions() {};
 	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
+		
+		
 		
 		BufferedImage image = null;
 		
@@ -70,16 +110,59 @@ public class SuperObject {
 		   worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 		   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+			
+			switch(direction){
+	        case "up":
+	        	if(spriteNum == 1) {
+	        		image = image2;
+	        	}
+	        	if(spriteNum == 2) {
+		        	image = image3;
+		        }
+
+	            break;
+	        case "down":
+
+	        	if(spriteNum == 1) {
+		        	image = image2;
+		        }
+		        if(spriteNum == 2) {
+		        	image = image3;;
+		        }
+
+	            break;
+	        case "left":
+
+	        	if(spriteNum == 1) {
+		        	image = image2;
+		        }
+		        if(spriteNum == 2) {
+		        	image = image3;
+		        }
+	             break;
+	        case "right":
+
+	        	if(spriteNum == 1) {
+		        	image = image2;
+		        }
+		        if(spriteNum == 2) {
+		        	image = image3;
+		        }
+	             break;
+	        }
+			
+			g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+			
 		   
-			if(move == 1) {
+			if(move == 1 && canMove == false) {
 				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
-			else if(move == 2) {
+			else if(move == 2 && canMove == false) {
 				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
-			else if(move == 3) {
+			else if(move == 3 && canMove == false) {
 				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 			}
 		}
@@ -88,8 +171,9 @@ public class SuperObject {
 		        gp.player.worldY < gp.player.screenY ||
 		        rightOffset > gp.worldWidth - gp.player.worldX ||
 		        bottomOffset > gp.worldHeight - gp.player.worldY) {
-			
-			g2.drawImage(image3, screenX, screenY, gp.tileSize, gp.tileSize, null); 
+			if(canMove == false) {
+				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null); 
+			}
 		}
 	}
 }

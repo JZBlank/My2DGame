@@ -64,6 +64,56 @@ public class CollisionChecker {
 		
 	}
 	
+	public void checkTile(SuperObject obj) {
+		int objectLeftWorldX = obj.worldX + obj.solidArea.x;
+		int objectRightWorldX = obj.worldX + obj.solidArea.x + obj.solidArea.width;
+		int objectTopWorldY = obj.worldY + obj.solidArea.y;
+		int objectBottomWorldY = obj.worldY + obj.solidArea.y + obj.solidArea.height;
+		
+		int objectLeftCol = objectLeftWorldX/gp.tileSize;
+		int objectRightCol = objectRightWorldX/gp.tileSize;
+		int objectTopRow = objectTopWorldY/gp.tileSize;
+		int objectBottomRow = objectBottomWorldY/gp.tileSize;
+		
+		int tileNum1, tileNum2;
+		
+		switch(obj.direction) {
+		case "up":
+			objectTopRow = (objectTopWorldY - obj.speed)/gp.tileSize;
+			tileNum1 = gp.tileM.mapTileNum[objectLeftCol][objectTopRow];
+			tileNum2 = gp.tileM.mapTileNum[objectRightCol][objectTopRow];
+			if(gp.tileM.tile[tileNum1].fishCollision == true || gp.tileM.tile[tileNum2].fishCollision == true) {
+				obj.collisionOn = true;
+			}
+			break;
+		case "down":
+			objectBottomRow = (objectBottomWorldY + obj.speed)/gp.tileSize;
+			tileNum1 = gp.tileM.mapTileNum[objectLeftCol][objectBottomRow];
+			tileNum2 = gp.tileM.mapTileNum[objectRightCol][objectBottomRow];
+			if(gp.tileM.tile[tileNum1].fishCollision == true || gp.tileM.tile[tileNum2].fishCollision == true) {
+				obj.collisionOn = true;
+			}
+			break;
+		case "left":
+			objectLeftCol = (objectLeftWorldX - obj.speed)/gp.tileSize;
+			tileNum1 = gp.tileM.mapTileNum[objectLeftCol][objectTopRow];
+			tileNum2 = gp.tileM.mapTileNum[objectLeftCol][objectBottomRow];
+			if(gp.tileM.tile[tileNum1].fishCollision == true || gp.tileM.tile[tileNum2].fishCollision == true) {
+				obj.collisionOn = true;
+			}
+			break;
+		case "right":
+			objectRightCol = (objectRightWorldX + obj.speed)/gp.tileSize;
+			tileNum1 = gp.tileM.mapTileNum[objectRightCol][objectTopRow];
+			tileNum2 = gp.tileM.mapTileNum[objectRightCol][objectBottomRow];
+			if(gp.tileM.tile[tileNum1].fishCollision == true || gp.tileM.tile[tileNum2].fishCollision == true) {
+				obj.collisionOn = true;
+			}
+			break;
+		}
+		
+	}
+	
 	public int checkObject(Entity entity, boolean player) {
 		int index = 999;
 		
