@@ -145,11 +145,13 @@ public class SuperObject {
 		        	image = image5;
 		        }
 	             break;
+	             
 	        }
 			
-			g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-			
-		   
+			if(canMove == true) {
+				g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+			 
 			if(move == 1 && canMove == false) {
 				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
