@@ -29,9 +29,14 @@ public class OBJ_Fish extends SuperObject {
 			image1 = ImageIO.read(getClass().getResourceAsStream("/objects/defaultFish.png"));
 			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish.png"));
 			image3 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish2.png"));
-			image1  = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
+			image4 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish3.png"));
+			image5 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish4.png"));
+			
+			image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
 			image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
-			image3 =  uTool.scaleImage(image3,  gp.tileSize,  gp.tileSize);
+			image3 = uTool.scaleImage(image3,  gp.tileSize,  gp.tileSize);
+			image4 = uTool.scaleImage(image4,  gp.tileSize,  gp.tileSize);
+			image5 = uTool.scaleImage(image5,  gp.tileSize,  gp.tileSize);
 			
 			
 		} catch(IOException e) {
@@ -44,10 +49,10 @@ public class OBJ_Fish extends SuperObject {
 	public void interact(GamePanel gp) {}
 	
 	public void setAction() {	
+		
+		System.out.println(direction);
 		int tileX = (gp.obj[id].worldX + 16)/ 48;
 		int tileY = (gp.obj[id].worldY + 16) / 48;
-		
-		System.out.println(id + " " +gp.tileM.mapTileNum[tileX][tileY] + " " + collisionOn);
 		
 		// CHECK IF FISH IS ABLE TO MOVE
 		if(gp.tileM.mapTileNum[tileX][tileY] != 2) { // IF SURROUNDING AREA IS NOT WATER

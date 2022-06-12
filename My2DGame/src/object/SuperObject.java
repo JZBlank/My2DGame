@@ -58,22 +58,23 @@ public class SuperObject {
     	
 		
 		 spriteCounter++;
-	        if(spriteCounter > 10) { // after every 1/60
-	        	if(standBy == true) {
-	        		spriteNum = 1;
-	        	}
-	        	else {
-	        		if(spriteNum == 1 ) {
-	            		spriteNum = 2;
-	            	}
-	            	else if(spriteNum == 2) {
-	            		spriteNum = 1;
-	            	}
-	        	}
-	        	spriteCounter = 0;
-	        }
-
+		 if(spriteCounter > 10) { // after every 1/60
+			 if(spriteNum == 1 ) {
+				 spriteNum = 2;
+	         }
+	         else if(spriteNum == 2) {
+	        	 spriteNum = 1;
+	         }
+	         else if(spriteNum == 4) {
+	        	 spriteNum = 5;
+	         }
+	         else if(spriteNum == 5) {
+	        	 spriteNum = 4;
+	         }
+			 spriteCounter = 0;
+	     }
 	}
+	
 	public void moveUpdate() {};
 	public void interactOptions() {};
 	public void interact(GamePanel gp) {}
@@ -129,7 +130,6 @@ public class SuperObject {
 
 	            break;
 	        case "left":
-
 	        	if(spriteNum == 1) {
 		        	image = image2;
 		        }
@@ -138,12 +138,11 @@ public class SuperObject {
 		        }
 	             break;
 	        case "right":
-
 	        	if(spriteNum == 1) {
-		        	image = image2;
+		        	image = image4;
 		        }
 		        if(spriteNum == 2) {
-		        	image = image3;
+		        	image = image5;
 		        }
 	             break;
 	        }
