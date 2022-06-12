@@ -56,8 +56,6 @@ public class SuperObject {
 	public void update() {
 		moveUpdate();
 		setAction();
-		
-		gp.cChecker.checkTile(this);
     	
 		
 		 spriteCounter++;

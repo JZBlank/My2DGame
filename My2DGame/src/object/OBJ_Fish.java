@@ -16,6 +16,14 @@ public class OBJ_Fish extends SuperObject {
 		setDialogue();
 		interactOptions();
 		
+		solidArea.x = 1; // 8
+        solidArea.y = 10;  // 16
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 25; // 32
+        solidArea.height = 25; //32
+        
+		
 		try {
 			
 			image1 = ImageIO.read(getClass().getResourceAsStream("/objects/defaultFish.png"));
@@ -37,10 +45,12 @@ public class OBJ_Fish extends SuperObject {
 	
 	public void moveUpdate() {
 		if(canMove == true) {
+			
+			collisionOn = false;
+			gp.cChecker.checkTile(this, id);
 			moveLockCounter++;
 			
 			if(moveLockCounter == 180) { // every 3 seconds, a random move is chosen, can also choose standby mode
-				System.out.println(gp.player.direction);
 				Random random = new Random();
 			
 				int i = random.nextInt(100)+1; // picks a number from 1 to 100

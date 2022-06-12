@@ -40,7 +40,7 @@ public class AssetSetter {
 		gp.obj[2].speed = 1;
 		gp.obj[2].canMove = true;
 		gp.obj[2].direction = "left";
-		gp.obj[2].collisionOn = false;
+		gp.obj[2].collisionOn = true;
 		
 		
 	}

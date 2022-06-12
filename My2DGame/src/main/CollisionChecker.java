@@ -1,11 +1,14 @@
 package main;
 
+import java.awt.Graphics2D;
+
 import entity.Entity;
 import object.SuperObject;
 
 public class CollisionChecker {
 	
 	GamePanel gp;
+	Graphics2D g2;
 	
 	public int chatCounter = 0;
 	
@@ -64,19 +67,23 @@ public class CollisionChecker {
 		
 	}
 	
-	public void checkTile(SuperObject obj) {
+	public void checkTile(SuperObject obj, int id) {
 		int objectLeftWorldX = obj.worldX + obj.solidArea.x;
 		int objectRightWorldX = obj.worldX + obj.solidArea.x + obj.solidArea.width;
 		int objectTopWorldY = obj.worldY + obj.solidArea.y;
 		int objectBottomWorldY = obj.worldY + obj.solidArea.y + obj.solidArea.height;
+		
 		
 		int objectLeftCol = objectLeftWorldX/gp.tileSize;
 		int objectRightCol = objectRightWorldX/gp.tileSize;
 		int objectTopRow = objectTopWorldY/gp.tileSize;
 		int objectBottomRow = objectBottomWorldY/gp.tileSize;
 		
+		
 		int tileNum1, tileNum2;
 		
+		//System.out.println(objectLeftWorldX + " " + objectRightWorldX);
+		//System.out.println(gp.player.worldX + gp.player.solidArea.x + " " + gp.player.worldX + gp.player.solidArea.x + gp.player.solidArea.width);
 		switch(obj.direction) {
 		case "up":
 			objectTopRow = (objectTopWorldY - obj.speed)/gp.tileSize;
