@@ -20,7 +20,7 @@ public class OBJ_Fish extends SuperObject {
         solidArea.y = 10;  // 16
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 25; // 32
+        solidArea.width = 30; // 32
         solidArea.height = 25; //32
         
 		
@@ -43,56 +43,23 @@ public class OBJ_Fish extends SuperObject {
 	
 	public void interact(GamePanel gp) {}
 	
-	public void moveUpdate() {
-		if(canMove == true) {
-			
+	public void setAction() {	
+		int tileX = (gp.obj[id].worldX + 16)/ 48;
+		int tileY = (gp.obj[id].worldY + 16) / 48;
+		
+		System.out.println(id + " " +gp.tileM.mapTileNum[tileX][tileY] + " " + collisionOn);
+		
+		// CHECK IF FISH IS ABLE TO MOVE
+		if(gp.tileM.mapTileNum[tileX][tileY] != 2) { // IF SURROUNDING AREA IS NOT WATER
+			canMove = false;
+		}
+		else if(gp.tileM.mapTileNum[tileX][tileY] == 2){
+			canMove = true;
 			collisionOn = false;
 			gp.cChecker.checkTile(this, id);
 			moveLockCounter++;
-			
-			if(moveLockCounter == 180) { // every 3 seconds, a random move is chosen, can also choose standby mode
-				Random random = new Random();
-			
-				int i = random.nextInt(100)+1; // picks a number from 1 to 100
-				
-				if(i <= 25) {
-					direction = "up";
-				}
-				if(i > 25 && i <= 50) {
-					direction = "down";
-				}
-				if(i > 50 && i<= 75) {
-					direction = "left";
-				}
-				if(i > 75 && i <= 100) {
-					direction = "right";
-				}
-				
-				moveLockCounter = 0;
-			}
-			
-			if(collisionOn == false && standBy != true) {
-				switch(direction) {
-				case "up":  
-					worldY -= speed; 
-					break;
-				case "down":  
-					worldY += speed; 
-					break;
-				case "left":  
-					worldX -= speed; 
-					break;
-				case "right":  
-					worldX += speed; 
-					break;
-				}
-
-			}
-	        
 		}
-	}
-	
-	public void setAction() {
+		
 		if(canMove == false) {
 			actionLockCounter++;
 			Random random = new Random();
@@ -111,7 +78,47 @@ public class OBJ_Fish extends SuperObject {
 				actionLockCounter = 0;
 			}
 		}
+		else if(canMove == true) {
+			if(moveLockCounter == 180) { // every 3 seconds, a random move is chosen, can also choose standby mode
+				Random random = new Random();
+				
+				int i = random.nextInt(100)+1; // picks a number from 1 to 100
+				
+				if(i <= 25) {
+					direction = "up";
+				}
+				if(i > 25 && i <= 50) {
+					direction = "down";
+				}
+				if(i > 50 && i<= 75) {
+					direction = "left";
+				}
+				if(i > 75 && i <= 100) {
+					direction = "right";
+				}
+					
+				moveLockCounter = 0;
+			}
+			
+			if(collisionOn == false) {
+				switch(direction) {
+				case "up":  
+					worldY -= speed; 
+					break;
+				case "down":  
+					worldY += speed; 
+					break;
+				case "left":  
+					worldX -= speed; 
+					break;
+				case "right":  
+					worldX += speed; 
+					break;
+				}
+			}
+		}
 	}
+	
 	
 	public void interactOptions() {
 		options[0] = "Do nothing";

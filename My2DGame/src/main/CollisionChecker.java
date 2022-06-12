@@ -81,9 +81,7 @@ public class CollisionChecker {
 		
 		
 		int tileNum1, tileNum2;
-		
-		//System.out.println(objectLeftWorldX + " " + objectRightWorldX);
-		//System.out.println(gp.player.worldX + gp.player.solidArea.x + " " + gp.player.worldX + gp.player.solidArea.x + gp.player.solidArea.width);
+	
 		switch(obj.direction) {
 		case "up":
 			objectTopRow = (objectTopWorldY - obj.speed)/gp.tileSize;

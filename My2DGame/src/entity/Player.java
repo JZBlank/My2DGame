@@ -264,18 +264,18 @@ public class Player extends Entity {
     				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
     				if(gp.player.direction == "up") {
     					gp.player.inventory[0].worldX = gp.player.worldX;
-        				gp.player.inventory[0].worldY = gp.player.worldY;
+        				gp.player.inventory[0].worldY = gp.player.worldY - 20;
     				}
     				else if(gp.player.direction == "down") {
         				gp.player.inventory[0].worldX = gp.player.worldX;
         				gp.player.inventory[0].worldY = gp.player.worldY + 40;
     				}
     				else if(gp.player.direction == "left") {
-    					gp.player.inventory[0].worldX = gp.player.worldX - 10;
+    					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
         				gp.player.inventory[0].worldY = gp.player.worldY + 30;
     				}
     				else if(gp.player.direction == "right") {
-    					gp.player.inventory[0].worldX = gp.player.worldX + 25;
+    					gp.player.inventory[0].worldX = gp.player.worldX + 40;
         				gp.player.inventory[0].worldY = gp.player.worldY + 20;
     				}
 	

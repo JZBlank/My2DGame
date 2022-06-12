@@ -54,7 +54,6 @@ public class SuperObject {
 	}
 	public void setAction() {};
 	public void update() {
-		moveUpdate();
 		setAction();
     	
 		

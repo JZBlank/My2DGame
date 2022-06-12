@@ -20,16 +20,16 @@ public class AssetSetter {
 		gp.obj[0].worldX = 23 * gp.tileSize;
 		gp.obj[0].worldY = 23 * gp.tileSize;
 		gp.obj[0].id = 0;
-		gp.obj[0].canMove = false;
 		gp.obj[0].direction = "left";
+		gp.obj[0].speed = 1;
 		gp.obj[0].collisionOn = false;
 		
 		gp.obj[1] = new OBJ_Fish(gp);
 		gp.obj[1].worldX = 12 * gp.tileSize;
 		gp.obj[1].worldY = 32 * gp.tileSize;
 		gp.obj[1].id = 1;
-		gp.obj[1].canMove = false;
 		gp.obj[1].direction = "left";
+		gp.obj[1].speed = 1;
 		gp.obj[1].collisionOn = false;
 		
 		// FISH (SWIMMING)
@@ -38,9 +38,8 @@ public class AssetSetter {
 		gp.obj[2].worldY = 30 * gp.tileSize;
 		gp.obj[2].id = 2;
 		gp.obj[2].speed = 1;
-		gp.obj[2].canMove = true;
 		gp.obj[2].direction = "left";
-		gp.obj[2].collisionOn = true;
+		gp.obj[2].collisionOn = false;
 		
 		
 	}
