@@ -16,10 +16,13 @@ public class OBJ_Fish extends SuperObject {
 		interactOptions();
 		
 		try {
+			
 			image1 = ImageIO.read(getClass().getResourceAsStream("/objects/defaultFish.png"));
-			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/fish.png"));
-			image3 = ImageIO.read(getClass().getResourceAsStream("/objects/fish2.png"));
+			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish.png"));
+			image3 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish2.png"));
 			uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
+			//uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
+			
 			
 		} catch(IOException e) {
 			e.printStackTrace();

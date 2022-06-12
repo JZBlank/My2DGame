@@ -262,12 +262,26 @@ public class Player extends Entity {
     				
     				canPickUp = true;
     				
+    				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
     				
-    				// CHANGE LOCATION DEPENDING ON WHICH WAY FACING LATER**
     				
-    				gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
-    				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 40;
-    				
+    				if(gp.player.direction == "up") {
+    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
+        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY;
+    				}
+    				else if(gp.player.direction == "down") {
+        				gp.player.inventory[holdingWhat].worldX = gp.player.worldX;
+        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 40;
+    				}
+    				else if(gp.player.direction == "left") {
+    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX - 10;
+        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 30;
+    				}
+    				else if(gp.player.direction == "right") {
+    					gp.player.inventory[holdingWhat].worldX = gp.player.worldX + 25;
+        				gp.player.inventory[holdingWhat].worldY = gp.player.worldY + 20;
+    				}
+	
     				
     				gp.player.inventory[gp.player.inventory.length - 1] = null;
     				itemCounter--;
