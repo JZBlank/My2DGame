@@ -66,6 +66,8 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     Thread gameThread;
     
+    // TILE EFFECTS 
+    Effects effects = new Effects(this);
     
     // ENTITY AND OBJECT
     public Player player  = new Player(this, keyH);
@@ -190,7 +192,7 @@ public class GamePanel extends JPanel implements Runnable {
     	}
     	
     	if(gameState == playState) {
-    	
+    		effects.update();
     		player.update();
     		player.updateOptions();
     		

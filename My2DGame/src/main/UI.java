@@ -9,10 +9,12 @@ import java.awt.RenderingHints;
 import java.awt.TextField;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -51,8 +53,7 @@ public class UI {
 	// IMAGES FOR DIALOGUE
 	BufferedImage npcImage;
 	BufferedImage objImage;
-	
-	// OBJECT IMAGES:
+
 	
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
@@ -61,6 +62,10 @@ public class UI {
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
 				  healthImage8, healthImage9, healthImage10, healthImage11;
 
+	// TILE EFFECT IMAGES
+	BufferedImage grassTexture;
+	
+	
 	// NAME
 	public boolean nameBlank = true;
 	
@@ -170,6 +175,7 @@ public class UI {
 		}
 	
 	}
+
 	private void drawPlayerWithItem() {
 		
 		if(gp.player.holdItem == true) {

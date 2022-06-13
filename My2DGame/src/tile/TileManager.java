@@ -70,15 +70,15 @@ public class TileManager {
 			
 			setup("24", "dirt_side_left", false, true);
 			setup("25", "dirt_side_right", false, true);
-
 	}
+	
+
 	
 	public void setup(String str, String imageName, boolean collision, boolean fishCollision) { 
 		UtilityTool uTool = new UtilityTool();
 		try {
 			// CONVERT STRING TO INDEX		
 			int num =  convertStrIndex(str);
-			System.out.println(num);
 			tile[num] = new Tile();
 			tile[num].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
 			tile[num].image = uTool.scaleImage(tile[num].image, gp.tileSize, gp.tileSize);
@@ -89,6 +89,23 @@ public class TileManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setupTextures(String str, String imageName, boolean collision, boolean fishCollision) { 
+		UtilityTool uTool = new UtilityTool();
+		try {
+			// CONVERT STRING TO INDEX		
+			int num =  convertStrIndex(str);
+			tile[num] = new Tile();
+			tile[num].image = ImageIO.read(getClass().getResourceAsStream("/tile_effects/" + imageName + ".png"));
+			tile[num].image = uTool.scaleImage(tile[num].image, gp.tileSize, gp.tileSize);
+			tile[num].collision = collision;
+			tile[num].fishCollision = fishCollision;
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public int convertStrIndex(String str) {
 		int result = 0;
