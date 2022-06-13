@@ -161,9 +161,9 @@ public class TileManager {
 			for(int j = 0; j < 50; j++) {
 				if(mapTileNum[i][j] == 5) {
 					// IF LEFT AND RIGHT TILES ARE TREES
-					if(mapTileNum[i-1][j] == 4 && mapTileNum[i+1][j] == 4) {
+					if((mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0) && (mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0)) {
 						// IF UPPER TILE IS A TREE
-						if(mapTileNum[i][j-1] == 4) {
+						if(mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0) {
 							mapTileNum[i][j] = 20;
 						}
 						else {
