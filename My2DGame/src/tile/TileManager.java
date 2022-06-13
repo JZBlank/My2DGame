@@ -33,7 +33,7 @@ public class TileManager {
 		// CREATING MAP
 		getTileImage();
 		loadMap("/maps/newWorld01.txt");
-		//modifyMap();
+		modifyMap();
 	}
 	
 	
@@ -51,6 +51,9 @@ public class TileManager {
 			setup("09", "grass_full", false, true);
 			setup("10", "dirt_horizontal1", false, true);
 			setup("11", "dirt_horizontal2", false, true);
+			setup("12", "dirt_vertical1", false, true);
+			setup("13", "dirt_vertical2", false, true);
+			
 			
 
 	}
@@ -119,14 +122,11 @@ public class TileManager {
 		
 			while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
 				String line = br.readLine();
-				String convertedLine = "";
-				// CONVERT LINE TO CORRECT NUMBERS
-				convertedLine = convertNums(line);
-				int num = 0;
+				
 				
 				while(col < gp.maxWorldCol) {
-					String[] numbers = convertedLine.split(" ");
-					num = Integer.parseInt(numbers[col]);
+					String[] numbers = line.split(" ");
+					int num = Integer.parseInt(numbers[col]);
 					
 					num = randomizeGrass(num);
 					
@@ -145,18 +145,25 @@ public class TileManager {
 		}
 	}
 	
-//	public String[] numbers(String line) {
-//
-//	}
-	
-//	public void modifyMap() {
-//		for(int i = 0; i < 50; i++) {
-//			for(int j = 0; j < 50; j++) {
-//				
-//			}
-//			//System.out.println("");
-//		}
-//	}
+	public void modifyMap() {
+		for(int i = 0; i < 50; i++) {
+			for(int j = 0; j < 50; j++) {
+				//System.out.print(mapTileNum[i][j]);
+				if(mapTileNum[i][j] == 5) {
+					if(mapTileNum[i-1][j] == 4 && mapTileNum[i+1][j] == 4) {
+						mapTileNum[i][j] = 12;
+					}
+					else if(mapTileNum[i][j-1] == 4 && mapTileNum[i][j+1] == 4) {
+						mapTileNum[i][j] = 11;
+					}
+					else if((mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9) && (mapTileNum[i][j+1] == 4 ||
+							mapTileNum[i][j+1] == 0 || mapTileNum[i][j+1] == 9)) {
+						mapTileNum[i][j] = 11;
+					}
+				}
+			}
+		}
+	}
 	
 	public int randomizeGrass(int num) {
 		// RANDOMIZE GRASS TEXTURE
@@ -173,17 +180,7 @@ public class TileManager {
 		}
 		return num;
 	}
-	
-	public int createDirtPaths(int num, int row, int col) {
-		// CREATE DIRT PATHS
-		//System.out.println(mapTileNum[row-1][col]);
-//		if(mapTileNum[row-1][col] == 4 && mapTileNum[row+1][col] == 4) {
-//			num = 10;
-//		}
-		
-		return num;
-	}
-	
+
 	public void draw(Graphics2D g2) {
 		
 		int worldCol = 0;
