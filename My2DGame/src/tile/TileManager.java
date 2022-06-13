@@ -171,12 +171,21 @@ public class TileManager {
 						}
 					}
 					
-					// IF UPPER IS TREE, LEFT, RIGHT AND BOTTOM ARE NOT TREES OR GRASS
-					else if((mapTileNum[i-1][j] == 5 || mapTileNum[i-1][j] == 10 || mapTileNum[i-1][j] == 18 || mapTileNum[i-1][j] == 14) && (mapTileNum[i+1][j] == 10 || mapTileNum[i+1][j] == 5 || 
-							mapTileNum[i+1][j] == 15)  && 
+					// IF BOTTOM IS TREE, LEFT, RIGHT AND TOP ARE NOT TREES OR GRASS **BOTTOM PATH**
+					else if((mapTileNum[i-1][j] == 5 || mapTileNum[i-1][j] == 10 || mapTileNum[i-1][j] == 19 || mapTileNum[i-1][j] == 16) &&
+							(mapTileNum[i+1][j] == 5 || mapTileNum[i+1][j] == 10 || mapTileNum[i+1][j] == 17 || mapTileNum[i+1][j] == 19) && 
+							(mapTileNum[i][j-1] == 5 || mapTileNum[i][j-1] == 18) &&
+							(mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 9 || mapTileNum[i][j+1] == 0)) {
+						mapTileNum[i][j] = 19;
+					}
+					
+					// IF UPPER IS TREE, LEFT, RIGHT AND BOTTOM ARE NOT TREES OR GRASS **TOP PATH**
+					else if((mapTileNum[i-1][j] == 5 || mapTileNum[i-1][j] == 10 || mapTileNum[i-1][j] == 18 || mapTileNum[i-1][j] == 14) &&
+							(mapTileNum[i+1][j] == 5 || mapTileNum[i+1][j] == 10 || mapTileNum[i+1][j] == 15)  && 
 							(mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 9 || mapTileNum[i][j-1] == 0) && mapTileNum[i][j+1] == 5) {
 						mapTileNum[i][j] = 18;
 					}
+					
 					
 					// IF UP AND RIGHT ARE TREES, LEFT AND DOWN NOT GRASS OR TREES (PATH CORNER **UPPER RIGHT**)
 					else if((mapTileNum[i-1][j] != 4 && mapTileNum[i][j+1] != 4) && (mapTileNum[i][j-1] == 4 && mapTileNum[i+1][j] == 4)){
@@ -188,7 +197,7 @@ public class TileManager {
 						mapTileNum[i][j] = 14;
 					}
 							
-					// IF UPPER TILE IS A TREE AND LEFT AND RIGHT TILES ARE NOT TREES/GRASS
+					// IF UPPER TILE IS A TREE AND LEFT AND RIGHT TILES ARE NOT TREES/GRASS **HORIZONTAL PATH*
 					else if((mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9) && (mapTileNum[i-1][j] != 5 || mapTileNum[i+1][j] != 4)){
 						// IF BOTTOM TILE IS A TREE OR GRASS
 						if(mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 0 || mapTileNum[i][j+1] == 9) {
