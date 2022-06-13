@@ -97,7 +97,9 @@ public class TileManager {
 					t = String.valueOf(t.charAt(1));
 				}
 				s+= t;
-				s += " ";
+				if(i != line.length() - 1) {
+					s += " ";
+				}
 				t = "";
 			}
 			else {
@@ -124,7 +126,7 @@ public class TileManager {
 				
 				while(col < gp.maxWorldCol) {
 					String[] numbers = convertedLine.split(" ");
-					num = Integer.parseInt("0");
+					num = Integer.parseInt(numbers[col]);
 					
 					num = randomizeGrass(num);
 					
@@ -132,7 +134,6 @@ public class TileManager {
 					col += 1;
 				}
 				if(col == gp.maxWorldCol) {
-					System.out.println(convertedLine);
 					col = 0;
 					row++;
 				}
