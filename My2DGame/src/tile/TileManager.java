@@ -168,7 +168,8 @@ public class TileManager {
 			for(int j = 0; j < 50; j++) {
 				if(mapTileNum[i][j] == 5) {
 					// IF LEFT AND RIGHT TILES ARE TREES
-					if((mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0) && (mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0)) {
+					if((mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0 || mapTileNum[i-1][j] == 9) && 
+						(mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0 || mapTileNum[i+1][j] == 9)) {
 						// IF UPPER TILE IS A TREE
 						if(mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0) {
 							mapTileNum[i][j] = 20;
@@ -181,7 +182,7 @@ public class TileManager {
 					// IF BOTTOM IS TREE, LEFT, RIGHT AND TOP ARE NOT TREES OR GRASS **BOTTOM PATH**
 					else if((mapTileNum[i-1][j] == 5 || mapTileNum[i-1][j] == 10 || mapTileNum[i-1][j] == 19 || mapTileNum[i-1][j] == 16) &&
 							(mapTileNum[i+1][j] == 5 || mapTileNum[i+1][j] == 10 || mapTileNum[i+1][j] == 17 || mapTileNum[i+1][j] == 19) && 
-							(mapTileNum[i][j-1] == 5 || mapTileNum[i][j-1] == 18) &&
+							(mapTileNum[i][j-1] == 5 || mapTileNum[i][j-1] == 18 || mapTileNum[i][j-1] == 25) &&
 							(mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 9 || mapTileNum[i][j+1] == 0)) {
 						mapTileNum[i][j] = 19;
 					}
@@ -194,44 +195,49 @@ public class TileManager {
 					}
 					
 					
-					// IF UP AND RIGHT ARE TREES, LEFT AND DOWN NOT GRASS OR TREES (PATH CORNER **UPPER RIGHT**)
-					else if((mapTileNum[i-1][j] != 4 && mapTileNum[i][j+1] != 4) && (mapTileNum[i+1][j] == 4)){
+					// LEFT AND DOWN NOT GRASS OR TREES (PATH CORNER **UPPER RIGHT**)
+					else if((mapTileNum[i-1][j] != 4 && mapTileNum[i][j+1] != 4) && (mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 9 || mapTileNum[i+1][j] == 0)){
 						// IF UPPER TILE IS TREE OR GRASS
 						if(mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9) {
 							mapTileNum[i][j] = 15;
 						}
-						// IF UPPER TILE IS GRASS OR UPPER RIGHT CORNER PATH
-						else if(mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 15 || mapTileNum[i][j-1] == 25 || mapTileNum[i][j+1] == 17) {
+						// IF UPPER TILE IS GRASS OR UPPER RIGHT CORNER PATH **DIRT RIGHT SIDE**
+						else if((mapTileNum[i][j-1] == 5 || mapTileNum[i][j-1] == 15 || mapTileNum[i][j-1] == 25 || mapTileNum[i][j-1] == 3) && 
+								(mapTileNum[i][j+1] == 17 || mapTileNum[i][j+1] == 5 || mapTileNum[i][j+1] == 19)) {
 							mapTileNum[i][j] = 25;
 						}
 					}
 					
 					
 					// IF UP AND LEFT ARE TREES, RIGHT AND DOWN NOT GRASS OR TREES  (PATH CORNER ** UPPER LEFT**)
-					else if((mapTileNum[i+1][j] != 4 && mapTileNum[i][j+1] != 4) && (mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0)){
+					else if((mapTileNum[i+1][j] != 4 && mapTileNum[i][j+1] != 4) && (mapTileNum[i-1][j] == 4 || 
+							mapTileNum[i-1][j] == 0 || mapTileNum[i-1][j] == 9 || mapTileNum[i-1][j] == 4) ){
 						if((mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9)) {
 							mapTileNum[i][j] = 14;
 						}
 						// IF UPPER TILE IS GRASS OR UPPER LEFT CORNER PATH
-						else if(mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 14 || mapTileNum[i][j-1] == 24 || mapTileNum[i][j+1] == 16) {
+						else if((mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 14 || mapTileNum[i][j-1] == 3 ||  mapTileNum[i][j-1] == 24)) {
 							mapTileNum[i][j] = 24;
 						}
 					}
 							
 					// IF UPPER TILE IS A TREE AND LEFT AND RIGHT TILES ARE NOT TREES/GRASS **HORIZONTAL PATH*
-					else if((mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9) && (mapTileNum[i-1][j] != 5 || mapTileNum[i+1][j] != 4)){
+					else if((mapTileNum[i][j-1] == 4 || mapTileNum[i][j-1] == 0 || mapTileNum[i][j-1] == 9) && 
+							(mapTileNum[i-1][j] != 5 || mapTileNum[i+1][j] != 4)){
 						// IF BOTTOM TILE IS A TREE OR GRASS
 						if(mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 0 || mapTileNum[i][j+1] == 9) {
 							mapTileNum[i][j] = 10;
 						}
 					}
 					// IF BOTTOM AND RIGHT TILE IS TREE, LEFT AND UP IS NOT TREE ** (PATH CORNER **BOTTOM RIGHT**)
-					else if((mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0) && mapTileNum[i-1][j] != 4 && mapTileNum[i][j-1] != 4 && (mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 0)) {
+					else if((mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0) && mapTileNum[i-1][j] != 4 && 
+							mapTileNum[i][j-1] != 4 && (mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 0)) {
 						mapTileNum[i][j] = 17;
 					}
 					
 					// IF BOTTOM AND LEFT TILE IS TREE, LEFT AND UP IS NOT TREE ** (PATH CORNER **BOTTOM LEFT**)
-					else if(mapTileNum[i+1][j] != 4 && mapTileNum[i-1][j] == 4 && mapTileNum[i][j-1] != 4 && mapTileNum[i][j+1] == 4) {
+					else if(mapTileNum[i+1][j] != 4 && (mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0 || mapTileNum[i-1][j] == 9) && mapTileNum[i][j-1] != 4 && 
+							mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 9 || mapTileNum[i][j+1] == 0) {
 						mapTileNum[i][j] = 16;
 					}
 					
