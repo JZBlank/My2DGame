@@ -3,11 +3,6 @@ package tile;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -90,6 +85,28 @@ public class TileManager {
 		return result;
 	}
 	
+	public String convertNums(String line) {
+		String s = "";
+		String t = "";
+
+		//EX: "00 00 00 00 00 00 00 00 00 00 .."
+		
+		for(int i = 0; i < line.length(); i++) {
+			if(line.charAt(i) == ' ') {
+				if(t.charAt(0) == '0') {
+					t = String.valueOf(t.charAt(1));
+				}
+				s+= t;
+				s += " ";
+				t = "";
+			}
+			else {
+				t += String.valueOf(line.charAt(i));
+			}
+		}
+		return s;
+	}
+	
 	public void loadMap(String filePath) {
 		try {
 			InputStream is = getClass().getResourceAsStream(filePath);
@@ -99,20 +116,23 @@ public class TileManager {
 			int row = 0;
 		
 			while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
-				
 				String line = br.readLine();
+				String convertedLine = "";
+				// CONVERT LINE TO CORRECT NUMBERS
+				convertedLine = convertNums(line);
+				int num = 0;
 				
 				while(col < gp.maxWorldCol) {
+					String[] numbers = convertedLine.split(" ");
+					num = Integer.parseInt("0");
 					
-					String numbers[] = line.split(" ");
-					int num = convertStrIndex(numbers[col]);
+					num = randomizeGrass(num);
 					
-					//num = randomizeGrass(num);
-	
 					mapTileNum[col][row] = num;
-					col++;
+					col += 1;
 				}
 				if(col == gp.maxWorldCol) {
+					System.out.println(convertedLine);
 					col = 0;
 					row++;
 				}
@@ -123,6 +143,10 @@ public class TileManager {
 			
 		}
 	}
+	
+//	public String[] numbers(String line) {
+//
+//	}
 	
 //	public void modifyMap() {
 //		for(int i = 0; i < 50; i++) {
@@ -135,7 +159,7 @@ public class TileManager {
 	
 	public int randomizeGrass(int num) {
 		// RANDOMIZE GRASS TEXTURE
-		if(num == 00) {
+		if(num == 0) {
 			// CHOOSE RANDOM NUMBER FOR GRASS 
 			Random random = new Random();
 			int i = random.nextInt(100)+1;
