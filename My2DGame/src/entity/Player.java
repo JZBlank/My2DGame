@@ -15,6 +15,7 @@ public class Player extends Entity {
     Entity[] npc;
     AssetSetter aSetter;
     public SuperObject inventory[] = new SuperObject[1];
+    public SuperObject backpack[] = new SuperObject[5];
     
     public BufferedImage image = null;     
     
@@ -51,7 +52,9 @@ public class Player extends Entity {
     public boolean canPickUp = true;
     public int holdingWhat = -1;
     
+    // ITEMS MANAGER
     public int itemCounter = 0;
+    public int backpackItemCounter = 0;
     
     public int waterCounter = 0;
     public int healthCounter = 0;
@@ -348,26 +351,52 @@ public class Player extends Entity {
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
     		case "fish":
-    			if(inventory[0] == null) {
-    				inventory[itemCounter] = gp.obj[targetIndex];
-    				holdItem = true;
-    				holdingWhat = gp.obj[targetIndex].id;
-    				
-    				
-    				// 0 as placeholder
-    				gp.obj[targetIndex].worldX = 0;
-    				gp.obj[targetIndex].worldY = 0;
-    				
+    			if(hasBackPack == false) {
+    				if(inventory[0] == null) {
+        				inventory[itemCounter] = gp.obj[targetIndex];
+        				holdItem = true;
+        				holdingWhat = gp.obj[targetIndex].id;
+        				
+        				
+        				// 0 as placeholder
+        				gp.obj[targetIndex].worldX = 0;
+        				gp.obj[targetIndex].worldY = 0;
+        				
+        				itemCounter++;
+        				fishCount++;
+        				gp.player.canPickUp = false;
+        				break;
+        			}
+        			else {
+        				gp.player.notification = true;
+        			}
+    			}
+    			else if(hasBackPack == true) {
+    				if(backpack[4] == null) {
+    					// IF PLAYER WAS HOLDING AN ITEM, PUT INSIDE BACKPACK
+    					if(inventory[0] != null) {
+    						backpack[0] = inventory[0];
+    						inventory[0] = null;
+    						
+    						itemCounter--;
+							backpackItemCounter++;
+    					}	
+    					// 0 as placeholder
+        				gp.obj[targetIndex].worldX = 0;
+        				gp.obj[targetIndex].worldY = 0;
 
-    				itemCounter++;
-    				fishCount++;
-    				gp.player.canPickUp = false;
-    				break;
+    				}
     			}
-    			else {
-    				gp.player.notification = true;
-    			}
+    		case "bag":
+				hasBackPack = true;
+				
+				// 0 as placeholder
+				gp.obj[targetIndex].worldX = 0;
+				gp.obj[targetIndex].worldY = 0;
+    			System.out.println("BAG ACQUIRED");
+    			
     		}
+    		
     		gp.player.pickUp = false;
     		gp.player.notification = false; // change later if somethin up
     	}

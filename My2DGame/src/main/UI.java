@@ -55,7 +55,7 @@ public class UI {
 	
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
-	BufferedImage bagImage;
+	BufferedImage bagImage, bagImage2;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
@@ -113,6 +113,7 @@ public class UI {
 		
 		OBJ_Bag bag = new OBJ_Bag(gp);
 		bagImage = bag.image1;
+		bagImage2 = bag.image2;
 		
 	}
 	
@@ -139,6 +140,7 @@ public class UI {
 		
 		// PLAY STATE 
 		if(gp.gameState == gp.playState) {
+			drawBag();
 			drawPlayerWithItem();
 			drawHint();
 			drawPlayerImage();
@@ -149,6 +151,7 @@ public class UI {
 		
 		// PAUSE STATE
 		if(gp.gameState == gp.pauseState) {
+			drawBag();
 			drawPlayerWithItem();
 			drawPlayerImage();
 			drawPlayerLife();
@@ -158,6 +161,7 @@ public class UI {
 		
 		// DIALOGUE STATE
 		if(gp.gameState == gp.dialogueState) {
+			drawBag();
 			drawPlayerWithItem();
 			drawPlayerImage();
 			drawObjectImages();
@@ -167,6 +171,7 @@ public class UI {
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
+			drawBag();
 			drawPlayerWithItem();
 			drawNotification();
 			drawPlayerImage();
@@ -176,6 +181,27 @@ public class UI {
 			drawOptions();
 		}
 	
+	}
+
+	private void drawBag() {
+		
+		if(gp.player.hasBackPack == true) {
+			if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+				g2.drawImage(bagImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+			if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+				
+				g2.drawImage(bagImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+			}
+			if(gp.player.image == gp.player.up1 || gp.player.image == gp.player.up2 || gp.player.image == gp.player.up3 || gp.player.image == gp.player.up4) {
+				g2.drawImage(bagImage2, gp.screenWidth/2 - 10, gp.screenHeight/2 - 10, gp.tileSize - 20, gp.tileSize - 20, null);
+			}
+			
+			
+			g2.drawImage(bagImage, gp.screenWidth - (gp.tileSize + 30), gp.screenHeight - (gp.tileSize + 20), gp.tileSize + 20, gp.tileSize + 20, null);
+		}
+		
+		
 	}
 
 	private void drawPlayerWithItem() {

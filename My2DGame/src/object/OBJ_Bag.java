@@ -23,7 +23,11 @@ public class OBJ_Bag extends SuperObject {
         
         try {
         	image1 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack1.png"));
+        	image2 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack2.png"));
     		image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
+    		image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
+    		
+    		
         } catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -35,8 +39,8 @@ public class OBJ_Bag extends SuperObject {
 	
 	public void interactOptions() {
 		options[0] = "Do nothing";
-		options[1] = "Pick Up";
-		options[2] = "...";
+		options[1] = "Talk";
+		options[2] = "Pick Up";
 		options[3] = "...";
 	}
 	
