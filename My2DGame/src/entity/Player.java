@@ -394,6 +394,7 @@ public class Player extends Entity {
     			gp.player.addHealth = false;
     			gp.player.eat = false;
     		}
+    		gp.player.eat = false;
     	}
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
