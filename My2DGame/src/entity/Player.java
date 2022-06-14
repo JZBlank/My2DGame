@@ -164,7 +164,9 @@ public class Player extends Entity {
     }
     
     public void update(){
-    
+    	System.out.println(hasBackPack);
+    	
+    	//
     	survival();
     	
     	// IF PLAYER PRESSES M (MEOW)
@@ -330,15 +332,7 @@ public class Player extends Entity {
         				gp.player.inventory[0] = null;
         				itemCounter--;
     				}
-    			}
-    				
-    				
-    				
-    				
-    				
-    				
-    				
-    				
+    			}	
     			keyH.ePressed = false;
     			holdingWhat = -1;
     		}
@@ -404,7 +398,10 @@ public class Player extends Entity {
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
     		case "fish":
-    				if(inventory[0] == null && hasBackPack == false && holdItem != true) {
+					if(canPickUp = false) {
+						gp.player.notification = true;
+					}
+					else if(inventory[0] == null && hasBackPack == false && holdItem != true) {
         				inventory[itemCounter] = gp.obj[targetIndex];
         				holdingWhat = gp.obj[targetIndex].id;
         				
@@ -431,7 +428,6 @@ public class Player extends Entity {
         				}
     			}
     		case "bag":
-				hasBackPack = true;
     			if(inventory[0] == null) {
     				inventory[itemCounter] = gp.obj[targetIndex];
     				holdItem = true;
@@ -441,6 +437,7 @@ public class Player extends Entity {
     				// 0 as placeholder
     				gp.obj[targetIndex].worldX = 0;
     				gp.obj[targetIndex].worldY = 0;
+    				hasBackPack = true;
     				holdItem = true;
     				
     				itemCounter++;
@@ -451,7 +448,7 @@ public class Player extends Entity {
     		}
     		
     		gp.player.pickUp = false;
-    		gp.player.notification = false; // change later if somethin up
+    		//gp.player.notification = false; // change later if somethin up
     	}
     	else if(gp.player.putOn == true) {
     		gp.player.wearBackPack = true;
