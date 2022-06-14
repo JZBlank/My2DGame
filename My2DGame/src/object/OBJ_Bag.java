@@ -18,7 +18,7 @@ public class OBJ_Bag extends SuperObject {
         solidArea.y = 10;  // 16
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 30; // 32
+        solidArea.width = 20; // 32
         solidArea.height = 25; //32
         
         try {

@@ -16,12 +16,12 @@ public class OBJ_Fish extends SuperObject {
 		setDialogue();
 		interactOptions();
 		
-		solidArea.x = 1; // 8
-        solidArea.y = 10;  // 16
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
-        solidArea.width = 30; // 32
-        solidArea.height = 25; //32
+//		solidArea.x = 1; // 8
+//        solidArea.y = 10;  // 16
+//        solidAreaDefaultX = solidArea.x;
+//        solidAreaDefaultY = solidArea.y;
+//        solidArea.width = 30; // 32
+//        solidArea.height = 25; //32
         
 		
 		try {
