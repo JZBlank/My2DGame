@@ -21,23 +21,21 @@ import javax.swing.JTextField;
 
 import entity.Entity;
 import entity.Player;
+import object.OBJ_Bag;
 import object.OBJ_Fish;
 import object.OBJ_healthBar;
 import object.SuperObject;
 
 public class UI {
 	
-	// testing
-	public String a;
-	
 	//
 	GamePanel gp;
 	Graphics2D g2;
-//	JTextField jT = new JTextField(30);
-//	JLabel jL = new JLabel();
 	
-	Font purisaB; // font for chat boxes
+	// FONTS
+	Font purisaB; 
 	Font Montserrat;
+	
 	
 	
 	Font arial_40;
@@ -57,6 +55,7 @@ public class UI {
 	
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
+	BufferedImage bagImage;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
@@ -111,6 +110,9 @@ public class UI {
 		healthImage9 = heart.image9;
 		healthImage10 = heart.image10;
 		healthImage11 = heart.image11;
+		
+		OBJ_Bag bag = new OBJ_Bag(gp);
+		bagImage = bag.image1;
 		
 	}
 	

@@ -3,6 +3,7 @@ package main;
 import java.awt.Graphics2D;
 
 import entity.NPC_npc;
+import object.OBJ_Bag;
 import object.OBJ_Fish;
 
 public class AssetSetter {
@@ -40,6 +41,13 @@ public class AssetSetter {
 		gp.obj[2].speed = 1;
 		gp.obj[2].direction = "left";
 		gp.obj[2].collisionOn = false;
+		
+		gp.obj[3] = new OBJ_Bag(gp);
+		gp.obj[3].worldX = gp.tileSize * 23 + 8;
+		gp.obj[3].worldY = gp.tileSize * 14;
+		gp.obj[3].id = 3;
+		gp.obj[3].speed = 1;
+		gp.obj[3].collisionOn = true;
 		
 		
 	}

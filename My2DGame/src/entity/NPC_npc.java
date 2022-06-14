@@ -61,7 +61,7 @@ public class NPC_npc extends Entity {
 		options[0] = "Do nothing";
 		options[1] = "Talk";
 		options[2] = "Give";
-		options[3] = "Dance";
+		options[3] = "...";
 	}
 	
 	
