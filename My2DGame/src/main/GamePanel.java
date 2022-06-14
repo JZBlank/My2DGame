@@ -270,8 +270,9 @@ public class GamePanel extends JPanel implements Runnable {
             // PLAYER
             player.draw(g2);
             
+            
             // TILE EFFECTS
-            effects.draw(g2);
+            //effects.draw(g2);
             
             // UI
             ui.draw(g2);
