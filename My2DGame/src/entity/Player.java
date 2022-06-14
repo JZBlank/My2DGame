@@ -47,9 +47,11 @@ public class Player extends Entity {
     public boolean drink = false;
     public boolean pickUp = false;
     public boolean talk = false;
+    public boolean putOn = false;
     
     public boolean addHealth = false;
     public boolean hasBackPack = false;
+    public boolean wearBackPack = false;
     public boolean canPickUp = true;
     public int holdingWhat = -1;
     
@@ -266,34 +268,72 @@ public class Player extends Entity {
     	if(holdingWhat != -1) {
     		if(holdItem == true && putItemDown == true) {
     			if(keyH.ePressed == true) {
-    				holdItem = false;
-    				putItemDown = false;
-    				fishCount--;
-    				
-    				canPickUp = true;
-    				
-    				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
-    				if(gp.player.direction == "up") {
-    					gp.player.inventory[0].worldX = gp.player.worldX;
-        				gp.player.inventory[0].worldY = gp.player.worldY - 20;
+    				if(inventory[0].name == "fish") {
+    					holdItem = false;
+        				putItemDown = false;
+        				fishCount--;
+        				
+        				canPickUp = true;
+        				
+        				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
+        				if(gp.player.direction == "up") {
+        					gp.player.inventory[0].worldX = gp.player.worldX;
+            				gp.player.inventory[0].worldY = gp.player.worldY - 20;
+        				}
+        				else if(gp.player.direction == "down") {
+            				gp.player.inventory[0].worldX = gp.player.worldX;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 40;
+        				}
+        				else if(gp.player.direction == "left") {
+        					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
+        				}
+        				else if(gp.player.direction == "right") {
+        					gp.player.inventory[0].worldX = gp.player.worldX + 40;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 20;
+        				}
+    	
+        				
+        				gp.player.inventory[0] = null;
+        				itemCounter--;
+        			}
+    				else if(inventory[0].name == "bag") {
+    					holdItem = false;
+        				putItemDown = false;
+        				
+        				canPickUp = true;
+        				
+        				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
+        				if(gp.player.direction == "up") {
+        					gp.player.inventory[0].worldX = gp.player.worldX;
+            				gp.player.inventory[0].worldY = gp.player.worldY - 20;
+        				}
+        				else if(gp.player.direction == "down") {
+            				gp.player.inventory[0].worldX = gp.player.worldX;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 40;
+        				}
+        				else if(gp.player.direction == "left") {
+        					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
+        				}
+        				else if(gp.player.direction == "right") {
+        					gp.player.inventory[0].worldX = gp.player.worldX + 40;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 20;
+        				}
+    	
+        				
+        				gp.player.inventory[0] = null;
+        				itemCounter--;
     				}
-    				else if(gp.player.direction == "down") {
-        				gp.player.inventory[0].worldX = gp.player.worldX;
-        				gp.player.inventory[0].worldY = gp.player.worldY + 40;
-    				}
-    				else if(gp.player.direction == "left") {
-    					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
-        				gp.player.inventory[0].worldY = gp.player.worldY + 30;
-    				}
-    				else if(gp.player.direction == "right") {
-    					gp.player.inventory[0].worldX = gp.player.worldX + 40;
-        				gp.player.inventory[0].worldY = gp.player.worldY + 20;
-    				}
-	
-    				
-    				gp.player.inventory[0] = null;
-    				itemCounter--;
     			}
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
     			keyH.ePressed = false;
     			holdingWhat = -1;
     		}
@@ -358,12 +398,10 @@ public class Player extends Entity {
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
     		case "fish":
-    			if(hasBackPack == false) {
-    				if(inventory[0] == null) {
+    				if(inventory[0] == null && hasBackPack == false) {
         				inventory[itemCounter] = gp.obj[targetIndex];
         				holdItem = true;
         				holdingWhat = gp.obj[targetIndex].id;
-        				
         				
         				// 0 as placeholder
         				gp.obj[targetIndex].worldX = 0;
@@ -374,38 +412,48 @@ public class Player extends Entity {
         				gp.player.canPickUp = false;
         				break;
         			}
-        			else {
+        			else if(hasBackPack == false) {
         				gp.player.notification = true;
         			}
-    			}
-    			else if(hasBackPack == true) {
-    				if(backpack[4] == null) {
-    					// IF PLAYER WAS HOLDING AN ITEM, PUT INSIDE BACKPACK
-    					if(inventory[0] != null) {
-    						backpack[0] = inventory[0];
-    						inventory[0] = null;
-    						
-    						itemCounter--;
-							backpackItemCounter++;
-    					}	
-    					// 0 as placeholder
-        				gp.obj[targetIndex].worldX = 0;
-        				gp.obj[targetIndex].worldY = 0;
-
-    				}
+        			else if(hasBackPack == true) {
+        				if(backpack[4] == null) {
+        					backpack[backpackItemCounter] = gp.obj[targetIndex];
+        					backpackItemCounter++;
+        					
+        					// 0 as placeholder
+            				gp.obj[targetIndex].worldX = 0;
+            				gp.obj[targetIndex].worldY = 0;
+            				
+        				}
     			}
     		case "bag":
 				hasBackPack = true;
-				
-				// 0 as placeholder
-				gp.obj[targetIndex].worldX = 0;
-				gp.obj[targetIndex].worldY = 0;
-    			System.out.println("BAG ACQUIRED");
-    			
+    			if(inventory[0] == null) {
+    				inventory[itemCounter] = gp.obj[targetIndex];
+    				holdItem = true;
+    				holdingWhat = gp.obj[targetIndex].id;
+    				
+    				
+    				// 0 as placeholder
+    				gp.obj[targetIndex].worldX = 0;
+    				gp.obj[targetIndex].worldY = 0;
+    				
+    				itemCounter++;
+    				gp.player.canPickUp = false;
+    				break;
+    			}
     		}
     		
     		gp.player.pickUp = false;
     		gp.player.notification = false; // change later if somethin up
+    	}
+    	else if(gp.player.putOn == true) {
+    		gp.player.wearBackPack = true;
+    		gp.player.canPickUp = true;
+    		
+    		// 0 as placeholder
+			gp.obj[targetIndex].worldX = 0;
+			gp.obj[targetIndex].worldY = 0;
     	}
     }
     

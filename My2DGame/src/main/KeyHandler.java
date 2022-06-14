@@ -177,9 +177,17 @@ public class KeyHandler implements KeyListener{
         			}
         		}
         		else if(gp.ui.commandNum == 3) {
-        			gp.player.eat = true;
-        			gp.player.addHealth = true;
-        			gp.gameState = gp.playState;
+        			// EAT FISH
+        			if(gp.obj[gp.player.targetIndex].name == "fish") {
+        				gp.player.eat = true;
+            			gp.player.addHealth = true;
+            			gp.gameState = gp.playState;
+        			}
+        			// PUT ON BAG
+        			else if(gp.obj[gp.player.targetIndex].name == "bag") {
+        				gp.player.putOn = true;
+        				gp.gameState = gp.playState;
+        			}
         			
         		}
 	        }

@@ -200,29 +200,51 @@ public class UI {
 
 	private void drawInventory() {		
 		if(gp.player.showInventory == true) {
-			Color c = new Color(255, 221,138);
+			Color c = new Color(222,184,135);
 			g2.setColor(c);
 			
-			//g2.drawImage(inventoryImage1, gp.tileSize*2, gp.tileSize*2, gp.tileSize * 12, gp.tileSize * 9, null);
-			g2.fillRoundRect(gp.tileSize*2, gp.tileSize*2, gp.tileSize * 12, gp.tileSize * 9, 35, 35);
+			int positionX;
+			int positionY;
+			 
+			// PLAYER STATS
+			if(gp.player.wearBackPack == false) {
+				// SHOW ONLY STATS WINDOW WHEN I IS PRESSED 
+				positionX = gp.tileSize * 5;
+				positionY = gp.tileSize * 2;
+				
+				g2.fillRect(positionX, positionY , gp.tileSize * 6, gp.tileSize * 9);
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
 			
-			
-			// FOUR CORNERS
-//			g2.drawImage(inventoryImage1, gp.tileSize*2, gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
-//			g2.drawImage(inventoryImage1, gp.tileSize*2, gp.screenHeight - gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
-//			g2.drawImage(inventoryImage1, gp.screenWidth - gp.tileSize*3, gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
-//			g2.drawImage(inventoryImage1, gp.screenWidth - gp.tileSize*3, gp.screenHeight - gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
-			
-			
-			//g2.fillRoundRect(gp.tileSize, gp.tileSize , gp.screenWidth/2, gp.screenHeight/2, 35, 35);
-			//c = new Color(0,0,0,150); //fourth parameter is transparency of window
-			//g2.drawRoundRect(gp.tileSize, gp.tileSize , gp.screenWidth/2, gp.screenHeight/2, 35, 35);
+				
+				
+			}
+			else if(gp.player.wearBackPack == true) {
+				// SHOW STATS  BACKPACK INVENTORY WINDOW SIDE BY SIDE
+				positionX = gp.tileSize * 2;
+				positionY = gp.tileSize * 2;
+				
+				
+				g2.fillRect(positionX, positionY , gp.tileSize * 6, gp.tileSize * 9);
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
+				
+				g2.fillRect(positionX + 10, positionY, gp.tileSize * 6, gp.tileSize * 10);
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
+			}
 		}
 	}
 
 	private void drawBag() {
 		
-		if(gp.player.hasBackPack == true) {
+		if(gp.player.wearBackPack == true) {
 			
 			// UP AND DOWN DIRECTION
 			if(gp.player.image == gp.player.up1 || gp.player.image == gp.player.up2 || gp.player.image == gp.player.up3 || gp.player.image == gp.player.up4) {

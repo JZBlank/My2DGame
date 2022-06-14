@@ -51,9 +51,9 @@ public class OBJ_Bag extends SuperObject {
 	
 	public void interactOptions() {
 		options[0] = "Do nothing";
-		options[1] = "Talk";
+		options[1] = "Inspect";
 		options[2] = "Pick Up";
-		options[3] = "...";
+		options[3] = "Put On";
 	}
 	
 	public void setDialogue() {
