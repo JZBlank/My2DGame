@@ -196,6 +196,10 @@ public class TileManager {
 						}
 					}
 					
+					else if(mapTileNum[i][j-1] == 25 && mapTileNum[i][j-1] == 10 && mapTileNum[i][j-1] == 5) {
+						mapTileNum[i][j] = 19;
+					}
+					
 					// IF BOTTOM AND RIGHT TILE IS TREE, LEFT AND UP IS NOT TREE ** (PATH CORNER **BOTTOM RIGHT**)
 					else if((mapTileNum[i+1][j] == 4 || mapTileNum[i+1][j] == 0 ||  mapTileNum[i+1][j] == 9) &&
 							(mapTileNum[i-1][j] == 5 || mapTileNum[i-1][j] == 10 ||  mapTileNum[i-1][j] == 19) && 
@@ -256,8 +260,8 @@ public class TileManager {
 				
 					
 					// IF BOTTOM AND LEFT TILE IS TREE, LEFT AND UP IS NOT TREE ** (PATH CORNER **BOTTOM LEFT**)
-					else if(mapTileNum[i+1][j] != 4 && (mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0 || mapTileNum[i-1][j] == 9) && mapTileNum[i][j-1] != 4 && 
-							mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 9 || mapTileNum[i][j+1] == 0) {
+					else if((mapTileNum[i-1][j] == 4 || mapTileNum[i-1][j] == 0 || mapTileNum[i-1][j] == 9) && mapTileNum[i][j-1] != 4 && 
+							(mapTileNum[i][j+1] == 4 || mapTileNum[i][j+1] == 9 || mapTileNum[i][j+1] == 0)) {
 						mapTileNum[i][j] = 16;
 					}
 					
