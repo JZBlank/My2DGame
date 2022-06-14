@@ -169,8 +169,19 @@ public class SuperObject {
 			}
 			
 			// IF OBJECT IS BAG
-			if(this.name == "bag") {
-				g2.drawImage(image1, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+			else if(this.name == "bag") {
+				BufferedImage image2 = image1;
+				if(gp.player.itemDirection == "left") {
+					image2 = image1;
+				}
+				if(gp.player.itemDirection == "right") {
+					image2 = image8;
+				}
+				else if(gp.player.direction == "none") {
+					image2 = image1;
+				}
+
+				g2.drawImage(image2, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
 			}
 		}
 		// If player is around the edge, draw everything

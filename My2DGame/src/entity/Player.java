@@ -41,6 +41,7 @@ public class Player extends Entity {
     public boolean holdItem = false;
     public boolean putItemDown = false; // has not been implemented yet
     
+    public String itemDirection;
     
     // CHOOSING INTERACTIONS
     public boolean eat = false;
@@ -305,20 +306,24 @@ public class Player extends Entity {
         				
         				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
         				if(gp.player.direction == "up") {
+        					itemDirection = "none";
         					gp.player.inventory[0].worldX = gp.player.worldX;
             				gp.player.inventory[0].worldY = gp.player.worldY - 20;
         				}
         				else if(gp.player.direction == "down") {
-            				gp.player.inventory[0].worldX = gp.player.worldX;
+        					itemDirection = "none";
+            				gp.player.inventory[0].worldX = gp.player.worldX + 15;
             				gp.player.inventory[0].worldY = gp.player.worldY + 40;
         				}
         				else if(gp.player.direction == "left") {
-        					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
+        					itemDirection = "left";
+        					gp.player.inventory[0].worldX = gp.player.worldX  - 20;
             				gp.player.inventory[0].worldY = gp.player.worldY + 30;
         				}
         				else if(gp.player.direction == "right") {
-        					gp.player.inventory[0].worldX = gp.player.worldX + 40;
-            				gp.player.inventory[0].worldY = gp.player.worldY + 20;
+        					itemDirection = "right";
+        					gp.player.inventory[0].worldX = gp.player.worldX  + 40;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
         				}
     	
         				
