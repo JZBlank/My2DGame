@@ -7,6 +7,7 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.TextField;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -55,7 +56,7 @@ public class UI {
 	
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
-	BufferedImage bagImage, bagImage2, bagImage3, bagImage4, bagImage5;
+	BufferedImage bagImage, bagImage2, bagImage3, bagImage4, bagImage5, bagImage6, bagImage7;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
@@ -117,6 +118,8 @@ public class UI {
 		bagImage3 = bag.image3;
 		bagImage4 = bag.image4;
 		bagImage5 = bag.image5;
+		bagImage6 = bag.image6;
+		bagImage7 = bag.image7;
 		
 	}
 	
@@ -201,16 +204,16 @@ public class UI {
 			// LEFT AND RIGHT DIRECTION
 			if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
 				g2.drawImage(bagImage5, gp.screenWidth/2 + 3, gp.screenHeight/2 - 10, gp.tileSize/2, gp.tileSize/2, null);
+				g2.drawImage(bagImage7, gp.screenWidth/2 - 26, gp.screenHeight/2 - 25, gp.tileSize, gp.tileSize, null);
+
 			}
 			if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
-				
 				g2.drawImage(bagImage4, gp.screenWidth/2 - 25, gp.screenHeight/2 - 10, gp.tileSize/2, gp.tileSize/2, null);
+				g2.drawImage(bagImage6, gp.screenWidth/2 - 22, gp.screenHeight/2 - 25, gp.tileSize, gp.tileSize, null);
+				
 			}
-			
-			
 			g2.drawImage(bagImage, gp.screenWidth - (gp.tileSize + 30), gp.screenHeight - (gp.tileSize + 20), gp.tileSize + 20, gp.tileSize + 20, null);
 		}
-		
 		
 	}
 
