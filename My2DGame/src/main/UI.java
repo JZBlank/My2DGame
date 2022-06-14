@@ -249,7 +249,7 @@ public class UI {
 			
 			// UP AND DOWN DIRECTION
 			if(gp.player.image == gp.player.up1 || gp.player.image == gp.player.up2 || gp.player.image == gp.player.up3 || gp.player.image == gp.player.up4) {
-				g2.drawImage(bagImage2, gp.screenWidth/2 - 10, gp.screenHeight/2 - 10, gp.tileSize - 20, gp.tileSize - 20, null);
+				g2.drawImage(bagImage2, gp.screenWidth/2 - 10, gp.screenHeight/2 - 10, gp.tileSize - 23, gp.tileSize - 23, null);
 			}
 			if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
 				g2.drawImage(bagImage3, gp.screenWidth/2 - 23, gp.screenHeight/2 - 23, gp.tileSize, gp.tileSize, null);
