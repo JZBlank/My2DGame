@@ -8,7 +8,7 @@ import entity.Entity;
 public class KeyHandler implements KeyListener{
 
 	GamePanel gp;
-    public boolean meow, upPressed, downPressed, leftPressed, rightPressed, ePressed;
+    public boolean meow, upPressed, downPressed, leftPressed, rightPressed, ePressed, iPressed;
     public boolean enterPressed;
     public boolean changeDialogue;
     
@@ -93,6 +93,10 @@ public class KeyHandler implements KeyListener{
         // PLAY STATE
         if(gp.gameState == gp.playState) {
         	
+        	if(code == KeyEvent.VK_I){
+        		iPressed = true;
+                 
+            }
         	if(code == KeyEvent.VK_M) {
             	meow = true;
             }
@@ -207,6 +211,9 @@ public class KeyHandler implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         
+        if(code == KeyEvent.VK_I) {
+        	iPressed = false;
+        }
         
         if(code == KeyEvent.VK_M) {
         	meow = false;
@@ -214,7 +221,6 @@ public class KeyHandler implements KeyListener{
         
         if(code == KeyEvent.VK_E){
         	ePressed = false;
-            //changeDialogue = false;
         }
 
         if(code == KeyEvent.VK_W){

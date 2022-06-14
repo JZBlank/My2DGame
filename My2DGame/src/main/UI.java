@@ -65,12 +65,14 @@ public class UI {
 	// TILE EFFECT IMAGES
 	BufferedImage grassTexture;
 	
+	// INVENTORY DESIGN + ELEMENTS
+	BufferedImage inventoryImage1;
+	
 	
 	// NAME
 	public boolean nameBlank = true;
-	
 	public boolean enterName = false;
-	
+
 	// MESSAGES / DIALOGUE
 	public boolean messageOn = false;
 	public String message = "";
@@ -121,6 +123,13 @@ public class UI {
 		bagImage6 = bag.image6;
 		bagImage7 = bag.image7;
 		
+		//INVENTORY
+		
+		try {
+			inventoryImage1 = ImageIO.read(this.getClass().getResource("/inventory/color.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void showMessage(String text) {
@@ -152,7 +161,7 @@ public class UI {
 			drawPlayerImage();
 			drawPlayerLife();
 			drawObjectImages();
-			
+			drawInventory();
 		}
 		
 		// PAUSE STATE
@@ -187,6 +196,28 @@ public class UI {
 			drawOptions();
 		}
 	
+	}
+
+	private void drawInventory() {		
+		if(gp.player.showInventory == true) {
+			Color c = new Color(255, 221,138);
+			g2.setColor(c);
+			
+			//g2.drawImage(inventoryImage1, gp.tileSize*2, gp.tileSize*2, gp.tileSize * 12, gp.tileSize * 9, null);
+			g2.fillRoundRect(gp.tileSize*2, gp.tileSize*2, gp.tileSize * 12, gp.tileSize * 9, 35, 35);
+			
+			
+			// FOUR CORNERS
+//			g2.drawImage(inventoryImage1, gp.tileSize*2, gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
+//			g2.drawImage(inventoryImage1, gp.tileSize*2, gp.screenHeight - gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
+//			g2.drawImage(inventoryImage1, gp.screenWidth - gp.tileSize*3, gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
+//			g2.drawImage(inventoryImage1, gp.screenWidth - gp.tileSize*3, gp.screenHeight - gp.tileSize*2 , gp.tileSize + 10, gp.tileSize + 10, null);
+			
+			
+			//g2.fillRoundRect(gp.tileSize, gp.tileSize , gp.screenWidth/2, gp.screenHeight/2, 35, 35);
+			//c = new Color(0,0,0,150); //fourth parameter is transparency of window
+			//g2.drawRoundRect(gp.tileSize, gp.tileSize , gp.screenWidth/2, gp.screenHeight/2, 35, 35);
+		}
 	}
 
 	private void drawBag() {

@@ -41,6 +41,7 @@ public class Player extends Entity {
     public boolean holdItem = false;
     public boolean putItemDown = false; // has not been implemented yet
     
+    
     // CHOOSING INTERACTIONS
     public boolean eat = false;
     public boolean drink = false;
@@ -51,6 +52,9 @@ public class Player extends Entity {
     public boolean hasBackPack = false;
     public boolean canPickUp = true;
     public int holdingWhat = -1;
+    
+    // INVENTORY
+    public boolean showInventory = false;
     
     // ITEMS MANAGER
     public int itemCounter = 0;
@@ -160,8 +164,11 @@ public class Player extends Entity {
     
     	survival();
     	
-    	// CHECK IF M IS PRESSED
+    	// IF PLAYER PRESSES M (MEOW)
     	talk();
+    	
+    	// IF PLAYER PRESSES I (INVENTORY)
+    	showInventory();
     	
     	// IF PLAYER HOLDING AN ITEM AND WANTS TO PUT IT DOWN
     	putdownItem();
@@ -423,6 +430,16 @@ public class Player extends Entity {
     		canInteract = false;
     		whoInteract = -1;
     	}
+    }
+    
+    public void showInventory() {
+    	if(gp.keyH.iPressed == true && showInventory == true) {
+    		showInventory = false;
+    	}
+    	else if(gp.keyH.iPressed == true && showInventory == false) {
+    		showInventory = true;
+    	}
+    	gp.keyH.iPressed = false;
     }
     
     public void showOptions() {	
