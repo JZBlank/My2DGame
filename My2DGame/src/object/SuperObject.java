@@ -107,66 +107,70 @@ public class SuperObject {
 		   worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 			
-			if(canMove == true) {
-				switch(direction){
-		        case "up":
-		        	if(spriteNum == 1) {
-		        		image = image2;
-		        	}
-		        	if(spriteNum == 2) {
-			        	image = image3;
-			        }
-
-		            break;
-		        case "down":
-
-		        	if(spriteNum == 1) {
-			        	image = image2;
-			        }
-			        if(spriteNum == 2) {
-			        	image = image3;;
-			        }
-
-		            break;
-		        case "left":
-		        	if(spriteNum == 1) {
-			        	image = image2;
-			        }
-			        if(spriteNum == 2) {
-			        	image = image3;
-			        }
-		             break;
-		        case "right":
-		        	if(spriteNum == 1) {
-			        	image = image4;
-			        }
-			        if(spriteNum == 2) {
-			        	image = image5;
-			        }
-		             break;
-				}
-	             
-	        }
 			// IF OBJECT IS FISH
-			if(canMove == true && this.name == "fish") {
-				g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-			}
-			 
-			if(move == 1 && canMove == false && this.name == "fish") {
-				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-			}
-			else if(move == 2 && canMove == false) {
-				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-				g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-			}
-			else if(move == 3 && canMove == false) {
-				g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+			if(this.name == "fish") {
+				if(canMove == true) {
+					switch(direction){
+			        case "up":
+			        	if(spriteNum == 1) {
+			        		image = image2;
+			        	}
+			        	if(spriteNum == 2) {
+				        	image = image3;
+				        }
+
+			            break;
+			        case "down":
+
+			        	if(spriteNum == 1) {
+				        	image = image2;
+				        }
+				        if(spriteNum == 2) {
+				        	image = image3;;
+				        }
+
+			            break;
+			        case "left":
+			        	if(spriteNum == 1) {
+				        	image = image2;
+				        }
+				        if(spriteNum == 2) {
+				        	image = image3;
+				        }
+			             break;
+			        case "right":
+			        	if(spriteNum == 1) {
+				        	image = image4;
+				        }
+				        if(spriteNum == 2) {
+				        	image = image5;
+				        }
+			             break;
+					}
+				}
+				
+				// IF OBJECT IS FISH
+				if(canMove == true) {
+					g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+				}
+				else {
+					if(move == 1 && canMove == false) {
+						g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					else if(move == 2 && canMove == false) {
+						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					else if(move == 3 && canMove == false) {
+						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+				}
 			}
 			
 			// IF OBJECT IS BAG
 			if(this.name == "bag") {
-				g2.drawImage(image1, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+				g2.drawImage(image1, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
 			}
 		}
 		// If player is around the edge, draw everything

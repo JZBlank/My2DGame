@@ -29,6 +29,7 @@ public class OBJ_Bag extends SuperObject {
         	image5 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack5.png"));
         	image6 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack6.png"));
         	image7 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack7.png"));
+        	image8 = ImageIO.read(getClass().getResourceAsStream("/objects/red_backpack8.png"));
         	
     		image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
     		image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
@@ -37,6 +38,7 @@ public class OBJ_Bag extends SuperObject {
     		image5 = uTool.scaleImage(image5,  gp.tileSize,  gp.tileSize);
     		image6 = uTool.scaleImage(image6,  gp.tileSize,  gp.tileSize);
     		image7 = uTool.scaleImage(image7,  gp.tileSize,  gp.tileSize);
+    		image8 = uTool.scaleImage(image8,  gp.tileSize,  gp.tileSize);
     		
     		
     		
