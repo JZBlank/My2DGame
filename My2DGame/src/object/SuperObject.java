@@ -80,8 +80,6 @@ public class SuperObject {
 	public void interact(GamePanel gp) {}
 	public void draw(Graphics2D g2, GamePanel gp) {
 		
-		
-		
 		BufferedImage image = null;
 		
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;

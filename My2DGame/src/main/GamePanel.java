@@ -97,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
     	// STARTING SCREEN 
     	//gameState = titleState; 
     	// set up modes for titleState *** (Casual, survival mode, etc)
-    	
+ 
     	gameState = playState;
     	player.name = "Timmy";
     	
@@ -192,7 +192,6 @@ public class GamePanel extends JPanel implements Runnable {
     	}
     	
     	if(gameState == playState) {
-    		effects.update();
     		player.update();
     		player.updateOptions();
     		
@@ -250,6 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         // OTHERS
         else {
+        	
         	// TILE
             tileM.draw(g2); // draw tile first or else it covers player
             
@@ -269,6 +269,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
             // PLAYER
             player.draw(g2);
+            
+            // TILE EFFECTS
+            effects.draw(g2);
             
             // UI
             ui.draw(g2);

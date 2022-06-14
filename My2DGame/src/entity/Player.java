@@ -154,6 +154,7 @@ public class Player extends Entity {
     }
     
     public void update(){
+    
     	survival();
     	
     	// CHECK IF M IS PRESSED
