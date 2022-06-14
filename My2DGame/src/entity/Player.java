@@ -399,22 +399,20 @@ public class Player extends Entity {
     	else if(gp.player.pickUp == true) {
     		switch(gp.obj[targetIndex].name) {
     		case "fish":
-    				if(inventory[0] == null && hasBackPack == false) {
+    				if(inventory[0] == null && hasBackPack == false && holdItem != true) {
         				inventory[itemCounter] = gp.obj[targetIndex];
-        				holdItem = true;
         				holdingWhat = gp.obj[targetIndex].id;
         				
         				// 0 as placeholder
         				gp.obj[targetIndex].worldX = 0;
         				gp.obj[targetIndex].worldY = 0;
+        				holdItem = true;
         				
         				itemCounter++;
         				fishCount++;
         				gp.player.canPickUp = false;
-        				break;
-        			}
-        			else if(hasBackPack == false) {
         				gp.player.notification = true;
+        				break;
         			}
         			else if(hasBackPack == true) {
         				if(backpack[4] == null) {
@@ -438,8 +436,10 @@ public class Player extends Entity {
     				// 0 as placeholder
     				gp.obj[targetIndex].worldX = 0;
     				gp.obj[targetIndex].worldY = 0;
+    				holdItem = true;
     				
     				itemCounter++;
+    				
     				gp.player.canPickUp = false;
     				break;
     			}
