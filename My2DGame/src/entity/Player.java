@@ -163,9 +163,7 @@ public class Player extends Entity {
     	keyH.changeDialogue = false;
     }
     
-    public void update(){
-    	System.out.println(hasBackPack);
-    	
+    public void update(){    	
     	//
     	survival();
     	
@@ -446,9 +444,7 @@ public class Player extends Entity {
     				break;
     			}
     		}
-    		
     		gp.player.pickUp = false;
-    		//gp.player.notification = false; // change later if somethin up
     	}
     	else if(gp.player.putOn == true) {
     		gp.player.wearBackPack = true;
@@ -457,6 +453,7 @@ public class Player extends Entity {
     		// 0 as placeholder
 			gp.obj[targetIndex].worldX = 0;
 			gp.obj[targetIndex].worldY = 0;
+			gp.player.putOn = false;
     	}
     }
     
