@@ -400,6 +400,7 @@ public class Player extends Entity {
 						gp.player.notification = true;
 					}
 					else if(inventory[0] == null && hasBackPack == false && holdItem != true) {
+						System.out.println("herere");
         				inventory[itemCounter] = gp.obj[targetIndex];
         				holdingWhat = gp.obj[targetIndex].id;
         				
@@ -415,6 +416,7 @@ public class Player extends Entity {
         				break;
         			}
         			else if(hasBackPack == true) {
+        				System.out.println("HERE");
         				if(backpack[4] == null) {
         					backpack[backpackItemCounter] = gp.obj[targetIndex];
         					backpackItemCounter++;
