@@ -273,7 +273,7 @@ public class UI {
 
 	private void drawPlayerWithItem() {
 		
-		if(gp.player.holdItem == true) {
+		if(gp.player.holdItem == true && gp.player.wearBackPack == false) {
 			
 			BufferedImage itemImage = null;
 			
@@ -317,6 +317,9 @@ public class UI {
 		else if (gp.player.canInteract == false && gp.player.holdItem == true) {
 			s = "Press e to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
 		}
+		else if(gp.player.canInteract == false && gp.player.wearBackPack == true) {
+			s = "Press i to view inventory";
+		}
 		
 		int x = gp.tileSize * 6;
 		int y = gp.tileSize * 5;
@@ -340,7 +343,7 @@ public class UI {
 			x = gp.tileSize/2 * 2;
 			y = gp.tileSize * 9 + gp.tileSize;
 			
-			g2.drawString("I am holding fish..", x, y);
+			g2.drawString("Inventory full", x, y);
 		}
 	}
 

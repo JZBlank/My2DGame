@@ -165,11 +165,14 @@ public class Player extends Entity {
     
     public void update(){    	
     	//
+    	//
     	survival();
     	
     	// IF PLAYER PRESSES M (MEOW)
     	talk();
     	
+    	
+    	canPickUpItem();
     	// IF PLAYER PRESSES I (INVENTORY)
     	showInventory();
     	
@@ -263,7 +266,41 @@ public class Player extends Entity {
     	}
     }
     
-    private void putdownItem() {
+    private void canPickUpItem() {
+    	if((gp.player.pickUp == true || holdItem == true) && gp.player.hasBackPack == false) {
+    		holdItem = true;
+			holdingWhat = gp.obj[targetIndex].id;
+    	}
+    	else if((gp.player.pickUp == true || holdItem == true) && gp.player.backpack[4] != null){
+    		holdItem = true;
+    		holdingWhat = gp.obj[targetIndex].id;
+    	}
+    	else if(gp.player.wearBackPack == true && gp.player.backpack[4] == null) {
+    		holdItem = false;
+    	}
+    	
+    	
+		if(gp.player.hasBackPack == false && gp.player.inventory[0] != null) {
+			gp.player.canPickUp = false;
+		}
+		else if(gp.player.hasBackPack == false && gp.player.inventory[0] == null) {
+			gp.player.canPickUp = true;
+		}
+		else if(gp.player.hasBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] != null) {
+			gp.player.canPickUp = false;
+		}
+		else if(gp.player.hasBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] == null) {
+			gp.player.canPickUp = true;
+		}
+		else if(gp.player.hasBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
+			gp.player.canPickUp = true;
+		}
+		else {
+			gp.player.canPickUp = true;
+		}
+		
+	}
+	private void putdownItem() {
     	
     	// WITHOUT BACKPACK
     	if(holdingWhat != -1) {
@@ -273,8 +310,6 @@ public class Player extends Entity {
     					holdItem = false;
         				putItemDown = false;
         				fishCount--;
-        				
-        				canPickUp = true;
         				
         				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
         				if(gp.player.direction == "up") {
@@ -301,8 +336,6 @@ public class Player extends Entity {
     				else if(inventory[0].name == "bag") {
     					holdItem = false;
         				putItemDown = false;
-        				
-        				canPickUp = true;
         				
         				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
         				if(gp.player.direction == "up") {
@@ -394,69 +427,83 @@ public class Player extends Entity {
     		gp.player.eat = false;
     	}
     	else if(gp.player.pickUp == true) {
-    		switch(gp.obj[targetIndex].name) {
-    		case "fish":
-					if(canPickUp = false) {
-						gp.player.notification = true;
-					}
-					else if(inventory[0] == null && hasBackPack == false && holdItem != true) {
-						System.out.println("herere");
-        				inventory[itemCounter] = gp.obj[targetIndex];
-        				holdingWhat = gp.obj[targetIndex].id;
-        				
-        				// 0 as placeholder
-        				gp.obj[targetIndex].worldX = 0;
-        				gp.obj[targetIndex].worldY = 0;
-        				holdItem = true;
-        				
-        				itemCounter++;
-        				fishCount++;
-        				gp.player.canPickUp = false;
-        				gp.player.notification = true;
-        				break;
-        			}
-        			else if(hasBackPack == true) {
-        				System.out.println("HERE");
-        				if(backpack[4] == null) {
-        					backpack[backpackItemCounter] = gp.obj[targetIndex];
-        					backpackItemCounter++;
-        					
-        					// 0 as placeholder
-            				gp.obj[targetIndex].worldX = 0;
-            				gp.obj[targetIndex].worldY = 0;
-            				
-        				}
-    			}
-    		case "bag":
-    			if(inventory[0] == null) {
-    				inventory[itemCounter] = gp.obj[targetIndex];
-    				holdItem = true;
-    				holdingWhat = gp.obj[targetIndex].id;
-    				
-    				
-    				// 0 as placeholder
-    				gp.obj[targetIndex].worldX = 0;
-    				gp.obj[targetIndex].worldY = 0;
-    				hasBackPack = true;
-    				holdItem = true;
-    				
-    				itemCounter++;
-    				
-    				gp.player.canPickUp = false;
-    				break;
-    			}
-    		}
+    		pickUpLogic();
     		gp.player.pickUp = false;
     	}
     	else if(gp.player.putOn == true) {
     		gp.player.wearBackPack = true;
-    		gp.player.canPickUp = true;
     		
     		// 0 as placeholder
 			gp.obj[targetIndex].worldX = 0;
 			gp.obj[targetIndex].worldY = 0;
 			gp.player.putOn = false;
     	}
+    }
+    
+    public void pickUpLogic() {
+    	switch(gp.obj[targetIndex].name) {
+		case "fish":
+				System.out.println(canPickUp);
+				if(canPickUp = false) {
+					gp.player.notification = true;
+				}
+				
+				if(inventory[0] == null && wearBackPack == false) {
+					System.out.println("TEST");
+    				inventory[itemCounter] = gp.obj[targetIndex];
+    				
+    				// 0 as placeholder
+    				gp.obj[targetIndex].worldX = 0;
+    				gp.obj[targetIndex].worldY = 0;
+    				
+    				itemCounter++;
+    				fishCount++;
+    				break;
+    			}
+    			else if(wearBackPack == true) {
+    				System.out.println("TEST1234");
+    				if(backpack[4] == null) {
+    					backpack[backpackItemCounter] = gp.obj[targetIndex];
+    					backpackItemCounter++;
+    					
+    					
+    					// 0 as placeholder
+        				gp.obj[targetIndex].worldX = 0;
+        				gp.obj[targetIndex].worldY = 0;
+        				
+    				}
+    				else if(backpack[4] != null) {
+    					System.out.println("TEST1313");
+    					// 0 as placeholder
+    					inventory[itemCounter] = gp.obj[targetIndex];
+    					holdItem = true;
+        				holdingWhat = gp.obj[targetIndex].id;
+        				
+        				gp.obj[targetIndex].worldX = 0;
+        				gp.obj[targetIndex].worldY = 0;
+        				
+        				itemCounter++;
+        				fishCount++;
+        				gp.player.notification = true;
+    				}
+    			}
+		case "bag":
+			if(canPickUp = false) {
+				gp.player.notification = true;
+			}
+			else if(inventory[0] == null) {
+				inventory[itemCounter] = gp.obj[targetIndex];
+				
+				
+				// 0 as placeholder
+				gp.obj[targetIndex].worldX = 0;
+				gp.obj[targetIndex].worldY = 0;
+				hasBackPack = true;
+				
+				itemCounter++;
+				break;
+			}
+		}
     }
     
     public void updateOptions() {
