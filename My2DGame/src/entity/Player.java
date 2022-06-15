@@ -296,6 +296,9 @@ public class Player extends Entity {
 		else if(gp.player.hasBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 		}
+		else {
+			gp.player.canPickUp = true;
+		}
 		
 	}
 	private void putdownItem() {
@@ -481,11 +484,11 @@ public class Player extends Entity {
         				fishCount++;
         				gp.player.notification = true;
     				}
+    				break;
     			}
 		case "bag":
 			if(canPickUp = false) {
 				gp.player.notification = true;
-				break;
 			}
 			else if(inventory[0] == null) {
 				inventory[itemCounter] = gp.obj[targetIndex];

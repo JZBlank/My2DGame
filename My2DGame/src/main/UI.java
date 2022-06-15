@@ -311,11 +311,14 @@ public class UI {
 	private void drawHint() {
 		String s = "";
 		
-		if(gp.player.canInteract == true  && gp.player.holdItem == false) {
+		if(gp.player.canInteract == true) {
 			s = "Press e to interact";
 		}
-		else if (gp.player.canInteract == false && gp.player.holdItem == true) {
-			s = "Press e to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
+		else if (gp.player.canInteract == false && gp.player.holdItem == true && 
+				(gp.player.hasBackPack == false || gp.player.backpack[4] != null) &&
+				 gp.player.inventory[0] != null) {
+	
+				s = "Press e to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
 		}
 		else if(gp.player.canInteract == false && gp.player.wearBackPack == true) {
 			s = "Press i to view inventory";
