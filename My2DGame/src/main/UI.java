@@ -200,6 +200,7 @@ public class UI {
 	}
 
 	private void drawInventory() {		
+		
 		if(gp.player.showInventory == true) {
 			Color c = new Color(222,184,135);
 			g2.setColor(c);
@@ -209,6 +210,8 @@ public class UI {
 			 
 			// PLAYER STATS
 			if(gp.player.wearBackPack == false) {
+				
+				String str = Integer.toString(gp.player.waterLevel - gp.player.dehydration);
 				// SHOW ONLY STATS WINDOW WHEN I IS PRESSED 
 				positionX = gp.tileSize * 5;
 				positionY = gp.tileSize * 2;
@@ -217,12 +220,22 @@ public class UI {
 				c = new Color(205,170,125);
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
+				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
+				
+				g2.setColor(Color.black);
+				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
+				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
+				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
+				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
+				
+				g2.drawImage(gp.player.down5, positionX + 90, positionY * 2 + 10, gp.tileSize*2, gp.tileSize*2, null);
 			
 				
 				
 			}
 			else if(gp.player.wearBackPack == true) {
+				String str = Integer.toString(gp.player.waterLevel - gp.player.dehydration);
+				
 				// SHOW STATS  BACKPACK INVENTORY WINDOW SIDE BY SIDE
 				positionX = gp.tileSize * 2;
 				positionY = gp.tileSize * 2;
@@ -232,13 +245,26 @@ public class UI {
 				c = new Color(205,170,125);
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
+				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 				
-				g2.fillRect(positionX + 10, positionY, gp.tileSize * 6, gp.tileSize * 10);
+				g2.setColor(Color.black);
+				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
+				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
+				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
+				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
+				
+				g2.drawImage(gp.player.down5, positionX + 90, positionY * 2 + 10, gp.tileSize*2, gp.tileSize*2, null);
+				
+				positionX = gp.tileSize * 8;
+				
+				c = new Color(222,184,135);
+				g2.setColor(c);
+				
+				g2.fillRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 				c = new Color(205,170,125);
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawRect(gp.tileSize * 5, gp.tileSize * 2, gp.tileSize * 6, gp.tileSize * 9);
+				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 			}
 		}
 	}
@@ -312,14 +338,14 @@ public class UI {
 		String s = "";
 		
 		if(gp.player.canInteract == true) {
-			s = "Press e to interact";
+			s = "Press E to interact";
 		}
 		else if (gp.player.holdItem == true) {
 	
-			s = "Press e to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
+			s = "Press E to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
 		}
 		else if(gp.player.canInteract == false && gp.player.wearBackPack == true) {
-			s = "Press i to view inventory";
+			s = "Press I to view inventory";
 		}
 		
 		int x = gp.tileSize * 6;
