@@ -165,7 +165,7 @@ public class Player extends Entity {
     
     public void update(){    	
     	//
-
+    	System.out.println(wearBackPack);
     	//
     	survival();
     	
@@ -268,18 +268,6 @@ public class Player extends Entity {
     }
     
     private void canPickUpItem() {
-    	if((gp.player.pickUp == true || holdItem == true) && gp.player.hasBackPack == false) {
-    		holdItem = true;
-			holdingWhat = gp.obj[targetIndex].id;
-    	}
-    	else if((gp.player.pickUp == true || holdItem == true) && gp.player.backpack[4] != null){
-    		holdItem = true;
-    		holdingWhat = gp.obj[targetIndex].id;
-    	}
-    	else if(gp.player.wearBackPack == true && gp.player.backpack[4] == null) {
-    		holdItem = false;
-    	}
-    	
     	
 		if(gp.player.hasBackPack == false && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
@@ -302,7 +290,7 @@ public class Player extends Entity {
 		
 	}
 	private void putdownItem() {
-    	
+		
     	// WITHOUT BACKPACK
     	if(holdingWhat != -1) {
     		if(holdItem == true && putItemDown == true) {
@@ -450,6 +438,10 @@ public class Player extends Entity {
 				
 				else if(inventory[0] == null && wearBackPack == false) {
 					System.out.println("TEST");
+					gp.player.holdItem = true;
+					holdingWhat = gp.obj[targetIndex].id;
+					
+					
     				inventory[itemCounter] = gp.obj[targetIndex];
     				
     				// 0 as placeholder
@@ -461,11 +453,13 @@ public class Player extends Entity {
     				break;
     			}
     			else if(wearBackPack == true) {
+    				System.out.println("TEST1231313");
     				if(backpack[4] == null) {
+    					
     					backpack[backpackItemCounter] = gp.obj[targetIndex];
     					backpackItemCounter++;
     					
-    					
+    					fishCount++;
     					// 0 as placeholder
         				gp.obj[targetIndex].worldX = 0;
         				gp.obj[targetIndex].worldY = 0;
@@ -482,13 +476,13 @@ public class Player extends Entity {
         				
         				itemCounter++;
         				fishCount++;
-        				gp.player.notification = true;
+        				notification = true;
     				}
     				break;
     			}
 		case "bag":
 			if(canPickUp = false) {
-				gp.player.notification = true;
+				notification = true;
 			}
 			else if(inventory[0] == null) {
 				inventory[itemCounter] = gp.obj[targetIndex];
@@ -497,6 +491,10 @@ public class Player extends Entity {
 				// 0 as placeholder
 				gp.obj[targetIndex].worldX = 0;
 				gp.obj[targetIndex].worldY = 0;
+				
+				holdItem = true;
+				holdingWhat = gp.obj[targetIndex].id;
+				
 				hasBackPack = true;
 				
 				itemCounter++;
