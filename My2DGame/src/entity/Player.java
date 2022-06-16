@@ -165,7 +165,7 @@ public class Player extends Entity {
     
     public void update(){    	
     	//
-    	System.out.println(canPickUp);
+    	System.out.println(notification);
     	//
     	survival();
     	
@@ -271,21 +271,27 @@ public class Player extends Entity {
     	
 		if(gp.player.wearBackPack == false && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
+			notification = true;
 		}
 		else if(gp.player.wearBackPack == false && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
+			notification = false;
 		}
 		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
+			notification = true;
 		}
 		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
+			notification = false;
 		}
 		else if(gp.player.wearBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
+			notification = false;
 		}
 		else {
 			gp.player.canPickUp = true;
+			notification = false;
 		}
 		
 	}
@@ -436,7 +442,11 @@ public class Player extends Entity {
 					gp.player.notification = true;
 				}
 				
-				else if(inventory[0] == null && wearBackPack == false) {
+				if(canPickUp == true) {
+					gp.player.notification = false;
+				}
+				
+				if(inventory[0] == null && wearBackPack == false) {
 					System.out.println("TEST");
 					gp.player.holdItem = true;
 					holdingWhat = gp.obj[targetIndex].id;
@@ -453,7 +463,6 @@ public class Player extends Entity {
     				break;
     			}
     			else if(wearBackPack == true) {
-    				System.out.println("TEST1231313");
     				if(backpack[4] == null) {
     					
     					backpack[backpackItemCounter] = gp.obj[targetIndex];
@@ -465,7 +474,7 @@ public class Player extends Entity {
         				gp.obj[targetIndex].worldY = 0;
         				
     				}
-    				else if(backpack[4] != null) {
+    				else if(backpack[4] != null && notification != true) {
     					// 0 as placeholder
     					inventory[itemCounter] = gp.obj[targetIndex];
     					holdItem = true;

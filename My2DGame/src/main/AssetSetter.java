@@ -52,7 +52,7 @@ public class AssetSetter {
 		gp.obj[4] = new OBJ_Fish(gp);
 		gp.obj[4].worldX = 26 * gp.tileSize;
 		gp.obj[4].worldY = 30 * gp.tileSize;
-		gp.obj[4].id = 2;
+		gp.obj[4].id = 4;
 		gp.obj[4].speed = 1;
 		gp.obj[4].direction = "left";
 		gp.obj[4].collisionOn = false;
@@ -60,7 +60,7 @@ public class AssetSetter {
 		gp.obj[5] = new OBJ_Fish(gp);
 		gp.obj[5].worldX = 20 * gp.tileSize;
 		gp.obj[5].worldY = 30 * gp.tileSize;
-		gp.obj[5].id = 2;
+		gp.obj[5].id = 5;
 		gp.obj[5].speed = 1;
 		gp.obj[5].direction = "left";
 		gp.obj[5].collisionOn = false;
@@ -68,10 +68,26 @@ public class AssetSetter {
 		gp.obj[6] = new OBJ_Fish(gp);
 		gp.obj[6].worldX = 20 * gp.tileSize;
 		gp.obj[6].worldY = 30 * gp.tileSize;
-		gp.obj[6].id = 2;
+		gp.obj[6].id = 6;
 		gp.obj[6].speed = 1;
 		gp.obj[6].direction = "left";
 		gp.obj[6].collisionOn = false;
+		
+		gp.obj[7] = new OBJ_Fish(gp);
+		gp.obj[7].worldX = 20 * gp.tileSize;
+		gp.obj[7].worldY = 30 * gp.tileSize;
+		gp.obj[7].id = 7;
+		gp.obj[7].speed = 1;
+		gp.obj[7].direction = "left";
+		gp.obj[7].collisionOn = false;
+
+		gp.obj[8] = new OBJ_Fish(gp);
+		gp.obj[8].worldX = 20 * gp.tileSize;
+		gp.obj[8].worldY = 30 * gp.tileSize;
+		gp.obj[8].id = 8;
+		gp.obj[8].speed = 1;
+		gp.obj[8].direction = "left";
+		gp.obj[8].collisionOn = false;
 		
 		
 	}
