@@ -165,7 +165,7 @@ public class Player extends Entity {
     
     public void update(){    	
     	//
-    	System.out.println(wearBackPack);
+    	System.out.println(canPickUp);
     	//
     	survival();
     	
@@ -269,19 +269,19 @@ public class Player extends Entity {
     
     private void canPickUpItem() {
     	
-		if(gp.player.hasBackPack == false && gp.player.inventory[0] != null) {
+		if(gp.player.wearBackPack == false && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
 		}
-		else if(gp.player.hasBackPack == false && gp.player.inventory[0] == null) {
+		else if(gp.player.wearBackPack == false && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 		}
-		else if(gp.player.hasBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] != null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
 		}
-		else if(gp.player.hasBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] == null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 		}
-		else if(gp.player.hasBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 		}
 		else {
