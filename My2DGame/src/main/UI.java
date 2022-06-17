@@ -265,6 +265,12 @@ public class UI {
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(5));
 				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
+				
+				c = new Color(0,0,0);
+				g2.setColor(c);
+				g2.drawRect(positionX, positionY, gp.tileSize * 2, gp.tileSize * 2);
+				g2.setColor(c);
+				g2.drawRect(positionX + gp.tileSize * 2, positionY, gp.tileSize * 2, gp.tileSize * 2);
 			}
 		}
 	}
