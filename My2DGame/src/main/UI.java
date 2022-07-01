@@ -225,6 +225,7 @@ public class UI {
 				g2.setColor(Color.black);
 				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
 				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
+				HealthBarStats(positionX + 10, positionY * 4 +30);
 				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
 				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
 				
@@ -250,6 +251,8 @@ public class UI {
 				g2.setColor(Color.black);
 				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
 				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
+				HealthBarStats(positionX + 10, positionY * 4 +30);
+				
 				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
 				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
 				
@@ -273,6 +276,62 @@ public class UI {
 				g2.drawRect(positionX + (gp.tileSize * 2 - 30) + 10, positionY, gp.tileSize * 2 - 30, gp.tileSize);
 			}
 		}
+	}
+	
+	private void HealthBarStats(int x, int y) {
+		int a  = x;
+		int b = y;
+		int i = 0;
+		
+		// DRAW MAX HEALTH
+		
+		while(i < gp.player.maxHealth) {
+			if(i+1 == gp.player.maxHealth) {
+				g2.drawImage(healthImage3, x, y, gp.tileSize, gp.tileSize, null);
+			}
+			else{
+				g2.drawImage(healthImage2, x, y, gp.tileSize, gp.tileSize, null);
+			}
+			x += 24;
+			i++;
+		}
+		
+		x = a;
+		y = b;
+		i = 0;
+		
+		// DRAW CURRENT HEALTH
+		if(gp.player.currentHealth != 0) {
+			while(i < gp.player.currentHealth) {
+				if(i+1 == gp.player.maxHealth) {
+					g2.drawImage(healthImage6, x, y, gp.tileSize, gp.tileSize, null);
+				}
+				else{
+					g2.drawImage(healthImage5, x, y, gp.tileSize, gp.tileSize, null); // change to #7 if want lines
+				}
+				x += 24;
+				i++;
+			}
+		}
+		
+		x = a;
+		y = b + 16;
+		i = 0;
+		
+		
+		// DEHYDRATION BAR
+		
+		while(i < gp.player.dehydrationBar) {
+			if(i+1 == 9) {
+				g2.drawImage(healthImage10, x, y, gp.tileSize, gp.tileSize, null);
+			}
+			else{
+				g2.drawImage(healthImage9, x, y, gp.tileSize, gp.tileSize, null);
+			}
+			x += 24;
+			i++;
+		}
+		
 	}
 
 	private void drawBag() {
