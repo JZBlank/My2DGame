@@ -223,14 +223,22 @@ public class UI {
 				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 				
 				g2.setColor(Color.black);
-				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
-				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
-				HealthBarStats(positionX + 10, positionY * 4 +30);
-				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
-				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
+				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 15));
+				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY + 25);
+				//HealthBarStats(positionX + 10, positionY + 30);
 				
-				g2.drawImage(gp.player.down5, positionX + 90, positionY * 2 + 10, gp.tileSize*2, gp.tileSize*2, null);
-			
+				// **Add heart and Thirst Icons here later ** 
+				
+				
+				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY + 48);
+				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY + 60);
+				
+				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize, gp.tileSize, null);
+				
+				c = new Color(230, 199, 159);
+				g2.setColor(c);
+				g2.setStroke(new BasicStroke(2));
+				g2.fillRect(positionX * 2, positionY * 3, gp.tileSize, gp.tileSize);
 				
 				
 			}
@@ -249,14 +257,23 @@ public class UI {
 				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 				
 				g2.setColor(Color.black);
-				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 25));
-				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY * 4);
-				HealthBarStats(positionX + 10, positionY * 4 +30);
+				g2.setFont(new Font("Purisa", Font.TRUETYPE_FONT, 15));
+				g2.drawString("Name: " + gp.player.name, positionX + 10, positionY + 25);
+				//HealthBarStats(positionX + 10, positionY + 30);
 				
-				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY * 4 + 30);
-				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY * 4 + 60);
+				// **Add heart and Thirst Icons here later ** 
 				
-				g2.drawImage(gp.player.down5, positionX + 90, positionY * 2 + 10, gp.tileSize*2, gp.tileSize*2, null);
+				
+				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY + 48);
+				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY + 60);
+				
+				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize, gp.tileSize, null);
+				
+				c = new Color(230, 199, 159);
+				g2.setColor(c);
+				g2.setStroke(new BasicStroke(2));
+				g2.fillRect(positionX * 1, positionY * 3, gp.tileSize, gp.tileSize);
+				
 				
 				positionX = gp.tileSize * 8;
 				
@@ -315,7 +332,7 @@ public class UI {
 		}
 		
 		x = a;
-		y = b + 16;
+		y = b + 5;
 		i = 0;
 		
 		
