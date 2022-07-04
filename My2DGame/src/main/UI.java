@@ -233,12 +233,16 @@ public class UI {
 				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY + 48);
 				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY + 60);
 				
-				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize + 10, gp.tileSize + 10, null);
 				
 				c = new Color(230, 199, 159);
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(2));
-				g2.fillRect(positionX * 2, positionY * 3, gp.tileSize, gp.tileSize);
+				g2.fillRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
+				
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.drawRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
 				
 				
 			}
@@ -267,14 +271,21 @@ public class UI {
 				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY + 48);
 				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY + 60);
 				
-				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize, gp.tileSize, null);
+				g2.drawImage(gp.player.down5, positionX + (48*2) + 20, positionY * 3, gp.tileSize + 10, gp.tileSize + 10, null);
 				
 				c = new Color(230, 199, 159);
 				g2.setColor(c);
 				g2.setStroke(new BasicStroke(2));
-				g2.fillRect(positionX * 1, positionY * 3, gp.tileSize, gp.tileSize);
+				g2.fillRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
+				
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.drawRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
 				
 				
+				//END OF PLAYER STATS (FIRST PAGE)
+				
+				//START OF BACKPACK INVENTORY (SECOND PAGE)
 				positionX = gp.tileSize * 8;
 				
 				c = new Color(222,184,135);
@@ -286,11 +297,28 @@ public class UI {
 				g2.setStroke(new BasicStroke(5));
 				g2.drawRect(positionX, positionY, gp.tileSize * 6, gp.tileSize * 9);
 				
-				c = new Color(0,0,0);
+				c = new Color(230, 199, 159);
 				g2.setColor(c);
-				g2.drawRect(positionX, positionY, gp.tileSize * 2 - 30, gp.tileSize * 2);
+				g2.setStroke(new BasicStroke(2));
+				
+				g2.setColor(Color.BLACK);
+				g2.drawString("Inventory", positionX + 20, positionY + 35);
+				
+				c = new Color(230, 199, 159);
 				g2.setColor(c);
-				g2.drawRect(positionX + (gp.tileSize * 2 - 30) + 10, positionY, gp.tileSize * 2 - 30, gp.tileSize);
+				g2.fillRect(positionX + 20, positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.fillRect(positionX + 48 + 30, positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.fillRect(positionX + (48*2 + 40), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.fillRect(positionX + (48*3 + 50), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				
+				
+				c = new Color(205,170,125);
+				g2.setColor(c);
+				g2.drawRect(positionX + 20, positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.drawRect(positionX + 48 + 30, positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.drawRect(positionX + (48*2 + 40), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				g2.drawRect(positionX + (48*3 + 50), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				
 			}
 		}
 	}
