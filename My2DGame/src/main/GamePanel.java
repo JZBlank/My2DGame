@@ -102,7 +102,9 @@ public class GamePanel extends JPanel implements Runnable {
     	player.name = "Timmy";
     	
     	// ADD GAME MUSIC
-    	//playMusic(0); // play background music
+    	playMusic(1); // play background music
+    	
+    	
     }
     
     public void startGameThread() {
@@ -284,6 +286,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     public void playMusic(int i) {
     	sound.setFile(i);
+    	sound.setGameVolume();
     	sound.play();
     	sound.loop();
     }
@@ -293,7 +296,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public void playSE(int i) {
-    	sound.setFile(i);;
+    	sound.setFile(i);
+    	sound.seteffectVolume();
     	sound.play();
     }
 }
