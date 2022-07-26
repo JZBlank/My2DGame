@@ -32,7 +32,7 @@ public class TileManager {
 		
 		// CREATING MAP
 		getTileImage();
-		loadMap("/maps/newWorld01.txt");
+		loadMap("/maps/newWorld02.txt");
 		modifyMap();
 	}
 	

@@ -17,7 +17,7 @@ public class Sound {
 	
 	public Sound() {
 		soundURL[0] = getClass().getResource("/sound/meow.wav");
-		soundURL[1] = getClass().getResource("/sound/Spring-Flowers.wav");
+		soundURL[1] = getClass().getResource("/sound/09-Meydan-Contemplate-the-stars.wav");
 	}
 	
 	public void setFile(int i) {

@@ -43,7 +43,7 @@ public class AssetSetter {
 		gp.obj[2].collisionOn = false;
 		
 		gp.obj[3] = new OBJ_Bag(gp);
-		gp.obj[3].worldX = gp.tileSize * 23 + 8;
+		gp.obj[3].worldX = gp.tileSize * 5 + 8;
 		gp.obj[3].worldY = gp.tileSize * 14;
 		gp.obj[3].id = 3;
 		gp.obj[3].speed = 1;
