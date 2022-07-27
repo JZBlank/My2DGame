@@ -17,7 +17,7 @@ public class Sound {
 	
 	public Sound() {
 		soundURL[0] = getClass().getResource("/sound/meow.wav");
-		soundURL[1] = getClass().getResource("/sound/09-Meydan-Contemplate-the-stars.wav");
+		soundURL[1] = getClass().getResource("/sound/The-Lone-Wolf.wav");
 	}
 	
 	public void setFile(int i) {
@@ -44,7 +44,7 @@ public class Sound {
 	}
 	
 	public void setGameVolume() {
-		fc.setValue((float) 0);
+		fc.setValue((float) -10);
 	}
 	
 	public void seteffectVolume() {

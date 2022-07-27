@@ -19,6 +19,14 @@ D - move character to the right <br/>
 M - meow <br/>
 P - pause <br/>
 
+Game Music:
+
+Background - 
+The Lone Wolf by Alexander Nakarada | https://www.serpentsoundstudios.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+
 ##### GAME IMAGES:
 **WILL BE UPDATED** <br/>
 <img src="https://user-images.githubusercontent.com/56086743/172707753-16d492e1-2bc3-4f4a-82ae-80d354d022f1.png" width=500 />
