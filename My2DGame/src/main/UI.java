@@ -198,6 +198,7 @@ public class UI {
 		}
 	
 	}
+	
 
 	private void drawInventory() {		
 		
