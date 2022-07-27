@@ -446,7 +446,6 @@ public class Player extends Entity {
 				}
 				
 				if(inventory[0] == null && wearBackPack == false) {
-					System.out.println("TEST");
 					gp.player.holdItem = true;
 					holdingWhat = gp.obj[targetIndex].id;
 					

@@ -18,8 +18,7 @@ public class AssetSetter {
 	}
 	
 	public void setObject() {
-		
-		int fishNum = 9;
+		int itemNum = 0;
 		int landFish = 0;
 		boolean fishCap = false;
 		
@@ -32,23 +31,31 @@ public class AssetSetter {
 				
 		
 				if(gp.tileM.mapTileNum[i][j] == 2) {
-					if(fishNum < 30) {
+					if(itemNum < 30) {
 						if(l >= 50 && m >= 50) {
-							gp.obj[fishNum] = new OBJ_Fish(gp);
-							gp.obj[fishNum].worldX = i * gp.tileSize;
-							gp.obj[fishNum].worldY = j * gp.tileSize;
-							gp.obj[fishNum].id = fishNum;
-							gp.obj[fishNum].speed = 1;
-							gp.obj[fishNum].direction = "left";
-							gp.obj[fishNum].collisionOn = false;
-							fishNum +=1;
+							gp.obj[itemNum] = new OBJ_Fish(gp);
+							gp.obj[itemNum].worldX = i * gp.tileSize;
+							gp.obj[itemNum].worldY = j * gp.tileSize;
+							gp.obj[itemNum].id = itemNum;
+							gp.obj[itemNum].speed = 1;
+							gp.obj[itemNum].direction = "left";
+							gp.obj[itemNum].collisionOn = false;
+							itemNum +=1;
 						}
 					}
 				}
 			}
 		}
 		
-		System.out.println(gp.obj[9].worldX + " " +  gp.obj[9].worldY);
+		// SET OTHER ITEMS
+		gp.obj[itemNum] = new OBJ_Bag(gp);
+		gp.obj[itemNum].worldX = gp.tileSize * 9 + 8;
+		gp.obj[itemNum].worldY = gp.tileSize * 14;
+		gp.obj[itemNum].id = 3;
+		gp.obj[itemNum].speed = -1;
+		gp.obj[itemNum].collisionOn = true;
+		
+		
 	}
 	
 	public void setNPC() {

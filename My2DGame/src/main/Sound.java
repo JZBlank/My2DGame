@@ -44,7 +44,7 @@ public class Sound {
 	}
 	
 	public void setGameVolume() {
-		fc.setValue((float) -10);
+		fc.setValue((float) -29);
 	}
 	
 	public void seteffectVolume() {
