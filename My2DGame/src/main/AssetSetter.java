@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.Graphics2D;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Random;
 
 import entity.NPC_npc;
 import object.OBJ_Bag;
@@ -16,81 +19,38 @@ public class AssetSetter {
 	
 	public void setObject() {
 		
-		// FISH (NO SWIM)
-		gp.obj[0] = new OBJ_Fish(gp);
-		gp.obj[0].worldX = 10 * gp.tileSize;
-		gp.obj[0].worldY = 23 * gp.tileSize;
-		gp.obj[0].id = 0;
-		gp.obj[0].direction = "left";
-		gp.obj[0].speed = 1;
-		gp.obj[0].collisionOn = false;
+		int fishNum = 9;
+		int landFish = 0;
+		boolean fishCap = false;
 		
-		gp.obj[1] = new OBJ_Fish(gp);
-		gp.obj[1].worldX = 3 * gp.tileSize;
-		gp.obj[1].worldY = 32 * gp.tileSize;
-		gp.obj[1].id = 1;
-		gp.obj[1].direction = "left";
-		gp.obj[1].speed = 1;
-		gp.obj[1].collisionOn = false;
+		// Spawn fish in water
+		for(int i = 0; i < gp.maxWorldRow; i++) {
+			for(int j = 0; j < gp.maxWorldCol; j++) {
+				Random random = new Random();
+				int l = random.nextInt(100)+1;
+				int m = random.nextInt(100)+1;
+				
 		
-		// FISH (SWIMMING)
-		gp.obj[2] = new OBJ_Fish(gp);
-		gp.obj[2].worldX = 9 * gp.tileSize;
-		gp.obj[2].worldY = 34 * gp.tileSize;
-		gp.obj[2].id = 2;
-		gp.obj[2].speed = 1;
-		gp.obj[2].direction = "left";
-		gp.obj[2].collisionOn = false;
+				if(gp.tileM.mapTileNum[i][j] == 2) {
+					if(fishNum < 30) {
+						if(l >= 50 && m >= 50) {
+							gp.obj[fishNum] = new OBJ_Fish(gp);
+							gp.obj[fishNum].worldX = i * gp.tileSize;
+							gp.obj[fishNum].worldY = j * gp.tileSize;
+							gp.obj[fishNum].id = fishNum;
+							gp.obj[fishNum].speed = 1;
+							gp.obj[fishNum].direction = "left";
+							gp.obj[fishNum].collisionOn = false;
+							fishNum +=1;
+						}
+					}
+				}
+			}
+		}
 		
-		gp.obj[3] = new OBJ_Bag(gp);
-		gp.obj[3].worldX = gp.tileSize * 9 + 8;
-		gp.obj[3].worldY = gp.tileSize * 14;
-		gp.obj[3].id = 3;
-		gp.obj[3].speed = 1;
-		gp.obj[3].collisionOn = true;
-		
-		gp.obj[4] = new OBJ_Fish(gp);
-		gp.obj[4].worldX = 27 * gp.tileSize;
-		gp.obj[4].worldY = 25 * gp.tileSize;
-		gp.obj[4].id = 4;
-		gp.obj[4].speed = 1;
-		gp.obj[4].direction = "left";
-		gp.obj[4].collisionOn = false;
-		
-		gp.obj[5] = new OBJ_Fish(gp);
-		gp.obj[5].worldX = 15 * gp.tileSize;
-		gp.obj[5].worldY = 25 * gp.tileSize;
-		gp.obj[5].id = 5;
-		gp.obj[5].speed = 1;
-		gp.obj[5].direction = "left";
-		gp.obj[5].collisionOn = false;
-		
-		gp.obj[6] = new OBJ_Fish(gp);
-		gp.obj[6].worldX = 14 * gp.tileSize;
-		gp.obj[6].worldY = 25 * gp.tileSize;
-		gp.obj[6].id = 6;
-		gp.obj[6].speed = 1;
-		gp.obj[6].direction = "left";
-		gp.obj[6].collisionOn = false;
-		
-		gp.obj[7] = new OBJ_Fish(gp);
-		gp.obj[7].worldX = 16 * gp.tileSize;
-		gp.obj[7].worldY = 25 * gp.tileSize;
-		gp.obj[7].id = 7;
-		gp.obj[7].speed = 1;
-		gp.obj[7].direction = "left";
-		gp.obj[7].collisionOn = false;
-
-		gp.obj[8] = new OBJ_Fish(gp);
-		gp.obj[8].worldX = 13 * gp.tileSize;
-		gp.obj[8].worldY = 25 * gp.tileSize;
-		gp.obj[8].id = 8;
-		gp.obj[8].speed = 1;
-		gp.obj[8].direction = "left";
-		gp.obj[8].collisionOn = false;
-		
-		
+		System.out.println(gp.obj[9].worldX + " " +  gp.obj[9].worldY);
 	}
+	
 	public void setNPC() {
 		gp.npc[0] = new NPC_npc(gp);
 		gp.npc[0].collisionOn = true;
