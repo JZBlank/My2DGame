@@ -13,6 +13,7 @@ public class AssetSetter {
 	GamePanel gp;
 	Graphics2D g2;
 	public int itemNum = 0;
+	public int water[][] = new int[5][200];
 	
 	public AssetSetter(GamePanel gp){
 		this.gp = gp;
@@ -27,7 +28,7 @@ public class AssetSetter {
 	public void findWater() {
 		int numWater = 0;
 		int[][] visited = new int[gp.maxWorldRow][gp.maxWorldCol];
-		
+		int reset = 0;
 		
 		
 		// FIND TOTAL BODIES OF WATER ON MAP
@@ -35,26 +36,66 @@ public class AssetSetter {
 			for(int j = 0; j < gp.maxWorldCol; j++) {
 				if(gp.tileM.mapTileNum[i][j] == 2 && visited[i][j] == 0) {
 					numWater += 1;
-					dfs(gp.tileM.mapTileNum, visited, i, j);
-					
+					reset = 0;
+					dfs(gp.tileM.mapTileNum, visited, i, j, numWater, reset);
 				}
 			}
 		}
 		
-		System.out.println(numWater);
+		int smallestX = 100;
+		int smallestY = 100;
 		
+		int largestX = -1;
+		int largestY = -1;
+		
+		for(int i = 0; i < water.length; i++) {
+			for(int j = 0; j < water[i].length; j++) {
+				if(water[i][j] != 0)  {
+					if(j % 2 == 0) {
+						if(smallestX > water[i][j]) {
+							smallestX = water[i][j];
+						}
+						if(largestX < water[i][j]) {
+							largestX = water[i][j];
+						}
+					}
+					else if (j % 2 == 1) {
+						if(smallestY > water[i][j]) {
+							smallestY = water[i][j];
+						}
+						if(largestY < water[i][j]) {
+							largestY = water[i][j];
+						}
+					}
+				}
+			}
+			System.out.println("ROW " + i + "- LargestX: " + largestX + " LargestY: " + largestY + 
+					" SmallestX: " + smallestX + " SmallestY: " + smallestY);
+			
+			smallestX = 100;
+			smallestY = 100;
+			
+			largestX = -1;
+			largestY = -1;
+			
+		}
 	}
 	
-	public void dfs(int mapTileNum[][], int visited[][], int i, int j) {
+	public void dfs(int mapTileNum[][], int visited[][], int i, int j, int numWater, int reset) {
 		if(i > gp.maxWorldRow || i < 0 || j > gp.maxWorldCol || j < 0) return;
 		if(visited[i][j] == 1 || mapTileNum[i][j] != 2) return;
 		
 		visited[i][j] = 1;
 		
-		dfs(mapTileNum, visited, i-1, j);
-		dfs(mapTileNum, visited, i+1, j);
-		dfs(mapTileNum, visited, i, j-1);
-		dfs(mapTileNum, visited, i, j+1);
+		water[numWater-1][reset] = i;
+		reset++;
+		water[numWater-1][reset] = j;
+		reset++;
+		
+		dfs(mapTileNum, visited, i-1, j, numWater, reset);
+		dfs(mapTileNum, visited, i+1, j, numWater, reset);
+		dfs(mapTileNum, visited, i, j-1, numWater, reset);
+		dfs(mapTileNum, visited, i, j+1, numWater, reset);
 		
 	}
 	
