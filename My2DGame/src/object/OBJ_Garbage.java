@@ -6,10 +6,10 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class OBJ_WaterBottle extends SuperObject {
-	public OBJ_WaterBottle(GamePanel gp) {
+public class OBJ_Garbage extends SuperObject {
+	public OBJ_Garbage(GamePanel gp) {
 		super(gp);
-		name = "waterBottle";
+		name = "garbage";
 		canMove = false;
 		interactOptions();
 		setDialogue();
@@ -23,7 +23,9 @@ public class OBJ_WaterBottle extends SuperObject {
         
         try {
         	image1 = ImageIO.read(getClass().getResourceAsStream("/objects/waterBottle.png"));
+        	image2 = ImageIO.read(getClass().getResourceAsStream("/objects/can.png"));
     		image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
+    		image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
  	
         } catch(IOException e) {
 			e.printStackTrace();

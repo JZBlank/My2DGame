@@ -13,6 +13,7 @@ public class SuperObject {
 	public BufferedImage image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11;
     // public BufferedImage image7, image8, image9, image10, image11;
 	public String name;
+	public String name_id;
 	public boolean collisionOn = false;
 	public int worldX, worldY;
 	public Rectangle solidArea = new Rectangle(0,0,48,48);
@@ -228,9 +229,16 @@ public class SuperObject {
 				}
 			}
 			
-			else if(this.name == "waterBottle") {
-				BufferedImage bottle = image1;
-				g2.drawImage(bottle, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+			else if(this.name == "garbage") {
+				if(this.name_id == "waterBottle") {
+					BufferedImage bottle = image1;
+					g2.drawImage(bottle, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+				}
+				else if(this.name_id == "can") {
+					BufferedImage can = image2;
+					g2.drawImage(can, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+				}
+				
 			}
 			// IF OBJECT IS BAG
 			else if(this.name == "bag") {

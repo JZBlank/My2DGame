@@ -24,7 +24,7 @@ import entity.Entity;
 import entity.Player;
 import object.OBJ_Bag;
 import object.OBJ_Fish;
-import object.OBJ_WaterBottle;
+import object.OBJ_Garbage;
 import object.OBJ_healthBar;
 import object.SuperObject;
 
@@ -56,7 +56,7 @@ public class UI {
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage, fishImage6;
 	BufferedImage bagImage, bagImage2, bagImage3, bagImage4, bagImage5, bagImage6, bagImage7, bagImage8;
-	BufferedImage bottleImage;
+	BufferedImage bottleImage, canImage;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
@@ -125,8 +125,9 @@ public class UI {
 		bagImage7 = bag.image7;
 		bagImage8 = bag.image8;
 		
-		OBJ_WaterBottle bottle = new OBJ_WaterBottle(gp);
-		bottleImage = bottle.image1;
+		OBJ_Garbage garbage = new OBJ_Garbage(gp);
+		bottleImage = garbage.image1;
+		canImage = garbage.image2;
 		
 		//INVENTORY
 		
@@ -460,16 +461,20 @@ public class UI {
 				}		
 				
 			}
-			else if(gp.player.inventory[0].name == "waterBottle") {
-				if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
-					g2.drawImage(bottleImage, gp.screenWidth/2 - 8, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
+			else if(gp.player.inventory[0].name == "garbage") {
+				if(gp.player.inventory[0].name_id == "waterBottle") {
+					if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
+						g2.drawImage(bottleImage, gp.screenWidth/2 - 8, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
+					}
+					if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+						g2.drawImage(bottleImage, gp.screenWidth/2 - 20, gp.screenHeight/2 - 9 , gp.tileSize - 25, gp.tileSize - 25, null);
+					}
+					if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+						g2.drawImage(bottleImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
+					}		
 				}
-				if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
-					g2.drawImage(bottleImage, gp.screenWidth/2 - 20, gp.screenHeight/2 - 9 , gp.tileSize - 25, gp.tileSize - 25, null);
-				}
-				if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
-					g2.drawImage(bottleImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
-				}		
+				
+				
 				
 			}
 			
@@ -484,7 +489,7 @@ public class UI {
 			s = "Press E to interact";
 		}
 		else if (gp.player.holdItem == true) {
-			if(gp.player.inventory[gp.player.inventory.length - 1].name == "waterBottle") {
+			if(gp.player.inventory[gp.player.inventory.length - 1].name == "garbage") {
 				s = "Press E to drop water bottle";
 			}
 			else {
