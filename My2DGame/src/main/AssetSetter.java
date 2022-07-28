@@ -14,6 +14,8 @@ public class AssetSetter {
 	Graphics2D g2;
 	public int itemNum = 0;
 	public int water[][] = new int[5][200];
+	public int[][] coordinates = new int[5][4]; // coordinates to find fish in bodies of water
+	public int numWater = 0;
 	
 	public AssetSetter(GamePanel gp){
 		this.gp = gp;
@@ -26,7 +28,6 @@ public class AssetSetter {
 	}
 	
 	public void findWater() {
-		int numWater = 0;
 		int[][] visited = new int[gp.maxWorldRow][gp.maxWorldCol];
 		int reset = 0;
 		
@@ -72,6 +73,11 @@ public class AssetSetter {
 			System.out.println("ROW " + i + "- LargestX: " + largestX + " LargestY: " + largestY + 
 					" SmallestX: " + smallestX + " SmallestY: " + smallestY);
 			
+			coordinates[i][0] = largestX;
+			coordinates[i][1] = largestY;
+			coordinates[i][2] = smallestX;
+			coordinates[i][3] = smallestY;
+			
 			smallestX = 100;
 			smallestY = 100;
 			
@@ -80,6 +86,7 @@ public class AssetSetter {
 			
 		}
 	}
+	
 	
 	public void dfs(int mapTileNum[][], int visited[][], int i, int j, int numWater, int reset) {
 		if(i > gp.maxWorldRow || i < 0 || j > gp.maxWorldCol || j < 0) return;
@@ -98,6 +105,8 @@ public class AssetSetter {
 		dfs(mapTileNum, visited, i, j+1, numWater, reset);
 		
 	}
+	
+
 	
 	public void setFish(int itemNum) {
 		int landFish = 0;

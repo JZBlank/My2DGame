@@ -44,11 +44,36 @@ public class OBJ_Fish extends SuperObject {
 		}
 		collisionOn = false;
 	}
+	
+	public void fishTracker() {
+		// NUM OF FISH 
+		int countFish = 0;
+		
+		for(int a = 0; a < gp.obj.length; a++) {
+			if(gp.obj[a] != null) {
+				if(gp.obj[a].name == "fish") {
+					for(int b = 0; b < gp.aSetter.numWater; b++) {
+						if(gp.obj[a].worldX/48 <= gp.aSetter.coordinates[b][0] && gp.obj[a].worldX/48 >= gp.aSetter.coordinates[b][2] &&
+							gp.obj[a].worldY/48 <= gp.aSetter.coordinates[b][1] && gp.obj[a].worldY/48 >= gp.aSetter.coordinates[b][3]){
+							totalPop[b] += 1;
+						}
+					}
+				}
+			}
+		}
+		System.out.println(totalPop[0] + " " +  totalPop[1] + " " + totalPop[2] + " " + totalPop[3] + " " + totalPop[4]);
+		countFish = 0;
+		
+		for(int c = 0; c < gp.aSetter.numWater; c++) {
+			totalPop[c] = 0;
+		}
+	}
 
 	
 	public void interact(GamePanel gp) {}
 	
 	public void setAction() {	
+		fishTracker();
 		
 		int tileX = (gp.obj[id].worldX + 16)/ 48;
 		int tileY = (gp.obj[id].worldY + 16) / 48;

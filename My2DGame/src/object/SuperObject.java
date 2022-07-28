@@ -20,6 +20,10 @@ public class SuperObject {
 	public int solidAreaDefaultY = 0;
 	UtilityTool uTool = new UtilityTool();
 	
+	
+    // POPULATION
+    public int[] totalPop = new int[5];
+	
 	// MOVEMENT
 	public int actionLockCounter;
 	public int moveLockCounter;
