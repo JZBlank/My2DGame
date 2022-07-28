@@ -24,6 +24,7 @@ import entity.Entity;
 import entity.Player;
 import object.OBJ_Bag;
 import object.OBJ_Fish;
+import object.OBJ_WaterBottle;
 import object.OBJ_healthBar;
 import object.SuperObject;
 
@@ -36,8 +37,6 @@ public class UI {
 	// FONTS
 	Font purisaB; 
 	Font Montserrat;
-	
-	
 	
 	Font arial_40;
 	
@@ -57,6 +56,7 @@ public class UI {
 	// INVENTORY IMAGES (must add all items so can be shown
 	BufferedImage fishImage;
 	BufferedImage bagImage, bagImage2, bagImage3, bagImage4, bagImage5, bagImage6, bagImage7, bagImage8;
+	BufferedImage bottleImage;
 	
 	// HEALTH IMAGES
 	BufferedImage healthImage, healthImage2, healthImage3, healthImage4, healthImage5, healthImage6, healthImage7,
@@ -123,6 +123,9 @@ public class UI {
 		bagImage6 = bag.image6;
 		bagImage7 = bag.image7;
 		bagImage8 = bag.image8;
+		
+		OBJ_WaterBottle bottle = new OBJ_WaterBottle(gp);
+		bottleImage = bottle.image1;
 		
 		//INVENTORY
 		

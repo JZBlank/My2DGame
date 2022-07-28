@@ -172,20 +172,24 @@ public class SuperObject {
 				}
 			}
 			
+			else if(this.name == "waterBottle") {
+				BufferedImage bottle = image1;
+				g2.drawImage(bottle, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+			}
 			// IF OBJECT IS BAG
 			else if(this.name == "bag") {
-				BufferedImage image2 = image1;
+				BufferedImage bag = image1;
 				if(gp.player.itemDirection == "left") {
-					image2 = image1;
+					bag = image1;
 				}
 				if(gp.player.itemDirection == "right") {
-					image2 = image8;
+					bag = image8;
 				}
 				else if(gp.player.direction == "none") {
-					image2 = image1;
+					bag = image1;
 				}
 
-				g2.drawImage(image2, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
+				g2.drawImage(bag, screenX, screenY, gp.tileSize - 25, gp.tileSize - 25, null);
 			}
 		}
 		// If player is around the edge, draw everything

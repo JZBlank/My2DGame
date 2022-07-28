@@ -1,13 +1,12 @@
 package main;
 
 import java.awt.Graphics2D;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Random;
 
 import entity.NPC_npc;
 import object.OBJ_Bag;
 import object.OBJ_Fish;
+import object.OBJ_WaterBottle;
 
 public class AssetSetter {
 	GamePanel gp;
@@ -23,21 +22,35 @@ public class AssetSetter {
 	
 	public void setObject() {
 		setFish(itemNum);
+		
 		setBag(itemNum);
+		itemNum += 1;
 		setGarbage(itemNum);
+		itemNum += 1;
 		findWater();
 	}
 	
 	//FIX THIS
 	public void setGarbage(int itemNum) {
+		gp.obj[itemNum] = new OBJ_WaterBottle(gp);
+		gp.obj[itemNum].worldX = gp.tileSize * 15 + 8;
+		gp.obj[itemNum].worldY = gp.tileSize * 14;
+		gp.obj[itemNum].id = itemNum;
+		gp.obj[itemNum].speed = -1;
+		gp.obj[itemNum].collisionOn = true;
+		
+	}
+	
+	public void setBag(int itemNum) {
 		// SET OTHER ITEMS
 		gp.obj[itemNum] = new OBJ_Bag(gp);
-		gp.obj[itemNum].worldX = gp.tileSize * 9 + 8;
+		gp.obj[itemNum].worldX = gp.tileSize * 10 + 8;
 		gp.obj[itemNum].worldY = gp.tileSize * 14;
-		gp.obj[itemNum].id = 3;
+		gp.obj[itemNum].id = itemNum;
 		gp.obj[itemNum].speed = -1;
 		gp.obj[itemNum].collisionOn = true;
 	}
+	
 	
 	public void findWater() {
 		int[][] visited = new int[gp.maxWorldRow][gp.maxWorldCol];
@@ -148,18 +161,6 @@ public class AssetSetter {
 				}
 			}
 		}
-	}
-	
-	public void setBag(int itemNum) {
-		// SET OTHER ITEMS
-		gp.obj[itemNum] = new OBJ_Bag(gp);
-		gp.obj[itemNum].worldX = gp.tileSize * 9 + 8;
-		gp.obj[itemNum].worldY = gp.tileSize * 14;
-		gp.obj[itemNum].id = 3;
-		gp.obj[itemNum].speed = -1;
-		gp.obj[itemNum].collisionOn = true;
-		
-		
 	}
 	
 	public void setNPC() {

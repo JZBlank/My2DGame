@@ -6,10 +6,10 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class OBJ_Water extends SuperObject {
-	public OBJ_Water(GamePanel gp) {
+public class OBJ_WaterBottle extends SuperObject {
+	public OBJ_WaterBottle(GamePanel gp) {
 		super(gp);
-		name = "water";
+		name = "waterBottle";
 		canMove = false;
 		interactOptions();
 		setDialogue();
@@ -22,11 +22,9 @@ public class OBJ_Water extends SuperObject {
         solidArea.height = 25; //32
         
         try {
-        	image1 = ImageIO.read(getClass().getResourceAsStream("/objects/water.png"));
+        	image1 = ImageIO.read(getClass().getResourceAsStream("/objects/waterBottle.png"));
     		image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
-    		
-    		
-    		
+ 	
         } catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -40,7 +38,7 @@ public class OBJ_Water extends SuperObject {
 		options[0] = "Do nothing";
 		options[1] = "Inspect";
 		options[2] = "Pick Up";
-		options[3] = "Put On";
+		options[3] = "...";
 	}
 	
 	public void setDialogue() {
