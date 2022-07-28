@@ -357,6 +357,36 @@ public class Player extends Entity {
         				gp.player.inventory[0] = null;
         				itemCounter--;
     				}
+    				else {
+    					holdItem = false;
+        				putItemDown = false;
+        				
+        				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
+        				if(gp.player.direction == "up") {
+        					itemDirection = "none";
+        					gp.player.inventory[0].worldX = gp.player.worldX;
+            				gp.player.inventory[0].worldY = gp.player.worldY - 20;
+        				}
+        				else if(gp.player.direction == "down") {
+        					itemDirection = "none";
+            				gp.player.inventory[0].worldX = gp.player.worldX + 15;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 40;
+        				}
+        				else if(gp.player.direction == "left") {
+        					itemDirection = "left";
+        					gp.player.inventory[0].worldX = gp.player.worldX  - 20;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
+        				}
+        				else if(gp.player.direction == "right") {
+        					itemDirection = "right";
+        					gp.player.inventory[0].worldX = gp.player.worldX  + 40;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
+        				}
+    	
+        				gp.player.hasBackPack = false;
+        				gp.player.inventory[0] = null;
+        				itemCounter--;
+    				}
     			}	
     			keyH.ePressed = false;
     			holdingWhat = -1;
@@ -507,7 +537,24 @@ public class Player extends Entity {
 				itemCounter++;
 				break;
 			}
-		}
+		default:
+			if(canPickUp = false) {
+				notification = true;
+			}
+			else if(inventory[0] == null) {
+				inventory[itemCounter] = gp.obj[targetIndex];
+				
+				// 0 as placeholder
+				gp.obj[targetIndex].worldX = 0;
+				gp.obj[targetIndex].worldY = 0;
+				
+				holdItem = true;
+				holdingWhat = gp.obj[targetIndex].id;
+				
+				itemCounter++;
+				break;
+			}
+    	}
     }
     
     public void updateOptions() {

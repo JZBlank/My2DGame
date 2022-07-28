@@ -443,6 +443,18 @@ public class UI {
 				}		
 				
 			}
+			else if(gp.player.inventory[0].name == "waterBottle") {
+				if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
+					g2.drawImage(bottleImage, gp.screenWidth/2 - 8, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
+				}
+				if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+					g2.drawImage(bottleImage, gp.screenWidth/2 - 20, gp.screenHeight/2 - 9 , gp.tileSize - 25, gp.tileSize - 25, null);
+				}
+				if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+					g2.drawImage(bottleImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 9, gp.tileSize - 25, gp.tileSize - 25, null);
+				}		
+				
+			}
 			
 		}
 		
@@ -455,8 +467,12 @@ public class UI {
 			s = "Press E to interact";
 		}
 		else if (gp.player.holdItem == true) {
-	
-			s = "Press E to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
+			if(gp.player.inventory[gp.player.inventory.length - 1].name == "waterBottle") {
+				s = "Press E to drop water bottle";
+			}
+			else {
+				s = "Press E to drop " + gp.player.inventory[gp.player.inventory.length - 1].name;
+			}
 		}
 		else if(gp.player.canInteract == false && gp.player.wearBackPack == true) {
 			s = "Press I to view inventory";
