@@ -24,7 +24,19 @@ public class AssetSetter {
 	public void setObject() {
 		setFish(itemNum);
 		setBag(itemNum);
+		setGarbage(itemNum);
 		findWater();
+	}
+	
+	//FIX THIS
+	public void setGarbage(int itemNum) {
+		// SET OTHER ITEMS
+		gp.obj[itemNum] = new OBJ_Bag(gp);
+		gp.obj[itemNum].worldX = gp.tileSize * 9 + 8;
+		gp.obj[itemNum].worldY = gp.tileSize * 14;
+		gp.obj[itemNum].id = 3;
+		gp.obj[itemNum].speed = -1;
+		gp.obj[itemNum].collisionOn = true;
 	}
 	
 	public void findWater() {

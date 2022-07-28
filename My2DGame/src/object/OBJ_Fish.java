@@ -61,7 +61,7 @@ public class OBJ_Fish extends SuperObject {
 				}
 			}
 		}
-		System.out.println(totalPop[0] + " " +  totalPop[1] + " " + totalPop[2] + " " + totalPop[3] + " " + totalPop[4]);
+		//System.out.println(totalPop[0] + " " +  totalPop[1] + " " + totalPop[2] + " " + totalPop[3] + " " + totalPop[4]);
 		countFish = 0;
 		
 		for(int c = 0; c < gp.aSetter.numWater; c++) {
