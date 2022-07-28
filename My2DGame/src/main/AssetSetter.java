@@ -22,7 +22,8 @@ public class AssetSetter {
 	
 	public void setObject() {
 		setFish(itemNum);
-		
+		setSpecialFish(itemNum);
+		itemNum += 1;
 		setBag(itemNum);
 		itemNum += 1;
 		setGarbage(itemNum);
@@ -30,7 +31,19 @@ public class AssetSetter {
 		findWater();
 	}
 	
-	//FIX THIS
+	public void setSpecialFish(int itemNum) {
+		gp.obj[itemNum] = new OBJ_Fish(gp);
+		gp.obj[itemNum].name = "blib";
+		gp.obj[itemNum].worldX = gp.tileSize * 16 + 8;
+		gp.obj[itemNum].worldY = gp.tileSize * 14;
+		gp.obj[itemNum].id = itemNum;
+		gp.obj[itemNum].speed = 2;
+		gp.obj[itemNum].direction = "left";
+		gp.obj[itemNum].collisionOn = false;
+		
+		System.out.println(gp.obj[itemNum].name + " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
+	}
+	
 	public void setGarbage(int itemNum) {
 		gp.obj[itemNum] = new OBJ_WaterBottle(gp);
 		gp.obj[itemNum].worldX = gp.tileSize * 15 + 8;
@@ -38,6 +51,8 @@ public class AssetSetter {
 		gp.obj[itemNum].id = itemNum;
 		gp.obj[itemNum].speed = -1;
 		gp.obj[itemNum].collisionOn = true;
+		
+		System.out.println(gp.obj[itemNum].name + " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
 		
 	}
 	
@@ -136,6 +151,7 @@ public class AssetSetter {
 	public void setFish(int itemNum) {
 		int landFish = 0;
 		boolean fishCap = false;
+		boolean special_fish = false;
 		
 		// Spawn fish in water
 		for(int i = 0; i < gp.maxWorldRow; i++) {
@@ -143,9 +159,18 @@ public class AssetSetter {
 				Random random = new Random();
 				int l = random.nextInt(100)+1;
 				int m = random.nextInt(100)+1;
-				
+				int n = random.nextInt(100)+1;
 		
 				if(gp.tileM.mapTileNum[i][j] == 2) {
+					//if(special_fish == false && n >= 50) {
+			
+					
+					
+					
+					
+					
+						//special_fish = true;
+					//}
 					if(itemNum < 30) {
 						if(l >= 50 && m >= 50) {
 							gp.obj[itemNum] = new OBJ_Fish(gp);
@@ -158,6 +183,15 @@ public class AssetSetter {
 							itemNum +=1;
 						}
 					}
+				}
+			}
+		}
+		
+		
+		for(int s = 0; s < gp.obj.length; s++) {
+			if(gp.obj[s] != null) {
+				if(gp.obj[s].name == "blib") {
+					System.out.println(gp.obj[s] + " " + gp.obj[s].worldX/48 + " " + gp.obj[s].worldY/48);
 				}
 			}
 		}

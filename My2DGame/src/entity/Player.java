@@ -165,6 +165,7 @@ public class Player extends Entity {
     
     public void update(){    	
     	//
+    	
     	//
     	survival();
     	
@@ -363,27 +364,22 @@ public class Player extends Entity {
         				
         				// ITEM LOCATION CHANGES DEPENDING ON DIRECTION OF PLAYER
         				if(gp.player.direction == "up") {
-        					itemDirection = "none";
         					gp.player.inventory[0].worldX = gp.player.worldX;
             				gp.player.inventory[0].worldY = gp.player.worldY - 20;
         				}
         				else if(gp.player.direction == "down") {
-        					itemDirection = "none";
-            				gp.player.inventory[0].worldX = gp.player.worldX + 15;
+            				gp.player.inventory[0].worldX = gp.player.worldX;
             				gp.player.inventory[0].worldY = gp.player.worldY + 40;
         				}
         				else if(gp.player.direction == "left") {
-        					itemDirection = "left";
-        					gp.player.inventory[0].worldX = gp.player.worldX  - 20;
+        					gp.player.inventory[0].worldX = gp.player.worldX  - 30;
             				gp.player.inventory[0].worldY = gp.player.worldY + 30;
         				}
         				else if(gp.player.direction == "right") {
-        					itemDirection = "right";
-        					gp.player.inventory[0].worldX = gp.player.worldX  + 40;
-            				gp.player.inventory[0].worldY = gp.player.worldY + 30;
+        					gp.player.inventory[0].worldX = gp.player.worldX + 40;
+            				gp.player.inventory[0].worldY = gp.player.worldY + 20;
         				}
     	
-        				gp.player.hasBackPack = false;
         				gp.player.inventory[0] = null;
         				itemCounter--;
     				}

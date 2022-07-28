@@ -16,12 +16,12 @@ public class OBJ_Fish extends SuperObject {
 		setDialogue();
 		interactOptions();
 		
-//		solidArea.x = 1; // 8
-//        solidArea.y = 10;  // 16
-//        solidAreaDefaultX = solidArea.x;
-//        solidAreaDefaultY = solidArea.y;
-//        solidArea.width = 30; // 32
-//        solidArea.height = 25; //32
+		solidArea.x = 1; // 8
+        solidArea.y = 10;  // 16
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 30; // 32
+        solidArea.height = 25; //32
         
 		
 		try {
@@ -32,11 +32,23 @@ public class OBJ_Fish extends SuperObject {
 			image4 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish3.png"));
 			image5 = ImageIO.read(getClass().getResourceAsStream("/objects/water_fish4.png"));
 			
+			image6 = ImageIO.read(getClass().getResourceAsStream("/objects/defaultBlib.png"));
+			image7 = ImageIO.read(getClass().getResourceAsStream("/objects/blib.png"));
+			image8 = ImageIO.read(getClass().getResourceAsStream("/objects/blib2.png"));
+			image9 = ImageIO.read(getClass().getResourceAsStream("/objects/blib3.png"));
+			image10 = ImageIO.read(getClass().getResourceAsStream("/objects/blib4.png"));
+			
 			image1 = uTool.scaleImage(image1,  gp.tileSize,  gp.tileSize);
 			image2 = uTool.scaleImage(image2,  gp.tileSize,  gp.tileSize);
 			image3 = uTool.scaleImage(image3,  gp.tileSize,  gp.tileSize);
 			image4 = uTool.scaleImage(image4,  gp.tileSize,  gp.tileSize);
 			image5 = uTool.scaleImage(image5,  gp.tileSize,  gp.tileSize);
+			
+			image6 = uTool.scaleImage(image6,  gp.tileSize,  gp.tileSize);
+			image7 = uTool.scaleImage(image7,  gp.tileSize,  gp.tileSize);
+			image8 = uTool.scaleImage(image8,  gp.tileSize,  gp.tileSize);
+			image9 = uTool.scaleImage(image9,  gp.tileSize,  gp.tileSize);
+			image10 = uTool.scaleImage(image10,  gp.tileSize,  gp.tileSize);
 			
 			
 		} catch(IOException e) {

@@ -54,7 +54,7 @@ public class UI {
 
 	
 	// INVENTORY IMAGES (must add all items so can be shown
-	BufferedImage fishImage;
+	BufferedImage fishImage, fishImage6;
 	BufferedImage bagImage, bagImage2, bagImage3, bagImage4, bagImage5, bagImage6, bagImage7, bagImage8;
 	BufferedImage bottleImage;
 	
@@ -99,6 +99,7 @@ public class UI {
 		// FISH
 		OBJ_Fish fish = new OBJ_Fish(gp);
 		fishImage = fish.image1;
+		fishImage6 = fish.image6;
 		
 		// HEART
 		SuperObject heart = new OBJ_healthBar(gp);
@@ -418,18 +419,34 @@ public class UI {
 			BufferedImage itemImage = null;
 			
 			// Specify what item player is holding
-			if(gp.player.inventory[0].name == "fish") {
-				itemImage = fishImage;
+			if(gp.player.inventory[0].name == "fish" || gp.player.inventory[0].name == "blib") {
+				if(gp.player.inventory[0].name == "blib") {
+					itemImage = fishImage6;
+					if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 15, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 15, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 15, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+				}
+				if(gp.player.inventory[0].name == "fish") {
+					itemImage = fishImage;
+					if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+					if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
+						g2.drawImage(itemImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
+					}
+				}
+			
 				
-				if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
-					g2.drawImage(itemImage, gp.screenWidth/2 - 10, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
-				}
-				if(gp.player.image == gp.player.left1 || gp.player.image == gp.player.left2 || gp.player.image == gp.player.left3 || gp.player.image == gp.player.left4) {
-					g2.drawImage(itemImage, gp.screenWidth/2 - 30, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
-				}
-				if(gp.player.image == gp.player.right1 || gp.player.image == gp.player.right2 || gp.player.image == gp.player.right3 || gp.player.image == gp.player.right4) {
-					g2.drawImage(itemImage, gp.screenWidth/2 - 5, gp.screenHeight/2 - 20, gp.tileSize - 16, gp.tileSize - 16, null);
-				}
+
 			}
 			else if(gp.player.inventory[0].name == "bag") {
 				if(gp.player.image == gp.player.down1 || gp.player.image == gp.player.down2 || gp.player.image == gp.player.down3 || gp.player.image == gp.player.down4) {
@@ -519,7 +536,14 @@ public class UI {
 		y += 20;
 		
 		if(gp.player.holdItem ==  true) {
-			g2.drawImage(gp.player.inventory[gp.player.inventory.length - 1].image1, x, y, gp.tileSize + 10, gp.tileSize + 10, null);
+			if(gp.player.inventory[0].name == "fish") {
+				g2.drawImage(gp.player.inventory[gp.player.inventory.length - 1].image1, x, y, gp.tileSize + 10, gp.tileSize + 10, null);
+			}
+			
+			// remove later??
+			else if(gp.player.inventory[0].name == "blib"){
+				g2.drawImage(gp.player.inventory[gp.player.inventory.length - 1].image6, x, y, gp.tileSize + 10, gp.tileSize + 10, null);
+			}
 		}
 		drawSubWindow();
 
@@ -830,7 +854,12 @@ public class UI {
 			
 		}
 		else if(gp.player.whoInteract == 2) {
-			objImage = gp.obj[gp.player.targetIndex].image1;
+			if(gp.obj[gp.player.targetIndex].name == "fish") {
+				objImage = gp.obj[gp.player.targetIndex].image1;
+			}
+			else if(gp.obj[gp.player.targetIndex].name == "blib") {
+				objImage = gp.obj[gp.player.targetIndex].image6;
+			}
 			g2.drawImage(objImage, x, y,  width, height, null);
 		}
 		

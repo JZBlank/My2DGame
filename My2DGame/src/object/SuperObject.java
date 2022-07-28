@@ -112,44 +112,85 @@ public class SuperObject {
 		   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 			
 			// IF OBJECT IS FISH
-			if(this.name == "fish") {
+			if(this.name == "fish" || this.name == "blib") {
 				if(canMove == true) {
-					switch(direction){
-			        case "up":
-			        	if(spriteNum == 1) {
-			        		image = image2;
-			        	}
-			        	if(spriteNum == 2) {
-				        	image = image3;
-				        }
+					if(this.name == "fish") {
+						switch(direction){
+				        case "up":
+				        	if(spriteNum == 1) {
+				        		image = image2;
+				        	}
+				        	if(spriteNum == 2) {
+					        	image = image3;
+					        }
 
-			            break;
-			        case "down":
+				            break;
+				        case "down":
 
-			        	if(spriteNum == 1) {
-				        	image = image2;
-				        }
-				        if(spriteNum == 2) {
-				        	image = image3;;
-				        }
+				        	if(spriteNum == 1) {
+					        	image = image2;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image3;;
+					        }
 
-			            break;
-			        case "left":
-			        	if(spriteNum == 1) {
-				        	image = image2;
-				        }
-				        if(spriteNum == 2) {
-				        	image = image3;
-				        }
-			             break;
-			        case "right":
-			        	if(spriteNum == 1) {
-				        	image = image4;
-				        }
-				        if(spriteNum == 2) {
-				        	image = image5;
-				        }
-			             break;
+				            break;
+				        case "left":
+				        	if(spriteNum == 1) {
+					        	image = image2;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image3;
+					        }
+				             break;
+				        case "right":
+				        	if(spriteNum == 1) {
+					        	image = image4;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image5;
+					        }
+				             break;
+						}
+					}
+					else if(this.name == "blib") {
+						switch(direction){
+				        case "up":
+				        	if(spriteNum == 1) {
+				        		image = image7;
+				        	}
+				        	if(spriteNum == 2) {
+					        	image = image8;
+					        }
+
+				            break;
+				        case "down":
+
+				        	if(spriteNum == 1) {
+					        	image = image7;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image8;
+					        }
+
+				            break;
+				        case "left":
+				        	if(spriteNum == 1) {
+					        	image = image7;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image8;
+					        }
+				             break;
+				        case "right":
+				        	if(spriteNum == 1) {
+					        	image = image9;
+					        }
+					        if(spriteNum == 2) {
+					        	image = image10;
+					        }
+				             break; 
+						}
 					}
 				}
 				
@@ -158,16 +199,31 @@ public class SuperObject {
 					g2.drawImage(image, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
 				}
 				else {
-					if(move == 1 && canMove == false) {
-						g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+					if(this.name == "fish") {
+						if(move == 1 && canMove == false) {
+							g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+							g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
+						else if(move == 2 && canMove == false) {
+							g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+							g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
+						else if(move == 3 && canMove == false) {
+							g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
 					}
-					else if(move == 2 && canMove == false) {
-						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-						g2.drawImage(image2, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
-					}
-					else if(move == 3 && canMove == false) {
-						g2.drawImage(image3, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+					else if(this.name == "blib") {
+						if(move == 1 && canMove == false) {
+							g2.drawImage(image7, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+							g2.drawImage(image8, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
+						else if(move == 2 && canMove == false) {
+							g2.drawImage(image8, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+							g2.drawImage(image7, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
+						else if(move == 3 && canMove == false) {
+							g2.drawImage(image8, screenX, screenY, gp.tileSize - 16, gp.tileSize - 16, null);
+						}
 					}
 				}
 			}
