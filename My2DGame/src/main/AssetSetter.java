@@ -31,46 +31,31 @@ public class AssetSetter {
 	}
 	
 	public void setSpecialFish() {
-		gp.obj[itemNum] = new OBJ_Fish(gp);
-		gp.obj[itemNum].name = "blib";
-		gp.obj[itemNum].worldX = gp.tileSize * 16 + 8;
-		gp.obj[itemNum].worldY = gp.tileSize * 14;
-		gp.obj[itemNum].id = itemNum;
-		gp.obj[itemNum].speed = 2;
-		gp.obj[itemNum].direction = "left";
-		gp.obj[itemNum].collisionOn = false;
+		for(int i = 0; i < numWater; i++) {
+			Random random = new Random();
+			int q = random.nextInt(100)+1;
+			int x = random.nextInt(coordinates[i][0] - coordinates[i][2]) + coordinates[i][2];
+			int y = random.nextInt(coordinates[i][1]- coordinates[i][3]) + coordinates[i][3] ;
+			
+			if(q >= 90) {
+				gp.obj[itemNum] = new OBJ_Fish(gp);
+				gp.obj[itemNum].name = "blib";
+				gp.obj[itemNum].worldX = gp.tileSize * x;
+				gp.obj[itemNum].worldY = gp.tileSize * y;
+				gp.obj[itemNum].id = itemNum;
+				gp.obj[itemNum].speed = 2;
+				gp.obj[itemNum].direction = "left";
+				gp.obj[itemNum].collisionOn = false;
+				itemNum +=1;
+			}
+			
+			
+		}
 		
-		System.out.println(gp.obj[itemNum].name + " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
-		itemNum += 1;
 	}
 	
 	public void setGarbage() {
-		gp.obj[itemNum] = new OBJ_Garbage(gp);
-		gp.obj[itemNum].name_id = "waterBottle";
-		gp.obj[itemNum].worldX = gp.tileSize * 17 + 8;
-		gp.obj[itemNum].worldY = gp.tileSize * 14;
-		gp.obj[itemNum].id = itemNum;
-		gp.obj[itemNum].speed = -1;
-		gp.obj[itemNum].collisionOn = true;
-		
-		System.out.println(gp.obj[itemNum].name_id + " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
-		
-		itemNum += 1;
-		gp.obj[itemNum] = new OBJ_Garbage(gp);
-		gp.obj[itemNum].name_id = "waterBottle";
-		gp.obj[itemNum].worldX = gp.tileSize * 18 + 8;
-		gp.obj[itemNum].worldY = gp.tileSize * 14;
-		gp.obj[itemNum].id = itemNum;
-		gp.obj[itemNum].speed = -1;
-		gp.obj[itemNum].collisionOn = true;
-		
-		System.out.println(gp.obj[itemNum].name_id + " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
-		itemNum += 1;
-		
-		
 		for(int i = 0; i < numWater; i++) {
-			System.out.println(coordinates[i][0] - coordinates[i][2] + coordinates[i][2]);
-			System.out.println(coordinates[i][1] - coordinates[i][3] + coordinates[i][3]);
 			
 			Random random = new Random();
 			int x = random.nextInt(coordinates[i][0] - coordinates[i][2]) + coordinates[i][2];
@@ -86,6 +71,16 @@ public class AssetSetter {
 				
 			System.out.println("GARBAGE LOCATIONS: " +  " " + gp.obj[itemNum].worldX/48 + " " + gp.obj[itemNum].worldY/48);
 			itemNum += 1;
+			
+			gp.obj[itemNum] = new OBJ_Fish(gp);
+			gp.obj[itemNum].name = "blib";
+			gp.obj[itemNum].worldX = gp.tileSize * x;
+			gp.obj[itemNum].worldY = gp.tileSize * y;
+			gp.obj[itemNum].id = itemNum;
+			gp.obj[itemNum].speed = 2;
+			gp.obj[itemNum].direction = "left";
+			gp.obj[itemNum].collisionOn = false;
+			itemNum +=1;
 		}
 		
 	}
