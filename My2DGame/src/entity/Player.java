@@ -15,7 +15,7 @@ public class Player extends Entity {
     Entity[] npc;
     AssetSetter aSetter;
     public SuperObject inventory[] = new SuperObject[1];
-    public SuperObject backpack[] = new SuperObject[5];
+    public SuperObject backpack[] = new SuperObject[4];
     
     public BufferedImage image = null;     
     
@@ -277,15 +277,15 @@ public class Player extends Entity {
 			gp.player.canPickUp = true;
 			notification = false;
 		}
-		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] != null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[3] != null && gp.player.inventory[0] != null) {
 			gp.player.canPickUp = false;
 			notification = true;
 		}
-		else if(gp.player.wearBackPack == true && gp.player.backpack[4] != null && gp.player.inventory[0] == null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[3] != null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 			notification = false;
 		}
-		else if(gp.player.wearBackPack == true && gp.player.backpack[4] == null && gp.player.inventory[0] == null) {
+		else if(gp.player.wearBackPack == true && gp.player.backpack[3] == null && gp.player.inventory[0] == null) {
 			gp.player.canPickUp = true;
 			notification = false;
 		}
@@ -487,7 +487,7 @@ public class Player extends Entity {
     				break;
     			}
     			else if(wearBackPack == true) {
-    				if(backpack[4] == null) {
+    				if(backpack[backpack.length-1] == null) {
     					
     					backpack[backpackItemCounter] = gp.obj[targetIndex];
     					backpackItemCounter++;
@@ -498,7 +498,7 @@ public class Player extends Entity {
         				gp.obj[targetIndex].worldY = 0;
         				
     				}
-    				else if(backpack[4] != null && notification != true) {
+    				else if(backpack[backpack.length-1] != null && notification != true) {
     					// 0 as placeholder
     					inventory[itemCounter] = gp.obj[targetIndex];
     					holdItem = true;

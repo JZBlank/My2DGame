@@ -251,6 +251,10 @@ public class UI {
 				g2.drawRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
 				
 				
+				if(gp.player.inventory[0] != null) {
+					g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 7 + 20, gp.tileSize * 4  , gp.tileSize, gp.tileSize, null);
+				}
+				
 			}
 			else if(gp.player.wearBackPack == true) {
 				String str = Integer.toString(gp.player.waterLevel - gp.player.dehydration);
@@ -324,6 +328,20 @@ public class UI {
 				g2.drawRect(positionX + 48 + 30, positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
 				g2.drawRect(positionX + (48*2 + 40), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
 				g2.drawRect(positionX + (48*3 + 50), positionY + 48, gp.tileSize + 10, gp.tileSize + 10);
+				
+				
+				// DRAW ALL INVENTORY ITEMS
+				for(int x = 0; x < gp.player.backpack.length; x++) {
+					System.out.println(x + " " + gp.player.backpack[x]);
+					if(gp.player.backpack[x] != null) {
+						g2.drawImage(gp.player.backpack[x].image1, positionX + 25, positionY + 50, gp.tileSize, gp.tileSize, null);
+						positionX += 60;
+					}
+				}
+				
+				if(gp.player.inventory[0] != null) {
+					g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 4 + 20 , gp.tileSize * 4 - 10 , gp.tileSize, gp.tileSize, null);
+				}
 				
 			}
 		}
