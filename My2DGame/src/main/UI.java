@@ -252,7 +252,12 @@ public class UI {
 				
 				
 				if(gp.player.inventory[0] != null) {
-					g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 7 + 20, gp.tileSize * 4  , gp.tileSize, gp.tileSize, null);
+					if(gp.player.inventory[0].name == "blib") {
+						g2.drawImage(gp.player.inventory[0].image6, gp.tileSize * 7 + 20 , gp.tileSize * 4, gp.tileSize, gp.tileSize, null);
+					}
+					else {
+						g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 7 + 20, gp.tileSize * 4  , gp.tileSize, gp.tileSize, null);
+					}
 				}
 				
 			}
@@ -340,7 +345,13 @@ public class UI {
 				}
 				
 				if(gp.player.inventory[0] != null) {
-					g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 4 + 20 , gp.tileSize * 4 - 10 , gp.tileSize, gp.tileSize, null);
+					if(gp.player.inventory[0].name == "blib") {
+						g2.drawImage(gp.player.inventory[0].image6, gp.tileSize * 4 + 20 , gp.tileSize * 4 - 10 , gp.tileSize, gp.tileSize, null);
+					}
+					else {
+						g2.drawImage(gp.player.inventory[0].image1, gp.tileSize * 4 + 20 , gp.tileSize * 4 - 10 , gp.tileSize, gp.tileSize, null);
+					}
+					
 				}
 				
 			}
