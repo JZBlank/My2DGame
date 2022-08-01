@@ -337,7 +337,6 @@ public class UI {
 				
 				// DRAW ALL INVENTORY ITEMS
 				for(int x = 0; x < gp.player.backpack.length; x++) {
-					System.out.println(x + " " + gp.player.backpack[x]);
 					if(gp.player.backpack[x] != null) {
 						g2.drawImage(gp.player.backpack[x].image1, positionX + 25, positionY + 50, gp.tileSize, gp.tileSize, null);
 						positionX += 60;
