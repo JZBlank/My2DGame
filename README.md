@@ -37,10 +37,10 @@ https://creativecommons.org/licenses/by/4.0/
 - [X] Dialogue with NPC
 
 ##### TO-DO:
-- [ ] Create Game Theme Song + add Music to Game 
+- [X] Create Game Theme Song + add Music to Game 
 - [X] Make Fish on ground move
-- [ ] Create Inventory
-- [ ] Make items smaller on screen
+- [X] Create Inventory
+- [X] Make items smaller on screen
 - [ ] Figure out Objective for Game (idea right now is open world, freedom to do whatever you want)
 - [ ] Create full map
 
