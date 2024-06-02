@@ -29,7 +29,8 @@ https://creativecommons.org/licenses/by/4.0/
 
 ##### GAME IMAGES:
 **WILL BE UPDATED** <br/>
-![image](https://github.com/JZBlank/My2DGame/assets/56086743/098a79f5-d81d-4a30-8798-adc4b56c49ea)
+![image](https://github.com/JZBlank/My2DGame/assets/56086743/40184256-987e-4278-8f6c-a682a3ace306)
+
 
 
 ##### COMPLETED OBJECTIVES:
