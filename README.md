@@ -29,7 +29,8 @@ https://creativecommons.org/licenses/by/4.0/
 
 ##### GAME IMAGES:
 **WILL BE UPDATED** <br/>
-<img src="https://user-images.githubusercontent.com/56086743/172707753-16d492e1-2bc3-4f4a-82ae-80d354d022f1.png" width=500 />
+![image](https://github.com/JZBlank/My2DGame/assets/56086743/098a79f5-d81d-4a30-8798-adc4b56c49ea)
+
 
 ##### COMPLETED OBJECTIVES:
 - [X] Player is able to move around in a full map 
