@@ -20,7 +20,6 @@ public class Entity {
     
     public String name = "";
     
-    
     // INVENTORY
     SuperObject[] inventory;
     public String[] options = new String[4];

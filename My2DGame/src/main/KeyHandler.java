@@ -12,7 +12,6 @@ public class KeyHandler implements KeyListener{
     public boolean enterPressed;
     public boolean changeDialogue;
     
-    
     public KeyHandler(GamePanel gp) {
     	this.gp = gp;
     }

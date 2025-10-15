@@ -2,6 +2,7 @@ package main;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -235,7 +236,6 @@ public class UI {
 				
 				// **Add heart and Thirst Icons here later ** 
 				
-				
 				g2.drawString("Health: " + gp.player.currentHealth + "/9", positionX + 10, positionY + 48);
 				g2.drawString("Dehydration: " + str + "/9", positionX + 10, positionY + 60);
 				
@@ -250,7 +250,6 @@ public class UI {
 				g2.setColor(c);
 				g2.drawRect(positionX + (48*2) + 20, positionY * 2, gp.tileSize, gp.tileSize);
 				
-				
 				if(gp.player.inventory[0] != null) {
 					if(gp.player.inventory[0].name == "blib") {
 						g2.drawImage(gp.player.inventory[0].image6, gp.tileSize * 7 + 20 , gp.tileSize * 4, gp.tileSize, gp.tileSize, null);
@@ -262,12 +261,15 @@ public class UI {
 				
 			}
 			else if(gp.player.wearBackPack == true) {
+				// TODO: Show hand cursor when hovering over items (if present in backpack inventory)
+//				Cursor handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+//				g2.setCursor(handCursor);
+						
 				String str = Integer.toString(gp.player.waterLevel - gp.player.dehydration);
 				
 				// SHOW STATS  BACKPACK INVENTORY WINDOW SIDE BY SIDE
 				positionX = gp.tileSize * 2;
 				positionY = gp.tileSize * 2;
-				
 				
 				g2.fillRect(positionX, positionY , gp.tileSize * 6, gp.tileSize * 9);
 				c = new Color(205,170,125);
