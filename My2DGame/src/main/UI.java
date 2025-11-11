@@ -169,6 +169,7 @@ public class UI {
 			drawPlayerLife();
 			drawObjectImages();
 			drawInventory();
+			drawObjectiveWindow();
 		}
 		
 		// PAUSE STATE
@@ -178,6 +179,7 @@ public class UI {
 			drawPlayerImage();
 			drawPlayerLife();
 			drawPauseScreen();
+			drawObjectiveWindow();
 		}
 		
 		
@@ -190,6 +192,7 @@ public class UI {
 			drawPlayerLife();
 			drawDialogueScreen();
 			drawDialogue();
+			drawObjectiveWindow();
 		}
 		
 		if(gp.gameState == gp.interactOBJState){
@@ -201,6 +204,7 @@ public class UI {
 			drawObjectImages();
 			drawOptionBox();
 			drawOptions();
+			drawObjectiveWindow();
 		}
 	
 	}
@@ -357,6 +361,42 @@ public class UI {
 				
 			}
 		}
+	}
+	
+	private void drawObjectiveWindow() {
+		
+		if(cropped == false) {
+			// PLAYER
+			playerImage = gp.player.cropImage(gp.player.down5);
+		}
+		cropped = true;
+		
+		// transparent color
+		Color c = new Color(0,0,0,160); //fourth parameter is transparency of window
+		g2.setColor(c);
+
+		// DRAW DESIGN OF HEALTHBAR
+		int points[][] = {{gp.tileSize + 370, gp.tileSize - 20},{gp.tileSize * 15 + 30, gp.tileSize - 20},
+				{gp.tileSize * 15 + 30, 100},{gp.tileSize + 370, 100}};
+		
+		GeneralPath design = new GeneralPath();
+		design.moveTo(points[0][0],points[0][0]);
+		
+		for(int j = 0; j < points.length; j++) {
+			design.lineTo(points[j][0], points[j][1]);
+		}
+
+		design.closePath();
+		g2.fill(design);
+		g2.setColor(Color.white);
+		
+		//DRAW PLAYER PIC
+		g2.drawImage(playerImage, gp.tileSize * 100, gp.tileSize * 100, gp.tileSize * 10, gp.tileSize * 10, null);
+		
+		// DRAW PLAYER NAME
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
+		g2.drawString("Objective: Give NPC a fish: 0/1", gp.tileSize * 9, gp.tileSize + 8);
+		
 	}
 	
 	private void HealthBarStats(int x, int y) {
@@ -552,7 +592,7 @@ public class UI {
 			x = gp.tileSize/2 * 2;
 			y = gp.tileSize * 9 + gp.tileSize;
 			
-			g2.drawString("Inventory full", x, y);
+//			g2.drawString("Inventory full", x, y);
 		}
 	}
 

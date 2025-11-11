@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setNPC();
     	
     	// STARTING SCREEN 
-    	//gameState = titleState; 
+//    	gameState = titleState; 
     	// set up modes for titleState *** (Casual, survival mode, etc)
  
     	gameState = playState;

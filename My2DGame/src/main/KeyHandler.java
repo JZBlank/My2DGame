@@ -163,7 +163,7 @@ public class KeyHandler implements KeyListener{
         		}
         		else if(gp.ui.commandNum == 2) {
         			if(gp.player.whoInteract == 1) {
-        				//give
+        				gp.player.give = true;
         			}
         			else if(gp.player.whoInteract == 2) {
         				gp.player.pickUp = true;

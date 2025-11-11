@@ -49,6 +49,7 @@ public class Player extends Entity {
     public boolean pickUp = false;
     public boolean talk = false;
     public boolean putOn = false;
+    public boolean give = false;
     
     public boolean addHealth = false;
     public boolean hasBackPack = false;
@@ -458,6 +459,15 @@ public class Player extends Entity {
 			gp.obj[targetIndex].worldY = 0;
 			gp.player.putOn = false;
     	}
+    	else if(gp.player.give == true) {
+    		if (gp.player.holdItem == true) {
+    			// TODO: Trigger objective completion for giving item to npc
+    			
+    		} else {
+    			System.out.print("Player has nothing to give.");
+    		}
+    		gp.player.give = false;
+    	}
     }
     
     public void pickUpLogic() {
@@ -587,10 +597,10 @@ public class Player extends Entity {
     }
     
     public void showOptions() {	
-    	if(canInteract == false && holdItem == false) {
+    	if(canInteract == false && holdItem == false) { 
     		gp.gameState = gp.playState;
     	}
-    	else if(canInteract == false && holdItem == true) {
+    	else if(canInteract == false && holdItem == true) { // Drop item that player is holding
     		canpressE = true;
     		if(gp.keyH.ePressed == true) {
     			putItemDown = true;
